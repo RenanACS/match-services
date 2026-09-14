@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+*.swp
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Env files
+.env
+.env.local

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink: #0a0a0a;
+  --color-charcoal: #141414;
+  --color-charcoal-2: #1c1c1c;
+  --color-hairline: rgba(255, 255, 255, 0.1);
+  --color-orange: #fe5200;
+  --color-orange-soft: rgba(254, 82, 0, 0.16);
+  --color-cream: #f5f3ef;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-orange);
+  color: #0a0a0a;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.glass {
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-hairline);
+}
+
+.hairline {
+  border-color: var(--color-hairline);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
