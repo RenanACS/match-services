@@ -12,6 +12,16 @@
   --color-orange: #fe5200;
   --color-orange-soft: rgba(254, 82, 0, 0.16);
   --color-cream: #f5f3ef;
+
+  /* Tokens abaixo são para as telas internas (/app, /fornecedor, /login,
+     /cadastro). A landing pública continua usando ink/charcoal/charcoal-2
+     acima, sem alteração, para preservar o visual atual. */
+  --color-bg: #070708;
+  --color-hero: #07070a;
+  --color-surface-1: #0d0d0f;
+  --color-surface-2: #121215;
+  --color-surface-3: #18181c;
+  --color-orange-light: #ff8a47;
 }
 
 html {
