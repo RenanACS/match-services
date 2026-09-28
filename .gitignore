@@ -8,3 +8,12 @@
 # Env files
 .env
 .env.local
+
+# Dependencies (install inside match-service-front/, not here)
+node_modules/
+package-lock.json
+
+# Python (backend/)
+.venv/
+__pycache__/
+*.pyc

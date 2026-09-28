@@ -1,0 +1,81 @@
+# Espelha match-service-front/src/data/catalog.js — mesmo catálogo fechado e
+# mesmas palavras-chave, para que o classificador do backend concorde com o
+# demo client-side do front. Usado para fechar o diagnóstico de forma
+# determinística (o agente de IA cuida só da conversa; quem decide a
+# categoria final é este classificador, nunca o texto livre do modelo).
+
+CATALOGO = [
+    {
+        "id": "financeiro",
+        "label": "Financeiro / BPO",
+        "keywords": [
+            "financeiro", "financiamento", "contabilidade", "contábil",
+            "fluxo de caixa", "contas a pagar", "contas a receber",
+            "folha de pagamento", "pagamento", "orçamento", "conciliação",
+            "bagunça", "caixa", "faturamento", "cobrança", "inadimplência",
+            "nota fiscal", "notas fiscais", "emissão de notas", "fatura",
+        ],
+    },
+    {
+        "id": "tecnologia",
+        "label": "Tecnologia",
+        "keywords": [
+            "sistema", "software", "aplicativo", "app", "site", "ti",
+            "tecnologia", "infraestrutura", "servidor", "banco de dados",
+            "bug", "erp",
+        ],
+    },
+    {
+        "id": "limpeza",
+        "label": "Limpeza",
+        "keywords": [
+            "limpeza", "higienização", "ar-condicionado", "ar condicionado",
+            "dedetização", "faxina", "sanitização",
+        ],
+    },
+    {
+        "id": "manutencao",
+        "label": "Manutenção Predial",
+        "keywords": [
+            "manutenção", "elétrica", "hidráulica", "predial", "reforma",
+            "elevador", "vazamento", "infiltração",
+        ],
+    },
+    {
+        "id": "marketing",
+        "label": "Marketing",
+        "keywords": [
+            "marketing", "redes sociais", "anúncios", "branding",
+            "conteúdo", "tráfego", "divulgação", "instagram",
+        ],
+    },
+    {
+        "id": "juridico",
+        "label": "Jurídico",
+        "keywords": [
+            "jurídico", "contrato", "advogado", "compliance", "legal",
+            "processo", "trabalhista",
+        ],
+    },
+    {
+        "id": "rh",
+        "label": "RH",
+        "keywords": [
+            "rh", "recrutamento", "contratação", "benefícios",
+            "treinamento", "vaga", "funcionário", "colaborador",
+        ],
+    },
+]
+
+
+def classificar(texto: str):
+    """Retorna o label da categoria com mais palavras-chave batendo, ou None."""
+    normalizado = texto.lower()
+    melhor = None
+    melhor_score = 0
+    for categoria in CATALOGO:
+        score = sum(1 for kw in categoria["keywords"] if kw in normalizado)
+        if score > melhor_score:
+            melhor = categoria["label"]
+            melhor_score = score
+    return melhor
