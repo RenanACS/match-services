@@ -15,13 +15,14 @@ import Fornecedores from "./pages/client/Fornecedores";
 import FornecedorDetalhes from "./pages/client/FornecedorDetalhes";
 import NovaSolicitacao from "./pages/client/NovaSolicitacao";
 import Solicitacoes from "./pages/client/Solicitacoes";
+import Pagamento from "./pages/client/Pagamento";
 import Assistente from "./pages/client/Assistente";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Páginas públicas — landing preservada */}
+        {/* Páginas públicas */}
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
@@ -45,17 +46,15 @@ export default function App() {
             element={<NovaSolicitacao />}
           />
 
-          {/* Nova tela: Minhas Solicitações */}
           <Route
             path="solicitacoes"
             element={<Solicitacoes />}
           />
 
+          {/* Nova tela de Pagamentos */}
           <Route
             path="pagamento"
-            element={
-              <PlaceholderPage title="Pagamento" />
-            }
+            element={<Pagamento />}
           />
 
           <Route
@@ -65,9 +64,7 @@ export default function App() {
 
           <Route
             path="perfil"
-            element={
-              <PlaceholderPage title="Perfil" />
-            }
+            element={<PlaceholderPage title="Perfil" />}
           />
         </Route>
 
