@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
+import RecuperarSenha from "./pages/RecuperarSenha";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -16,6 +17,7 @@ import FornecedorDetalhes from "./pages/client/FornecedorDetalhes";
 import NovaSolicitacao from "./pages/client/NovaSolicitacao";
 import Solicitacoes from "./pages/client/Solicitacoes";
 import Pagamento from "./pages/client/Pagamento";
+import Perfil from "./pages/client/Perfil";
 import Assistente from "./pages/client/Assistente";
 
 export default function App() {
@@ -26,6 +28,7 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/recuperar-senha" element={<RecuperarSenha />} />
 
         {/* Área do cliente */}
         <Route path="/app" element={<AppLayout area="client" />}>
@@ -64,7 +67,7 @@ export default function App() {
 
           <Route
             path="perfil"
-            element={<PlaceholderPage title="Perfil" />}
+            element={<Perfil />}
           />
         </Route>
 

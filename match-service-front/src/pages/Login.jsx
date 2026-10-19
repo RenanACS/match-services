@@ -76,13 +76,12 @@ export default function Login() {
               onChange={(event) => setPassword(event.target.value)}
             />
             {errors.password && <p className="text-xs text-red-400">{errors.password}</p>}
-            <a
-              href="#"
-              onClick={(event) => event.preventDefault()}
+            <Link
+              to="/recuperar-senha"
               className="self-end text-xs text-cream/50 transition hover:text-orange"
             >
               Esqueci minha senha
-            </a>
+            </Link>
           </div>
 
           <Button type="submit" className="w-full">

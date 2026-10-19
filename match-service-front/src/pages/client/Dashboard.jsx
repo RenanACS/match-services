@@ -5,6 +5,8 @@ import AssistantPromo from "../../components/dashboard/AssistantPromo";
 import SummaryStrip from "../../components/dashboard/SummaryStrip";
 import RecentRequests from "../../components/dashboard/RecentRequests";
 import { mockUser } from "../../data/dashboard";
+import useClientProfile from "../../context/useClientProfile";
+import { getShortName } from "../../utils/displayName";
 
 /**
  * Dashboard do Cliente (/app).
@@ -22,10 +24,14 @@ import { mockUser } from "../../data/dashboard";
  * são mantidos.
  */
 export default function Dashboard() {
+  // Mesma fonte de dados do Perfil; sem cliente na sessão mantém "Cliente".
+  const { profile } = useClientProfile();
+  const greetingName = (profile && getShortName(profile.name, profile.personType)) || mockUser.name;
+
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 xl:gap-3">
       <div className="flex flex-col gap-6 xl:gap-2">
-        <DashboardHeader name={mockUser.name} />
+        <DashboardHeader name={greetingName} />
         {/* Busca e ações principais: empilhadas no mobile, lado a lado a
             partir de xl para aproveitar a largura e reduzir a altura. */}
         <div className="flex flex-col gap-3 xl:flex-row xl:items-stretch xl:gap-3">
