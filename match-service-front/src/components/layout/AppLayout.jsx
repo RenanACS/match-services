@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo-mark.png";
+import BackButton from "./BackButton";
 
 const CLIENT_NAV = [
   { to: "/app", label: "Dashboard", end: true },
@@ -29,7 +30,7 @@ function Brand({ onClick }) {
   return (
     <Link to="/" onClick={onClick} className="flex items-center gap-2">
       <img src={logo} alt="MATCH SERVICES" className="h-8 w-auto" />
-      <span className="font-display text-sm font-semibold">MATCH SERVICES</span>
+      <span className="whitespace-nowrap font-display text-sm font-semibold">MATCH SERVICES</span>
     </Link>
   );
 }
@@ -80,6 +81,40 @@ export default function AppLayout({ area = "client" }) {
   const perfilHref = area === "fornecedor" ? "/fornecedor/perfil" : "/app/perfil";
   const closeMenu = () => setMenuOpen(false);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Histórico interno, só da área do cliente — não é o histórico do
+  // navegador. Guarda as rotas de /app/* visitadas nesta sessão do
+  // AppLayout (ele é remontado sempre que se sai da área do cliente, então
+  // a pilha nunca carrega uma rota externa ou da área do fornecedor).
+  const clientHistoryRef = useRef([]);
+
+  useEffect(() => {
+    if (area !== "client") return;
+    const stack = clientHistoryRef.current;
+    if (stack[stack.length - 1] !== location.pathname) {
+      stack.push(location.pathname);
+    }
+  }, [area, location.pathname]);
+
+  function handleBack() {
+    const stack = clientHistoryRef.current;
+    if (stack.length >= 2) {
+      stack.pop(); // sai da página atual
+      const previous = stack[stack.length - 1];
+      navigate(previous);
+    } else {
+      // Sem histórico interno válido (acesso direto à página) — destino
+      // seguro padrão é o Dashboard, nunca a área do fornecedor ou uma
+      // página externa.
+      stack.length = 0;
+      navigate("/app");
+    }
+  }
+
+  const showBackButton = area === "client" && location.pathname !== "/app";
+
   return (
     <div className="flex min-h-screen bg-bg text-cream">
       <aside className="hidden w-60 shrink-0 flex-col border-r border-hairline bg-surface-1 md:flex">
@@ -119,6 +154,12 @@ export default function AppLayout({ area = "client" }) {
             <span className="hidden font-mono text-[11px] uppercase tracking-widest text-cream/50 md:inline">
               {area === "fornecedor" ? "Área do fornecedor" : "Área do cliente"}
             </span>
+            {showBackButton && (
+              <span className="hidden items-center gap-3 sm:flex">
+                <span className="hidden h-4 w-px bg-hairline md:inline-block" aria-hidden="true" />
+                <BackButton onClick={handleBack} />
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-4">
             {/* Notificações — placeholder visual, sem dados reais ainda */}
