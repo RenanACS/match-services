@@ -6,9 +6,10 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import RecuperarSenha from "./pages/RecuperarSenha";
 import NotFound from "./pages/NotFound";
-import PlaceholderPage from "./pages/PlaceholderPage";
 
 import AppLayout from "./components/layout/AppLayout";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import SupplierLayout from "./components/supplier/layout/SupplierLayout";
 
 // Páginas do cliente
 import Dashboard from "./pages/client/Dashboard";
@@ -20,6 +21,19 @@ import Pagamento from "./pages/client/Pagamento";
 import Perfil from "./pages/client/Perfil";
 import Assistente from "./pages/client/Assistente";
 
+// Páginas do fornecedor
+import SupplierDashboard from "./pages/supplier/Dashboard";
+import SupplierRequests from "./pages/supplier/Solicitacoes";
+import SupplierRequestDetails from "./pages/supplier/SolicitacaoDetalhes";
+import SupplierProposals from "./pages/supplier/Propostas";
+import SupplierProposalDetails from "./pages/supplier/PropostaDetalhes";
+import SupplierProposalForm from "./pages/supplier/PropostaForm";
+import SupplierServices from "./pages/supplier/Servicos";
+import SupplierServiceForm from "./pages/supplier/ServicoForm";
+import SupplierReviews from "./pages/supplier/Avaliacoes";
+import SupplierPayments from "./pages/supplier/Pagamentos";
+import SupplierProfile from "./pages/supplier/Perfil";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -30,7 +44,8 @@ export default function App() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/recuperar-senha" element={<RecuperarSenha />} />
 
-        {/* Área do cliente */}
+        {/* Área do cliente (abre sem login como antes; bloqueia só quem está logado como fornecedor) */}
+        <Route element={<ProtectedRoute role="cliente" allowAnonymous />}>
         <Route path="/app" element={<AppLayout area="client" />}>
           <Route index element={<Dashboard />} />
 
@@ -71,45 +86,33 @@ export default function App() {
           />
         </Route>
 
-        {/* Área do fornecedor — preservada */}
+        </Route>
+
+        {/* Área do fornecedor — exige sessão de fornecedor */}
+        <Route element={<ProtectedRoute role="fornecedor" />}>
         <Route
           path="/fornecedor"
-          element={<AppLayout area="fornecedor" />}
+          element={<SupplierLayout />}
         >
-          <Route
-            index
-            element={
-              <PlaceholderPage title="Dashboard do fornecedor" />
-            }
-          />
+          <Route index element={<SupplierDashboard />} />
 
-          <Route
-            path="solicitacoes"
-            element={
-              <PlaceholderPage title="Solicitações recebidas" />
-            }
-          />
+          <Route path="solicitacoes" element={<SupplierRequests />} />
+          <Route path="solicitacoes/:id" element={<SupplierRequestDetails />} />
 
-          <Route
-            path="propostas"
-            element={
-              <PlaceholderPage title="Propostas enviadas" />
-            }
-          />
+          <Route path="propostas" element={<SupplierProposals />} />
+          <Route path="propostas/nova" element={<SupplierProposalForm />} />
+          <Route path="propostas/:id" element={<SupplierProposalDetails />} />
+          <Route path="propostas/:id/editar" element={<SupplierProposalForm />} />
 
-          <Route
-            path="servicos"
-            element={
-              <PlaceholderPage title="Serviços cadastrados" />
-            }
-          />
+          <Route path="servicos" element={<SupplierServices />} />
+          <Route path="servicos/novo" element={<SupplierServiceForm />} />
+          <Route path="servicos/:id/editar" element={<SupplierServiceForm />} />
 
-          <Route
-            path="perfil"
-            element={
-              <PlaceholderPage title="Perfil da empresa" />
-            }
-          />
+          <Route path="avaliacoes" element={<SupplierReviews />} />
+          <Route path="pagamentos" element={<SupplierPayments />} />
+          <Route path="perfil" element={<SupplierProfile />} />
+        </Route>
+
         </Route>
 
         {/* Página não encontrada */}

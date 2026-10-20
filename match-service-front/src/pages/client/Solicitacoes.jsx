@@ -7,6 +7,7 @@ import RequestsToolbar from "../../components/solicitacoes/RequestsToolbar";
 import RequestsList from "../../components/solicitacoes/RequestsList";
 import RequestDetailsModal from "../../components/solicitacoes/RequestDetailsModal";
 import { recentRequests } from "../../data/dashboard";
+import ClientDeliveryOrders from "../../components/entrega/ClientDeliveryOrders";
 
 function normalize(value) {
   return value
@@ -60,6 +61,8 @@ export default function Solicitacoes() {
           Nova solicitação
         </Button>
       </header>
+
+      <ClientDeliveryOrders />
 
       <RequestsSummary />
 

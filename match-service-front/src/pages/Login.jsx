@@ -6,6 +6,8 @@ import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import RoleToggle from "../components/auth/RoleToggle";
 import PasswordField from "../components/auth/PasswordField";
+import useAuth from "../context/auth/useAuth";
+import { homeForRole } from "../context/auth/authStore";
 
 const ROLE_OPTIONS = [
   { value: "cliente", label: "Sou cliente" },
@@ -21,6 +23,7 @@ const ROLE_OPTIONS = [
  */
 export default function Login() {
   const navigate = useNavigate();
+  const { signIn } = useAuth();
   const [role, setRole] = useState("cliente");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +37,10 @@ export default function Login() {
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
-    navigate(role === "fornecedor" ? "/fornecedor" : "/app");
+    // Reconhece o e-mail cadastrado (usa o papel da conta); sem conta, usa o
+    // papel do toggle. `replace` tira o /login do histórico.
+    const account = signIn({ email, role });
+    navigate(homeForRole(account.role), { replace: true });
   }
 
   return (

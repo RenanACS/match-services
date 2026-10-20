@@ -11,6 +11,8 @@ import Select from "../components/ui/Select";
 import { BR_STATES } from "../data/profile";
 import { maskPhone, maskCep } from "../components/perfil/profileUtils";
 import useClientProfile from "../context/useClientProfile";
+import useAuth from "../context/auth/useAuth";
+import { SUPPLIER_CATEGORIES } from "../data/fornecedor";
 
 const ROLE_OPTIONS = [
   { value: "cliente", label: "Quero contratar serviços" },
@@ -42,6 +44,7 @@ function maskDocument(value, role, personType) {
 export default function Cadastro() {
   const navigate = useNavigate();
   const { register, clear } = useClientProfile();
+  const { signUp } = useAuth();
   const [role, setRole] = useState("cliente");
   const [personType, setPersonType] = useState("PF");
   const [name, setName] = useState("");
@@ -50,6 +53,7 @@ export default function Cadastro() {
   const [addr, setAddr] = useState({
     cep: "", street: "", number: "", complement: "", district: "", city: "", state: "",
   });
+  const [category, setCategory] = useState(""); // fornecedor: categoria de serviço
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -106,6 +110,9 @@ export default function Cadastro() {
 
     if (isFornecedor) {
       if (!address.trim()) nextErrors.address = "Informe o endereço.";
+      if (!SUPPLIER_CATEGORIES.some((item) => item.label === category)) {
+        nextErrors.category = "Selecione a categoria de serviço.";
+      }
     } else {
       const cepDigits = onlyDigits(addr.cep);
       if (!cepDigits) nextErrors.cep = "Informe o CEP.";
@@ -160,7 +167,16 @@ export default function Cadastro() {
       });
     }
 
-    navigate(isFornecedor ? "/fornecedor" : "/app");
+    // Abre a sessão simulada (sem senha nem documento) e leva à área certa.
+    signUp({
+      role,
+      email,
+      name,
+      phone,
+      category: isFornecedor ? category : "",
+      address: isFornecedor ? address : "",
+    });
+    navigate(isFornecedor ? "/fornecedor" : "/app", { replace: true });
   }
 
   const fieldClass = "xl:min-h-[38px] xl:py-1.5";
@@ -184,6 +200,29 @@ export default function Cadastro() {
     <div className={wrap}>
       <Input id="address" label="Endereço" value={address} onChange={(event) => setAddress(event.target.value)} className={fieldClass} />
       {errors.address && <p className="text-xs text-red-400">{errors.address}</p>}
+    </div>
+  );
+
+  const categoryField = (
+    <div className={wrap}>
+      <Select
+        id="category"
+        label="Categoria de serviço"
+        value={category}
+        onChange={(event) => {
+          setCategory(event.target.value);
+          setErrors((current) => ({ ...current, category: undefined }));
+        }}
+        className={fieldClass}
+      >
+        <option value="">Selecione</option>
+        {SUPPLIER_CATEGORIES.map((item) => (
+          <option key={item.id} value={item.label}>
+            {item.label}
+          </option>
+        ))}
+      </Select>
+      {errors.category && <p className="text-xs text-red-400">{errors.category}</p>}
     </div>
   );
 
@@ -283,6 +322,7 @@ export default function Cadastro() {
               {nameField}
               {documentField}
               {addressTextField}
+              {categoryField}
               {phoneField}
               {emailField}
               {passwordField}
