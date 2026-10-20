@@ -34,7 +34,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="absolute inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5 max-[360px]:gap-2 max-[360px]:px-3">
         <a href="#top" className="flex shrink-0 items-center gap-2">
           <img src={logo} alt="MATCH SERVICES" className="h-9 w-auto" />
