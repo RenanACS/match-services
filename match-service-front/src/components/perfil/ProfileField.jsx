@@ -1,8 +1,7 @@
 import Input from "../ui/Input";
 import Select from "../ui/Select";
 
-const FIELD_CLASS =
-  "xl:min-h-[38px] xl:py-2 disabled:cursor-default disabled:text-cream/70";
+const FIELD_CLASS = "disabled:cursor-default disabled:text-cream/70";
 
 /**
  * Campo do perfil: Input/Select existentes + mensagem de erro logo abaixo.
@@ -13,7 +12,7 @@ export default function ProfileField({ id, label, error, as = "input", children,
   return (
     <div className="flex flex-col gap-1">
       {as === "select" ? (
-        <Select
+        <Select appearance="app"
           id={id}
           label={label}
           aria-invalid={error ? true : undefined}
@@ -24,7 +23,7 @@ export default function ProfileField({ id, label, error, as = "input", children,
           {children}
         </Select>
       ) : (
-        <Input
+        <Input appearance="app"
           id={id}
           label={label}
           fieldSize="md"
@@ -35,7 +34,7 @@ export default function ProfileField({ id, label, error, as = "input", children,
         />
       )}
       {error && (
-        <p id={describedBy} role="alert" className="text-xs text-red-400">
+        <p id={describedBy} role="alert" className="app-small text-red-400">
           {error}
         </p>
       )}

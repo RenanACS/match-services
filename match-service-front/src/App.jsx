@@ -16,6 +16,7 @@ import Fornecedores from "./pages/client/Fornecedores";
 import FornecedorDetalhes from "./pages/client/FornecedorDetalhes";
 import NovaSolicitacao from "./pages/client/NovaSolicitacao";
 import Solicitacoes from "./pages/client/Solicitacoes";
+import SolicitacaoDetalhe from "./pages/client/SolicitacaoDetalhe";
 import Pagamento from "./pages/client/Pagamento";
 import Perfil from "./pages/client/Perfil";
 import Assistente from "./pages/client/Assistente";
@@ -52,6 +53,11 @@ export default function App() {
           <Route
             path="solicitacoes"
             element={<Solicitacoes />}
+          />
+
+          <Route
+            path="solicitacoes/:id"
+            element={<SolicitacaoDetalhe />}
           />
 
           {/* Nova tela de Pagamentos */}

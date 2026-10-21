@@ -13,12 +13,12 @@ export default function PersonalDataCard({ values, errors, editing, onChange }) 
   return (
     <section
       aria-labelledby="personal-title"
-      className="flex flex-col rounded-[20px] border border-hairline bg-surface-1 p-5 xl:p-4"
+      className="flex flex-col rounded-[20px] border border-hairline bg-surface-1 p-4"
     >
-      <h2 id="personal-title" className="font-display text-lg font-semibold text-cream xl:text-base">
+      <h2 id="personal-title" className="app-section-title text-cream">
         Dados pessoais
       </h2>
-      <div className="mt-4 flex flex-col gap-3 xl:mt-3 xl:flex-1 xl:justify-between">
+      <div className="mt-3 flex flex-col gap-3">
         <ProfileField
           id="profile-name"
           label={nameLabel}

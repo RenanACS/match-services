@@ -42,10 +42,10 @@ export default function AssistantChat() {
   return (
     <div className="flex h-[32rem] flex-col rounded-[20px] border border-hairline bg-surface-1">
       <div className="border-b border-hairline px-5 py-4">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-orange">
+        <p className="app-small text-orange">
           Assistente IA
         </p>
-        <p className="mt-1 text-xs text-cream/50">
+        <p className="mt-1 app-small text-cream/50">
           Respostas simuladas nesta etapa — integração real via Django +
           DeepSeek chega depois.
         </p>
@@ -55,7 +55,7 @@ export default function AssistantChat() {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
+            className={`max-w-[80%] rounded-2xl px-4 py-2.5 app-text ${
               message.role === "assistant"
                 ? "bg-surface-2 text-cream/90"
                 : "ml-auto bg-orange-soft text-orange"
@@ -67,15 +67,17 @@ export default function AssistantChat() {
       </div>
 
       <form onSubmit={handleSend} className="flex gap-2 border-t border-hairline p-3">
-        <Textarea
+        <div className="min-w-0 flex-1">
+          <Textarea appearance="app"
           id="assistant-draft"
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
           placeholder="Descreva o que você precisa..."
           rows={1}
-          className="flex-1"
+          className="min-h-[40px]"
         />
-        <Button type="submit" disabled={!draft.trim()}>
+        </div>
+        <Button appearance="app" type="submit" disabled={!draft.trim()}>
           Enviar
         </Button>
       </form>

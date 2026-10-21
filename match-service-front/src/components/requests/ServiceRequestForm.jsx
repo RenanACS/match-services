@@ -63,19 +63,19 @@ export default function ServiceRequestForm({ initialSupplierId = "" }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5 xl:gap-3">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
       {success && (
         <div
           role="status"
-          className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400"
+          className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 app-text text-emerald-400"
         >
           Solicitação enviada com sucesso.
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5 xl:gap-1">
-          <Select
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="flex flex-col gap-1">
+          <Select appearance="app"
             id="request-supplier"
             label="Fornecedor"
             value={supplierId}
@@ -89,12 +89,12 @@ export default function ServiceRequestForm({ initialSupplierId = "" }) {
             ))}
           </Select>
           {errors.supplierId && (
-            <p className="text-xs text-red-400">{errors.supplierId}</p>
+            <p className="app-small text-red-400">{errors.supplierId}</p>
           )}
         </div>
 
-        <div className="flex flex-col gap-1.5 xl:gap-1">
-          <Select
+        <div className="flex flex-col gap-1">
+          <Select appearance="app"
             id="request-service"
             label="Serviço desejado"
             value={service}
@@ -110,38 +110,38 @@ export default function ServiceRequestForm({ initialSupplierId = "" }) {
               </option>
             ))}
           </Select>
-          {errors.service && <p className="text-xs text-red-400">{errors.service}</p>}
+          {errors.service && <p className="app-small text-red-400">{errors.service}</p>}
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5 xl:gap-1">
-        <Textarea
+      <div className="flex flex-col gap-1">
+        <Textarea appearance="app"
           id="request-description"
           label="Descrição do serviço"
           rows={4}
           value={description}
           onChange={(event) => setDescription(event.target.value)}
-          className="xl:h-20 xl:py-2"
+          className="min-h-[88px]"
         />
         {errors.description && (
-          <p className="text-xs text-red-400">{errors.description}</p>
+          <p className="app-small text-red-400">{errors.description}</p>
         )}
       </div>
 
-      <div className="flex flex-col gap-1.5 xl:gap-1">
-        <Input
+      <div className="flex flex-col gap-1">
+        <Input appearance="app"
           id="request-location"
           label="Local do serviço"
           type="text"
           value={location}
           onChange={(event) => setLocation(event.target.value)}
         />
-        {errors.location && <p className="text-xs text-red-400">{errors.location}</p>}
+        {errors.location && <p className="app-small text-red-400">{errors.location}</p>}
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5 xl:gap-1">
-          <Input
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="flex flex-col gap-1">
+          <Input appearance="app"
             id="request-start-date"
             label="Data inicial"
             type="date"
@@ -149,29 +149,29 @@ export default function ServiceRequestForm({ initialSupplierId = "" }) {
             onChange={(event) => setStartDate(event.target.value)}
           />
           {errors.startDate && (
-            <p className="text-xs text-red-400">{errors.startDate}</p>
+            <p className="app-small text-red-400">{errors.startDate}</p>
           )}
         </div>
-        <div className="flex flex-col gap-1.5 xl:gap-1">
-          <Input
+        <div className="flex flex-col gap-1">
+          <Input appearance="app"
             id="request-end-date"
             label="Data final"
             type="date"
             value={endDate}
             onChange={(event) => setEndDate(event.target.value)}
           />
-          {errors.endDate && <p className="text-xs text-red-400">{errors.endDate}</p>}
+          {errors.endDate && <p className="app-small text-red-400">{errors.endDate}</p>}
         </div>
       </div>
 
       <FileUpload file={file} onChange={setFile} />
 
       <div>
-        <Button
+        <Button appearance="app"
           type="submit"
           variant="primary"
           size="lg"
-          className="w-full sm:w-auto xl:min-h-[46px] xl:px-6"
+          className="w-full sm:w-auto"
         >
           Enviar solicitação
         </Button>

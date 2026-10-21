@@ -1,26 +1,17 @@
+import Kpi from "../ui/Kpi";
 import { summaryStats } from "../../data/dashboard";
 
-/**
- * Resumo em uma única faixa discreta (em vez de três cards grandes).
- */
+const ICONS = { requests: "requests", proposals: "mail", hiring: "checkCircle" };
+
+/** Indicadores do Dashboard (padrão de KPI compacto: rótulo acima, número abaixo). */
 export default function SummaryStrip() {
   return (
     <section aria-label="Resumo">
-      <dl className="grid grid-cols-1 divide-y divide-hairline rounded-[20px] border border-hairline bg-surface-1 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {summaryStats.map((stat) => (
-          <div
-            key={stat.id}
-            className="flex items-baseline gap-2 px-4 py-3 sm:px-6"
-          >
-            <dd className="font-display text-xl font-semibold text-cream">
-              {stat.value}
-            </dd>
-            <dt className="font-mono text-[10px] uppercase leading-snug tracking-widest text-cream/50 sm:text-[11px]">
-              {stat.label}
-            </dt>
-          </div>
+          <Kpi key={stat.id} icon={ICONS[stat.id] ?? "file"} label={stat.label} value={stat.value} />
         ))}
-      </dl>
+      </div>
     </section>
   );
 }

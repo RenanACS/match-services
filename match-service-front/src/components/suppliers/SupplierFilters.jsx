@@ -16,9 +16,10 @@ export default function SupplierFilters({
   onRatingChange,
 }) {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row">
-      <div className="sm:flex-1">
+    <div className="flex flex-col gap-2 sm:flex-row">
+      <div className="sm:w-40">
         <Select
+          appearance="app"
           id="supplier-filter-category"
           aria-label="Categoria"
           value={category}
@@ -33,8 +34,9 @@ export default function SupplierFilters({
         </Select>
       </div>
 
-      <div className="sm:flex-1">
+      <div className="sm:w-40">
         <Select
+          appearance="app"
           id="supplier-filter-location"
           aria-label="Localização"
           value={location}
@@ -49,8 +51,9 @@ export default function SupplierFilters({
         </Select>
       </div>
 
-      <div className="sm:flex-1">
+      <div className="sm:w-40">
         <Select
+          appearance="app"
           id="supplier-filter-rating"
           aria-label="Avaliação"
           value={minRating}

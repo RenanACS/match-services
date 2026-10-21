@@ -10,9 +10,8 @@ import { suppliers } from "../../data/suppliers";
  * Detalhes do fornecedor (/app/fornecedores/:id).
  * Dados 100% mockados em src/data/suppliers.js — o fornecedor é
  * localizado pelo :id da URL via `suppliers.find`, sem chamada de rede.
- * "Solicitar serviço" só prepara a navegação para /app/solicitacao,
- * passando o id do fornecedor por querystring — a tela de solicitação
- * em si continua sendo o PlaceholderPage já existente.
+ * "Solicitar serviço" navega para /app/solicitacao, passando o id do
+ * fornecedor por querystring (pré-seleciona o fornecedor no formulário).
  */
 export default function FornecedorDetalhes() {
   const { id } = useParams();
@@ -20,11 +19,11 @@ export default function FornecedorDetalhes() {
 
   if (!supplier) {
     return (
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-start gap-4">
-        <p className="text-sm text-cream/70">Fornecedor não encontrado.</p>
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-3">
+        <h1 className="app-page-title text-cream">Fornecedor não encontrado</h1>
         <Link
           to="/app/fornecedores"
-          className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex items-center gap-1.5 text-cream/60 transition hover:text-orange"
         >
           Voltar para fornecedores
         </Link>
@@ -33,7 +32,7 @@ export default function FornecedorDetalhes() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 xl:gap-2">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
       <SupplierDetailsHeader supplier={supplier} />
       <SupplierAbout description={supplier.fullDescription} />
       <SupplierServices services={supplier.services} />
@@ -48,8 +47,9 @@ export default function FornecedorDetalhes() {
           as={Link}
           to={`/app/solicitacao?fornecedor=${supplier.id}`}
           variant="primary"
-          size="lg"
-          className="w-full sm:w-auto xl:min-h-[44px] xl:py-2.5"
+          size="md"
+          appearance="app"
+          className="w-full sm:w-auto"
         >
           Solicitar serviço
         </Button>

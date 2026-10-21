@@ -10,10 +10,14 @@ const VARIANTS = {
  * Badge/status. Usado com moderação — não é para virar o padrão de todo
  * botão (a landing já usa pill nos CTAs; aqui é só para status/labels).
  */
-export default function Badge({ variant = "neutral", children }) {
+export default function Badge({ variant = "neutral", appearance = "default", children }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[11px] uppercase tracking-wider ${VARIANTS[variant]}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border ${
+        appearance === "app"
+          ? "app-badge whitespace-nowrap px-2.5 py-0.5"
+          : "px-3 py-1 font-mono text-[11px] uppercase tracking-wider"
+      } ${VARIANTS[variant]}`}
     >
       {children}
     </span>

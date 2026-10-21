@@ -29,7 +29,9 @@ export const summaryStats = [
 export const REQUEST_STATUS = {
   analysis: { label: "Em análise", variant: "warning" },
   proposals: { label: "Propostas recebidas", variant: "orange" },
+  awaiting_payment: { label: "Aguardando pagamento", variant: "warning" },
   hired: { label: "Contratado", variant: "success" },
+  completed: { label: "Concluída", variant: "success" },
 };
 
 export const recentRequests = [
@@ -53,6 +55,28 @@ export const recentRequests = [
     category: "Tecnologia",
     date: "2026-09-12",
     status: "hired",
+  },
+  // Solicitações já concluídas (dados demonstrativos para a tela de detalhes).
+  {
+    id: "req-004",
+    title: "Limpeza pós-obra",
+    category: "Limpeza",
+    date: "2026-08-18",
+    status: "completed",
+  },
+  {
+    id: "req-005",
+    title: "Instalação de câmeras",
+    category: "Segurança",
+    date: "2026-08-05",
+    status: "completed",
+  },
+  {
+    id: "req-006",
+    title: "Consultoria contábil trimestral",
+    category: "Contabilidade",
+    date: "2026-07-22",
+    status: "completed",
   },
 ];
 
