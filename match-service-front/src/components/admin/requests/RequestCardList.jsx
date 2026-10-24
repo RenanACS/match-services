@@ -18,14 +18,14 @@ export default function RequestCardList({ requests }) {
             <div className="flex min-w-0 items-center gap-3">
               <PartyAvatar name={request.client.name} />
               <div className="min-w-0">
-                <p className="adm-small text-cream/50">Cliente</p>
+                <p className="adm-small text-cream/70">Cliente</p>
                 <p className="adm-text truncate text-cream">{request.client.name}</p>
               </div>
             </div>
             <div className="flex min-w-0 items-center gap-3">
               <PartyAvatar name={request.supplier.name} />
               <div className="min-w-0">
-                <p className="adm-small text-cream/50">Fornecedor</p>
+                <p className="adm-small text-cream/70">Fornecedor</p>
                 <p className="adm-text truncate text-cream">{request.supplier.name}</p>
               </div>
             </div>
@@ -33,7 +33,7 @@ export default function RequestCardList({ requests }) {
           <div className="flex items-end justify-between gap-3">
             <div className="min-w-0">
               <p className="adm-text truncate text-cream">{request.service.name}</p>
-              <p className="adm-small text-cream/60">
+              <p className="adm-small text-cream/70">
                 {request.service.category} · {dateOf(request.createdAt)} {timeOf(request.createdAt)}
               </p>
               <p className="adm-text mt-1 font-medium text-cream">{money(request.valueCents)}</p>

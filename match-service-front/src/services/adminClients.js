@@ -8,7 +8,7 @@
 // A busca por CPF/CNPJ completo e a paginação passam a ser do servidor.
 // Bloqueio NÃO cancela solicitações/contratos nem altera pagamentos/repasses.
 
-export const PAGE_SIZE = 3;
+export const PAGE_SIZE = 10;
 
 const normalize = (text) =>
   text

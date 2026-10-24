@@ -3,11 +3,11 @@ import logo from "../../assets/logo-mark.png";
 import { ADMIN_NAV } from "../../data/adminNav";
 import Icon from "./AdminIcons";
 
-const ITEM_BASE = "adm-menu flex w-full items-center gap-3 rounded-xl border-l-2 px-4 py-2.5 text-left transition";
-const ITEM_IDLE = "border-transparent text-cream/70 hover:bg-surface-2 hover:text-cream";
+const ITEM_BASE = "adm-menu flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-left transition";
+const ITEM_IDLE = "text-cream/70 hover:bg-surface-2 hover:text-cream";
 
 function navLinkClass({ isActive }) {
-  return `${ITEM_BASE} ${isActive ? "border-orange bg-orange-soft text-orange" : ITEM_IDLE}`;
+  return `${ITEM_BASE} ${isActive ? "bg-orange-soft text-orange" : ITEM_IDLE}`;
 }
 
 export function AdminBrand({ onClick }) {
@@ -23,7 +23,7 @@ export function AdminBrand({ onClick }) {
 export function AdminNav({ onNavigate }) {
   return (
     <div className="flex flex-col gap-2">
-      <p className="adm-eyebrow px-8 text-cream/45">Administração</p>
+      <p className="adm-eyebrow px-8 text-cream/70">Administração</p>
       <nav aria-label="Navegação do painel administrativo" className="flex flex-col gap-1 px-4">
         {ADMIN_NAV.map((item) => (
           <NavLink key={item.to} to={item.to} end={item.end} onClick={onNavigate} className={navLinkClass}>

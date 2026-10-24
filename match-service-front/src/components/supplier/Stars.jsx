@@ -10,7 +10,7 @@ export default function Stars({ value, size = 16 }) {
           width={size}
           height={size}
           fill={n <= Math.round(value) ? "currentColor" : "none"}
-          className={n <= Math.round(value) ? "text-orange" : "text-cream/25"}
+          className={n <= Math.round(value) ? "text-orange" : "text-cream/70"}
         />
       ))}
     </span>

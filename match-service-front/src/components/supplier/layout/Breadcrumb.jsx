@@ -50,14 +50,14 @@ export default function Breadcrumb() {
     <nav
       aria-label="Trilha de navegação"
       ref={scrollRef}
-      className="min-w-0 overflow-x-auto rounded-xl border border-hairline bg-surface-1 px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      className="min-w-0 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
-      <ol className="flex w-max items-center gap-1.5 font-display text-sm sm:text-base">
+      <ol className="flex w-max items-center gap-1.5 app-breadcrumb">
         {crumbs.map((crumb, index) => {
           const isLast = index === crumbs.length - 1;
           return (
             <li key={crumb.to} className="flex items-center gap-1.5">
-              {index > 0 && <ChevronRightIcon width={14} height={14} className="text-cream/30" />}
+              {index > 0 && <ChevronRightIcon width={14} height={14} className="text-cream/70" />}
               {isLast ? (
                 <span aria-current="page" className="whitespace-nowrap font-medium text-cream">
                   {crumb.label}
@@ -65,7 +65,7 @@ export default function Breadcrumb() {
               ) : (
                 <Link
                   to={crumb.to}
-                  className="whitespace-nowrap text-cream/55 transition hover:text-orange"
+                  className="whitespace-nowrap text-cream/70 transition hover:text-orange"
                 >
                   {crumb.label}
                 </Link>

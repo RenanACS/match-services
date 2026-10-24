@@ -124,7 +124,7 @@ export default function ClientesAdmin() {
         {pageData.total === 0 ? (
           <div className="px-6 py-10 text-center">
             <p className="font-medium text-cream">Nenhum cliente encontrado</p>
-            <p className="mt-1 adm-text text-cream/60">Ajuste a busca ou os filtros para ver resultados.</p>
+            <p className="mt-1 adm-text text-cream/70">Ajuste a busca ou os filtros para ver resultados.</p>
           </div>
         ) : (
           <>

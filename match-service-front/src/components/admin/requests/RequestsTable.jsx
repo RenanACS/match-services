@@ -10,7 +10,7 @@ import { DateTimeCell, PartyCell, ViewLink, money } from "./RequestParts";
 export default function RequestsTable({ requests }) {
   const { search } = useLocation();
   const state = { fromSearch: search };
-  const th = "adm-table px-3 py-3 font-medium text-cream/60 xl:py-2.5";
+  const th = "adm-table px-3 py-3 font-medium text-cream/70 xl:py-2.5";
   const td = "px-3 py-3 xl:py-[9px]";
   return (
     <table className="w-full table-fixed text-left">
@@ -44,7 +44,7 @@ export default function RequestsTable({ requests }) {
             <td className={td}><PartyCell name={request.supplier.name} city={request.supplier.address.city} state={request.supplier.address.state} /></td>
             <td className={td}>
               <p title={request.service.name} className="adm-table truncate text-cream">{request.service.name}</p>
-              <p className="adm-small truncate text-cream/60">{request.service.category}</p>
+              <p className="adm-small truncate text-cream/70">{request.service.category}</p>
             </td>
             <td className={td}><DateTimeCell iso={request.createdAt} /></td>
             <td className={`${td} adm-table whitespace-nowrap text-cream`}>{money(request.valueCents)}</td>

@@ -6,7 +6,7 @@
  */
 export default function DataTable({ columns, rows, rowKey, emptyMessage }) {
   if (rows.length === 0) {
-    return <p className="px-6 py-10 text-center text-sm text-cream/60">{emptyMessage}</p>;
+    return <p className="px-6 py-10 text-center app-text text-cream/70">{emptyMessage}</p>;
   }
 
   const title = columns.find((column) => column.mobile === "title");
@@ -16,9 +16,9 @@ export default function DataTable({ columns, rows, rowKey, emptyMessage }) {
   return (
     <>
       <div className="hidden overflow-x-auto md:block">
-        <table className="w-full min-w-[720px] text-left text-sm">
+        <table className="w-full min-w-[720px] text-left app-text">
           <thead>
-            <tr className="border-y border-hairline font-mono text-[11px] uppercase tracking-widest text-cream/50">
+            <tr className="border-y border-hairline app-small font-medium text-cream/70">
               {columns.map((column) => (
                 <th
                   key={column.key}
@@ -53,7 +53,7 @@ export default function DataTable({ columns, rows, rowKey, emptyMessage }) {
             <dl className="flex flex-col gap-1.5">
               {details.map((column) => (
                 <div key={column.key} className="flex items-center justify-between gap-4">
-                  <dt className="font-mono text-[11px] uppercase tracking-widest text-cream/45">
+                  <dt className="app-small font-medium text-cream/70">
                     {column.label}
                   </dt>
                   <dd className="min-w-0 text-right text-cream/85">{column.render(row)}</dd>

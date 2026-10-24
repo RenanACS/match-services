@@ -11,7 +11,7 @@ import { dateOf, money } from "../requests/RequestParts";
 export default function PaymentsTable({ payments }) {
   const { search } = useLocation();
   const state = { fromSearch: search };
-  const th = "adm-table px-2.5 py-3 font-medium text-cream/60 xl:py-2.5";
+  const th = "adm-table px-2.5 py-3 font-medium text-cream/70 xl:py-2.5";
   const td = "px-2.5 py-3 xl:py-[9px]";
   return (
     <table className="w-full table-fixed text-left">

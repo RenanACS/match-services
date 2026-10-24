@@ -13,7 +13,7 @@ const PILL = {
 function Cell({ label, children, first = false }) {
   return (
     <div className={`px-0 py-3 sm:px-5 ${first ? "sm:pl-0" : "sm:border-l sm:border-hairline"} xl:py-1.5`}>
-      <p className="adm-text text-cream/60">{label}</p>
+      <p className="adm-text text-cream/70">{label}</p>
       <div className="mt-1.5 flex items-center gap-2">{children}</div>
     </div>
   );
@@ -45,7 +45,7 @@ export default function PaymentPayoutCard({ payment }) {
         </Cell>
         <Cell label={payout.effective ? "Valor repassado" : "Valor a ser repassado"}>
           {refunded ? (
-            <span className="adm-stat-number text-cream/50">—</span>
+            <span className="adm-stat-number text-cream/70">—</span>
           ) : (
             <>
               <span className={`adm-stat-number whitespace-nowrap ${payout.effective ? "text-cream" : "text-cream/70"}`}>{money(payment.payoutCents)}</span>
@@ -55,7 +55,7 @@ export default function PaymentPayoutCard({ payment }) {
         </Cell>
       </div>
       {authorization && (
-        <p className="adm-small mt-2 text-cream/60">
+        <p className="adm-small mt-2 text-cream/70">
           O valor acima é a previsão original, anterior à contestação. A destinação autorizada de forma demonstrativa está em "Resolução da contestação", abaixo, e ainda não foi executada.
         </p>
       )}

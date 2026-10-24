@@ -8,7 +8,7 @@ import { formatBRL } from "../../../../utils/currency";
 function Field({ label, children }) {
   return (
     <div className="min-w-0">
-      <dt className="adm-small text-cream/50">{label}</dt>
+      <dt className="adm-small text-cream/70">{label}</dt>
       <dd className="mt-0.5 break-words adm-text text-cream">{children}</dd>
     </div>
   );
@@ -71,7 +71,7 @@ export default function OverviewTab({ supplier, onSeeServices }) {
             <Field label="Categoria">{supplier.category}</Field>
             <Field label="Data de cadastro">{formatDateTime(supplier.registeredAt)}</Field>
           </dl>
-          <p className="mt-4 adm-small text-cream/40">
+          <p className="mt-4 adm-small text-cream/70">
             Somente consulta: o administrador não edita livremente os dados cadastrais do fornecedor.
           </p>
         </section>
@@ -104,8 +104,8 @@ export default function OverviewTab({ supplier, onSeeServices }) {
             {supplier.services.map((service) => (
               <li key={service.id} className="py-3 first:pt-0 last:pb-0">
                 <p className="adm-text font-medium text-cream">{service.name}</p>
-                <p className="mt-0.5 adm-small text-cream/60">{service.description}</p>
-                <p className="mt-1 adm-small text-cream/50">
+                <p className="mt-0.5 adm-small text-cream/70">{service.description}</p>
+                <p className="mt-1 adm-small text-cream/70">
                   {service.priceCents === null ? "Sob orçamento" : `A partir de ${formatBRL(service.priceCents)}`}
                 </p>
               </li>

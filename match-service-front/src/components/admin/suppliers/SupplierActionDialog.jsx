@@ -102,7 +102,7 @@ export default function SupplierActionDialog({ supplier, mode, onConfirm, onClos
           type="button"
           aria-label="Fechar"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg p-1 text-cream/60 transition hover:text-cream"
+          className="absolute right-4 top-4 rounded-lg p-1 text-cream/70 transition hover:text-cream"
         >
           <Icon name="close" size={18} />
         </button>
@@ -135,7 +135,7 @@ export default function SupplierActionDialog({ supplier, mode, onConfirm, onClos
             aria-invalid={error ? true : undefined}
             aria-describedby={error ? errorId : undefined}
             placeholder={config.placeholder}
-            className="w-full resize-none rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-text text-cream placeholder:text-cream/35 focus:border-orange focus:outline-none"
+            className="w-full resize-none rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-text text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none"
           />
           {error && (
             <p id={errorId} role="alert" className="adm-small text-red-400">
@@ -144,7 +144,7 @@ export default function SupplierActionDialog({ supplier, mode, onConfirm, onClos
           )}
         </div>
 
-        <p className="mt-3 adm-small leading-relaxed text-cream/50">{config.note}</p>
+        <p className="mt-3 adm-small leading-relaxed text-cream/70">{config.note}</p>
 
         <div className="mt-5 grid grid-cols-2 gap-3">
           <button

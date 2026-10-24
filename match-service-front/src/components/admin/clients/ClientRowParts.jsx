@@ -16,7 +16,7 @@ export function DetailsLink({ client, state, className = "" }) {
     <Link
       to={`/admin/clientes/${client.id}`}
       state={state}
-      className={`inline-flex items-center gap-1 adm-text font-medium text-orange transition hover:text-orange-light ${className}`}
+      className={`inline-flex min-h-10 items-center gap-1 adm-text font-medium text-orange transition hover:text-orange-light ${className}`}
     >
       Detalhes
       <Icon name="chevronRight" size={14} />
@@ -30,7 +30,7 @@ export function BlockAction({ client, onToggleBlock, className = "" }) {
     <button
       type="button"
       onClick={() => onToggleBlock(client)}
-      className={`adm-text text-cream/60 underline-offset-4 transition hover:text-cream hover:underline ${className}`}
+      className={`adm-text inline-flex min-h-10 items-center px-1 text-cream/70 underline-offset-4 transition hover:text-cream hover:underline ${className}`}
     >
       {client.status === "blocked" ? "Desbloquear" : "Bloquear"}
     </button>

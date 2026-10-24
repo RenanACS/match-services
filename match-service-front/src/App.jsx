@@ -7,6 +7,7 @@ import Cadastro from "./pages/Cadastro";
 import RecuperarSenha from "./pages/RecuperarSenha";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import RouteTitle from "./components/RouteTitle";
 
 import AppLayout from "./components/layout/AppLayout";
 import AdminLayout from "./components/admin/AdminLayout";
@@ -57,6 +58,7 @@ import Assistente from "./pages/client/Assistente";
 export default function App() {
   return (
     <BrowserRouter>
+      <RouteTitle />
       <Routes>
         {/* Páginas públicas */}
         <Route path="/" element={<Landing />} />

@@ -57,7 +57,7 @@ export default function Login() {
         </Link>
 
         <h1 className="font-display text-2xl font-semibold">Entrar</h1>
-        <p className="mt-1 text-sm text-cream/60">
+        <p className="mt-1 text-sm text-cream/70">
           Acesse sua conta para continuar.
         </p>
 
@@ -87,7 +87,7 @@ export default function Login() {
             {errors.password && <p className="text-xs text-red-400">{errors.password}</p>}
             <Link
               to="/recuperar-senha"
-              className="self-end text-xs text-cream/50 transition hover:text-orange"
+              className="self-end text-xs text-cream/70 transition hover:text-orange"
             >
               Esqueci minha senha
             </Link>
@@ -98,7 +98,7 @@ export default function Login() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-cream/60">
+        <p className="mt-6 text-center text-sm text-cream/70">
           Ainda não tem uma conta?{" "}
           <Link to="/cadastro" className="text-orange hover:underline">
             Cadastre-se

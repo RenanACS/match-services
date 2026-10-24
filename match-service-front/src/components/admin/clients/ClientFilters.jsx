@@ -25,14 +25,14 @@ export default function ClientFilters({
   return (
     <div className="flex flex-wrap items-end gap-3 rounded-2xl border border-hairline bg-surface-1/60 px-3 py-3">
       <div className="relative w-full lg:min-w-[240px] lg:flex-1">
-        <Icon name="search" size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-cream/50" />
+        <Icon name="search" size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-cream/70" />
         <input
           type="search"
           aria-label="Buscar cliente"
           placeholder="Buscar por nome, CPF/CNPJ ou e-mail"
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          className="adm-filter min-h-[40px] w-full rounded-xl border border-hairline bg-surface-1 pl-11 pr-4 text-cream placeholder:text-cream/40 focus:border-orange focus:outline-none"
+          className="adm-filter min-h-[40px] w-full rounded-xl border border-hairline bg-surface-1 pl-11 pr-4 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none"
         />
       </div>
       <LabeledSelect id="filter-type" label="Tipo" options={TYPE_OPTIONS} value={type} onChange={onTypeChange} className="sm:w-36" />

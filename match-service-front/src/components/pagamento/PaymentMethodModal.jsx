@@ -59,7 +59,7 @@ export default function PaymentMethodModal({ payment, onClose }) {
             <h2 id="payment-method-title" className="app-section-title text-cream">
               Pagar agora
             </h2>
-            <p className="mt-1 app-text text-cream/60">
+            <p className="mt-1 app-text text-cream/70">
               {payment.service} · {formatCurrency(payment.amountCents)}
             </p>
           </div>
@@ -67,13 +67,13 @@ export default function PaymentMethodModal({ payment, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Fechar"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/60 transition hover:border-orange/60 hover:text-orange"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/70 transition hover:border-orange/60 hover:text-orange"
           >
             ✕
           </button>
         </div>
 
-        <p className="mt-4 app-small text-cream/45">
+        <p className="mt-4 app-small text-cream/70">
           Forma de pagamento
         </p>
         <div className="mt-2 flex flex-col gap-2">
@@ -94,7 +94,7 @@ export default function PaymentMethodModal({ payment, onClose }) {
                 <span className={`app-text font-medium ${active ? "text-orange" : "text-cream"}`}>
                   {method.label}
                 </span>
-                <span className="app-small text-cream/50">{method.hint}</span>
+                <span className="app-small text-cream/70">{method.hint}</span>
               </button>
             );
           })}

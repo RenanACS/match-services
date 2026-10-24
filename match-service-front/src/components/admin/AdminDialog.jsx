@@ -34,7 +34,7 @@ export default function AdminDialog({ title, icon = "info", tone = "orange", des
           type="button"
           aria-label="Fechar"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg p-1 text-cream/60 transition hover:text-cream"
+          className="absolute right-4 top-4 rounded-lg p-1 text-cream/70 transition hover:text-cream"
         >
           <Icon name="close" size={18} />
         </button>
@@ -70,7 +70,7 @@ export function DialogTextarea({ id, label, value, onChange, error, placeholder,
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="adm-text mt-1.5 w-full resize-none rounded-xl border border-hairline bg-surface-2 px-3 py-2 text-cream placeholder:text-cream/40 focus:border-orange focus:outline-none"
+        className="adm-text mt-1.5 w-full resize-none rounded-xl border border-hairline bg-surface-2 px-3 py-2 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none"
       />
       {error && (
         <p id={`${id}-error`} role="alert" className="adm-small mt-1 text-red-400">

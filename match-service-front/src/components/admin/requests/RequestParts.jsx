@@ -25,7 +25,7 @@ export function PartyCell({ name, city, state }) {
       <PartyAvatar name={name} />
       <div className="min-w-0">
         <p title={name} className="adm-table truncate font-medium text-cream">{name}</p>
-        <p className="adm-small truncate text-cream/60">{city} - {state}</p>
+        <p className="adm-small truncate text-cream/70">{city} - {state}</p>
       </div>
     </div>
   );
@@ -41,7 +41,7 @@ export function DateTimeCell({ iso }) {
   return (
     <div>
       <p className="adm-table text-cream">{dateOf(iso)}</p>
-      <p className="adm-small text-cream/60">{timeOf(iso)}</p>
+      <p className="adm-small text-cream/70">{timeOf(iso)}</p>
     </div>
   );
 }

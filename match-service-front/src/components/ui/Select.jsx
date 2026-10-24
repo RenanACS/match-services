@@ -7,7 +7,7 @@ export default function Select({ label, id, children, appearance = "default", cl
       {label && (
         <label
           htmlFor={id}
-          className={app ? "app-small font-medium text-cream/70" : "font-mono text-[11px] uppercase tracking-widest text-cream/60"}
+          className={app ? "app-small font-medium text-cream/70" : "font-mono text-xs uppercase tracking-widest text-cream/70"}
         >
           {label}
         </label>
@@ -23,7 +23,7 @@ export default function Select({ label, id, children, appearance = "default", cl
         {children}
       </select>
       {app && (
-        <Icon name="chevronDown" size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-cream/60" />
+        <Icon name="chevronDown" size={16} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-cream/70" />
       )}
       </div>
     </div>

@@ -32,10 +32,10 @@ function Field({ id, label, value, onChange, error, hint, ...props }) {
         onChange={(event) => onChange(event.target.value)}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="adm-filter mt-1.5 min-h-[40px] w-full rounded-xl border border-hairline bg-surface-2 px-3 text-cream placeholder:text-cream/40 focus:border-orange focus:outline-none"
+        className="adm-filter mt-1.5 min-h-[40px] w-full rounded-xl border border-hairline bg-surface-2 px-3 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none"
         {...props}
       />
-      {hint && !error && <p className="adm-small mt-1 text-cream/50">{hint}</p>}
+      {hint && !error && <p className="adm-small mt-1 text-cream/70">{hint}</p>}
       {error && <p id={`${id}-error`} role="alert" className="adm-small mt-1 text-red-400">{error}</p>}
     </div>
   );
@@ -44,7 +44,7 @@ function Field({ id, label, value, onChange, error, hint, ...props }) {
 function ReadOnly({ label, value }) {
   return (
     <div className="min-w-0">
-      <dt className="adm-small text-cream/60">{label}</dt>
+      <dt className="adm-small text-cream/70">{label}</dt>
       <dd className="adm-text mt-0.5 truncate text-cream">{value}</dd>
     </div>
   );
@@ -89,7 +89,7 @@ export default function PerfilAdmin() {
         <span aria-hidden="true" className="adm-stat-number flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-orange-soft text-orange">{initials(saved.name)}</span>
         <div className="min-w-0">
           <p className="adm-section-title truncate text-cream">{saved.name}</p>
-          <p className="adm-text truncate text-cream/60">{saved.jobTitle || "Sem cargo informado"}</p>
+          <p className="adm-text truncate text-cream/70">{saved.jobTitle || "Sem cargo informado"}</p>
           <span className="adm-badge mt-1.5 inline-flex rounded-full border border-orange/40 bg-orange-soft px-2 py-1 text-orange">Administrador</span>
         </div>
       </section>
@@ -114,7 +114,7 @@ export default function PerfilAdmin() {
             <ReadOnly label="Tipo de acesso" value={ACCESS} />
             <ReadOnly label="Ambiente" value="Demonstração (dados fictícios)" />
           </dl>
-          <p className="adm-small rounded-xl border border-hairline bg-surface-2/60 px-3 py-2 text-cream/60">
+          <p className="adm-small rounded-xl border border-hairline bg-surface-2/60 px-3 py-2 text-cream/70">
             O e-mail e as permissões não podem ser alterados por esta tela, e não há troca de senha sem backend. Autenticação e permissões definitivas dependerão da integração com o Django.
           </p>
         </section>

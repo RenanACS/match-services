@@ -11,7 +11,7 @@ export default function ClientRequestsHistory({ requests }) {
         Solicitações e contratações
       </h2>
       {requests.length === 0 ? (
-        <p className="mt-3 adm-text text-cream/60">Este cliente ainda não possui solicitações.</p>
+        <p className="mt-3 adm-text text-cream/70">Este cliente ainda não possui solicitações.</p>
       ) : (
         <ul className="mt-3 flex flex-col divide-y divide-hairline">
           {requests.map((request) => {
@@ -23,7 +23,7 @@ export default function ClientRequestsHistory({ requests }) {
               >
                 <div className="min-w-0">
                   <p className="truncate adm-text font-medium text-cream">{request.title}</p>
-                  <p className="mt-0.5 adm-small text-cream/50">
+                  <p className="mt-0.5 adm-small text-cream/70">
                     {formatDate(request.date)}
                     {request.supplier ? ` · ${request.supplier}` : " · Sem fornecedor contratado"}
                   </p>

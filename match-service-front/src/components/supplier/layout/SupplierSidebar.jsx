@@ -11,13 +11,12 @@ const NAV = [
   { to: "/fornecedor/pagamentos", label: "Pagamentos", icon: WalletIcon },
 ];
 
-// Item ativo em destaque (fundo laranja suave + barra laranja à esquerda),
-// como na referência visual.
+// Item ativo: fundo laranja suave e texto laranja (igual ao cliente e ao admin).
 function itemClass({ isActive }) {
-  return `relative flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm transition ${
+  return `flex items-center gap-3 rounded-xl px-4 py-2.5 app-menu transition ${
     isActive
-      ? "bg-orange-soft text-orange before:absolute before:inset-y-1.5 before:left-0 before:w-0.5 before:rounded-full before:bg-orange"
-      : "text-cream/65 hover:bg-surface-2 hover:text-cream"
+      ? "bg-orange-soft text-orange"
+      : "text-cream/70 hover:bg-surface-2 hover:text-cream"
   }`;
 }
 
@@ -31,11 +30,11 @@ export default function SupplierSidebar({ onNavigate, onLogout }) {
       <div className="px-6 py-6">
         <Link to="/" onClick={onNavigate} className="flex items-center gap-2">
           <img src={logo} alt="MATCH SERVICES" className="h-8 w-auto" />
-          <span className="whitespace-nowrap font-display text-sm font-semibold">MATCH SERVICES</span>
+          <span className="whitespace-nowrap font-display app-text font-semibold">MATCH SERVICES</span>
         </Link>
       </div>
 
-      <p className="px-6 pb-2 font-mono text-[10px] uppercase tracking-widest text-cream/40">
+      <p className="px-6 pb-2 app-small font-medium text-cream/70">
         Fornecedor
       </p>
       <nav aria-label="Menu do fornecedor" className="flex flex-1 flex-col gap-1 overflow-y-auto px-3">
@@ -55,7 +54,7 @@ export default function SupplierSidebar({ onNavigate, onLogout }) {
         <button
           type="button"
           onClick={onLogout}
-          className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-left text-sm text-cream/65 transition hover:bg-surface-2 hover:text-cream"
+          className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-left app-text text-cream/70 transition hover:bg-surface-2 hover:text-cream"
         >
           <LogoutIcon width={20} height={20} />
           Sair

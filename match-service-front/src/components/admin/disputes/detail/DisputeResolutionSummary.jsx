@@ -5,7 +5,7 @@ import { AUTHORIZATION_STATUS, EXECUTION_STATUS, REFUND_TYPES, REMAINDER_DESTINA
 function Row({ label, children, strong = false }) {
   return (
     <div className="flex items-baseline justify-between gap-3 border-b border-hairline/60 py-1.5 last:border-0">
-      <dt className="adm-text text-cream/65">{label}</dt>
+      <dt className="adm-text text-cream/70">{label}</dt>
       <dd className={`adm-text text-right ${strong ? "font-medium text-cream" : "text-cream/90"}`}>{children}</dd>
     </div>
   );

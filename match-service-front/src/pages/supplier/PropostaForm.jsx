@@ -50,7 +50,7 @@ export default function SupplierProposalForm() {
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
         <PageHeader title={proposal ? "Proposta não editável" : "Proposta não encontrada"} />
         <Card>
-          <p className="text-sm text-cream/60">
+          <p className="app-text text-cream/70">
             {proposal
               ? 'Só propostas com status "Enviada" podem ser editadas.'
               : `Não existe uma proposta com o número #${id}.`}

@@ -12,7 +12,7 @@ import { formatDate } from "../../../utils/dates";
 export default function SuppliersTable({ suppliers, onAction }) {
   const { search } = useLocation();
   const linkState = { fromSearch: search };
-  const th = "px-3 py-3 adm-text font-medium text-cream/60 xl:py-2.5";
+  const th = "px-3 py-3 adm-text font-medium text-cream/70 xl:py-2.5";
   const td = "px-3 py-3 xl:py-[9px]";
   return (
     <table className="w-full table-fixed text-left adm-text">
@@ -42,7 +42,7 @@ export default function SuppliersTable({ suppliers, onAction }) {
                 <SupplierAvatar name={supplier.name} />
                 <div className="min-w-0">
                   <p title={supplier.name} className="truncate font-medium text-cream">{supplier.name}</p>
-                  <p title={supplier.email} className="truncate adm-small text-cream/60">{supplier.email}</p>
+                  <p title={supplier.email} className="truncate adm-small text-cream/70">{supplier.email}</p>
                 </div>
               </div>
             </td>

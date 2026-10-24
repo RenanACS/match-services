@@ -22,10 +22,10 @@ export function PaymentViewLink({ payment, state }) {
  * em tom apagado com a etiqueta "Previsto"; sem valor ("—") quando estornado.
  */
 export function PlannedMoney({ payment, cents, effective, inline = false }) {
-  if (payment.status === "refunded") return <span className="adm-table text-cream/50">—</span>;
+  if (payment.status === "refunded") return <span className="adm-table text-cream/70">—</span>;
   return (
     <span className={inline ? "inline-flex items-center gap-1.5" : "block"}>
-      <span className={`adm-table block whitespace-nowrap ${effective ? "text-cream" : "text-cream/60"}`}>{money(cents)}</span>
+      <span className={`adm-table block whitespace-nowrap ${effective ? "text-cream" : "text-cream/70"}`}>{money(cents)}</span>
       {!effective && <span className="adm-small block text-amber-400/80">Previsto</span>}
     </span>
   );

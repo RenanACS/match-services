@@ -26,20 +26,20 @@ export default function Input({
       {label && (
         <label
           htmlFor={id}
-          className={app ? "app-small font-medium text-cream/70" : "font-mono text-[11px] uppercase tracking-widest text-cream/60"}
+          className={app ? "app-small font-medium text-cream/70" : "font-mono text-xs uppercase tracking-widest text-cream/70"}
         >
           {label}
         </label>
       )}
       <div className="relative">
         {leftIcon && (
-          <span className={`pointer-events-none absolute inset-y-0 flex items-center text-cream/40 ${app ? "left-3.5" : "left-4"}`}>
+          <span className={`pointer-events-none absolute inset-y-0 flex items-center text-cream/70 ${app ? "left-3.5" : "left-4"}`}>
             {leftIcon}
           </span>
         )}
         <input
           id={id}
-          className={`w-full rounded-xl border border-hairline bg-surface-1 pr-4 text-cream placeholder:text-cream/35 focus:border-orange focus:outline-none ${
+          className={`w-full rounded-xl border border-hairline bg-surface-1 pr-4 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none ${
             app
               ? `app-filter min-h-[40px] py-1.5 ${leftIcon ? "pl-10" : "pl-3.5"}`
               : `${leftIcon ? "pl-12" : "pl-4"} ${SIZES[fieldSize]}`

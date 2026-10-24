@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../../ui/Button";
+import AdminButton from "../AdminButton";
 
 const MIN_REASON = 10;
 
@@ -79,7 +79,7 @@ export default function BlockClientDialog({ client, mode, onConfirm, onClose }) 
               }}
               aria-invalid={error ? true : undefined}
               aria-describedby={error ? "block-reason-error" : undefined}
-              className="w-full rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-text text-cream placeholder:text-cream/35 focus:border-orange focus:outline-none"
+              className="w-full rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-text text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none"
               placeholder="Descreva o motivo do bloqueio"
             />
             {error && (
@@ -90,18 +90,18 @@ export default function BlockClientDialog({ client, mode, onConfirm, onClose }) 
           </div>
         )}
 
-        <p className="mt-4 rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-small leading-relaxed text-cream/60">
+        <p className="mt-4 rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-small leading-relaxed text-cream/70">
           Ação demonstrativa: não bloqueia a autenticação real. Solicitações, contratos, pagamentos e
           repasses existentes não são cancelados nem alterados.
         </p>
 
         <div className="mt-5 flex justify-end gap-3">
-          <Button type="button" variant="secondary" onClick={onClose}>
+          <AdminButton type="button" variant="secondary" onClick={onClose}>
             Cancelar
-          </Button>
-          <Button type="submit">
+          </AdminButton>
+          <AdminButton type="submit">
             {blocking ? "Confirmar bloqueio" : "Confirmar desbloqueio"}
-          </Button>
+          </AdminButton>
         </div>
       </form>
     </div>

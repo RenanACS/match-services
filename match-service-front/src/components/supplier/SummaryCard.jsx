@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
 const ICON_TONES = {
-  warning: "bg-amber-500/15 text-amber-400",
-  info: "bg-sky-500/15 text-sky-400",
-  success: "bg-emerald-500/15 text-emerald-400",
-  danger: "bg-red-500/15 text-red-400",
-  orange: "bg-orange-soft text-orange",
+  warning: "text-amber-400",
+  info: "text-sky-300",
+  success: "text-emerald-400",
+  danger: "text-red-400",
+  orange: "text-orange",
 };
 
 /**
@@ -14,25 +14,23 @@ const ICON_TONES = {
  * card da referência); sem nenhum dos dois é só informativo.
  */
 export default function SummaryCard({ to, onClick, active = false, icon: Icon, tone, label, value, hint, compact = false }) {
-  const className = `flex w-full items-center rounded-[20px] border bg-surface-1 text-left transition ${
-    compact ? "gap-3 p-3" : "gap-4 p-4"
-  } ${
+  const className = `flex min-h-[80px] w-full items-center gap-3 rounded-2xl border bg-surface-1 px-4 py-3 text-left transition ${
     active ? "border-orange" : "border-hairline"
   } ${to || onClick ? "hover:border-orange/60" : ""}`;
 
   const content = (
     <>
       <span
-        className={`flex shrink-0 items-center justify-center rounded-full ${compact ? "h-10 w-10" : "h-12 w-12"} ${ICON_TONES[tone]}`}
+        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-surface-2 ${ICON_TONES[tone]}`}
       >
-        <Icon width={compact ? 20 : 22} height={compact ? 20 : 22} />
+        <Icon width={18} height={18} />
       </span>
       <span className="min-w-0">
-        <span className="block truncate font-mono text-[11px] uppercase tracking-widest text-cream/55">
+        <span className="app-small block truncate font-medium text-cream/70">
           {label}
         </span>
-        <span className={`block font-display font-semibold text-cream ${compact ? "text-xl" : "text-2xl"}`}>{value}</span>
-        {hint && <span className="block truncate text-xs text-cream/45">{hint}</span>}
+        <span className="app-stat-number block text-cream">{value}</span>
+        {hint && <span className="app-small block truncate text-cream/70">{hint}</span>}
       </span>
     </>
   );

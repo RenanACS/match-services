@@ -24,7 +24,7 @@
 //           provedor o reembolso/repasse; o status "executed" vem de webhook.
 
 import { loadDemoState } from "../utils/demoStorage";
-import { COMMISSION_RATE_PERCENT } from "../data/adminDashboard";
+import { COMMISSION_RATE_PERCENT } from "../data/adminCommission";
 import { parseMoneyToCents } from "../utils/money";
 
 export const DISPUTES_STORAGE_KEY = "matchservice.admin.disputes.v1";

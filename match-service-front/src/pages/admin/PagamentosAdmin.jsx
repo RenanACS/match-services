@@ -54,7 +54,7 @@ export default function PagamentosAdmin() {
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 xl:gap-4">
         <PaymentStatCard icon="payments" label="Pagamentos confirmados" value={formatBRL(summary.confirmed.cents)} />
-        <PaymentStatCard icon="lock" label="Valores retidos" value={formatBRL(summary.held.cents)} />
+        <PaymentStatCard icon="lock" label="Em custódia" value={formatBRL(summary.held.cents)} />
         <PaymentStatCard icon="percent" label="Comissões da plataforma" value={formatBRL(summary.commission.cents)} />
         <PaymentStatCard icon="landmark" label="Repasses realizados" value={formatBRL(summary.released.cents)} />
       </div>
@@ -75,7 +75,7 @@ export default function PagamentosAdmin() {
         {pageData.total === 0 ? (
           <div className="px-6 py-10 text-center">
             <p className="adm-text font-medium text-cream">Nenhum pagamento encontrado</p>
-            <p className="adm-text mt-1 text-cream/60">Ajuste a busca ou os filtros para ver resultados.</p>
+            <p className="adm-text mt-1 text-cream/70">Ajuste a busca ou os filtros para ver resultados.</p>
           </div>
         ) : (
           <>

@@ -19,7 +19,7 @@ function RequestRow({ request }) {
     <li className="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
       <div className="min-w-0 sm:w-72 sm:shrink-0">
         <h3 className="app-text truncate font-medium text-cream">{request.title}</h3>
-        <p className="app-small mt-0.5 text-cream/50">
+        <p className="app-small mt-0.5 text-cream/70">
           {request.category} · {formatDate(request.date)}
         </p>
       </div>
@@ -27,7 +27,7 @@ function RequestRow({ request }) {
         <Badge variant={status.variant} appearance="app">{status.label}</Badge>
         <Link
           to="/app/solicitacoes"
-          className="app-text inline-flex items-center gap-1.5 text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex items-center gap-1.5 text-cream/70 transition hover:text-orange"
         >
           Ver solicitação
           <Icon name="arrowRight" size={14} />
@@ -42,7 +42,7 @@ export default function RecentRequests() {
     <section aria-labelledby="recent-requests-title">
       <div className="mb-2 flex items-baseline justify-between">
         <SectionTitle id="recent-requests-title">Solicitações recentes</SectionTitle>
-        <Link to="/app/solicitacoes" className="app-text text-cream/60 transition hover:text-orange">
+        <Link to="/app/solicitacoes" className="app-text text-cream/70 transition hover:text-orange">
           Ver todas
         </Link>
       </div>

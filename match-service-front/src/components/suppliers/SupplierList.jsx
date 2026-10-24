@@ -14,7 +14,7 @@ export default function SupplierList({ heading, count, suppliers, pagination }) 
       <div className="mb-2 flex items-baseline justify-between gap-3">
         <SectionTitle id="supplier-list-title">{heading}</SectionTitle>
         {count !== null && (
-          <span className="app-small shrink-0 text-cream/60">
+          <span className="app-small shrink-0 text-cream/70">
             {count} {count === 1 ? "fornecedor encontrado" : "fornecedores encontrados"}
           </span>
         )}
@@ -22,7 +22,7 @@ export default function SupplierList({ heading, count, suppliers, pagination }) 
 
       {suppliers.length === 0 ? (
         <div className="rounded-[20px] border border-hairline bg-surface-1 px-6 py-8 text-center">
-          <p className="app-text text-cream/60">Nenhum fornecedor encontrado.</p>
+          <p className="app-text text-cream/70">Nenhum fornecedor encontrado.</p>
         </div>
       ) : (
         <>

@@ -13,7 +13,7 @@ export const DEMO_NOTE = "Ação demonstrativa: é guardada apenas neste navegad
 export function AssumeDialog({ dispute, onConfirm, onClose }) {
   return (
     <AdminDialog title="Assumir análise" icon="search" description={`Você passará a analisar a contestação #${dispute.id}. A situação muda de Aberta para Em análise.`} onClose={onClose}>
-      <p className="adm-small text-cream/60">{DEMO_NOTE}</p>
+      <p className="adm-small text-cream/70">{DEMO_NOTE}</p>
       <div className="mt-5 flex flex-wrap justify-end gap-2">
         <AdminButton variant="secondary" onClick={onClose}>Cancelar</AdminButton>
         <AdminButton onClick={onConfirm}>Assumir análise</AdminButton>
@@ -29,7 +29,7 @@ const STEPS = [
   { key: "review", label: "Revisão" },
 ];
 
-const inputClass = "adm-text mt-1.5 w-full rounded-xl border border-hairline bg-surface-2 px-3 py-2 text-cream placeholder:text-cream/40 focus:border-orange focus:outline-none";
+const inputClass = "adm-text mt-1.5 w-full rounded-xl border border-hairline bg-surface-2 px-3 py-2 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none";
 
 function Choice({ name, value, current, onChange, children }) {
   return (
@@ -45,7 +45,7 @@ function MoneyField({ id, label, value, onChange, error, hint }) {
     <div>
       <label htmlFor={id} className="adm-text font-medium text-cream">{label} <span className="text-orange">*</span></label>
       <input id={id} type="text" inputMode="decimal" autoComplete="off" value={value} placeholder="0,00" onChange={(e) => onChange(e.target.value)} aria-invalid={error ? "true" : undefined} aria-describedby={error ? `${id}-error` : undefined} className={inputClass} />
-      {hint && <p className="adm-small mt-1 text-cream/60">{hint}</p>}
+      {hint && <p className="adm-small mt-1 text-cream/70">{hint}</p>}
       {error && <p id={`${id}-error`} role="alert" className="adm-small mt-1 text-red-400">{error}</p>}
     </div>
   );
@@ -123,8 +123,8 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
       <form onSubmit={submit} noValidate className="flex flex-col gap-4">
         <ol className="flex flex-wrap gap-x-4 gap-y-1" aria-label="Etapas">
           {STEPS.map((s, i) => (
-            <li key={s.key} aria-current={i === step ? "step" : undefined} className={`adm-small flex items-center gap-1.5 ${i === step ? "font-medium text-orange" : i < step ? "text-cream/80" : "text-cream/45"}`}>
-              <span className={`flex h-5 w-5 items-center justify-center rounded-full border text-[11px] ${i === step ? "border-orange" : "border-hairline"}`}>{i + 1}</span>
+            <li key={s.key} aria-current={i === step ? "step" : undefined} className={`adm-small flex items-center gap-1.5 ${i === step ? "font-medium text-orange" : i < step ? "text-cream/80" : "text-cream/70"}`}>
+              <span className={`flex h-5 w-5 items-center justify-center rounded-full border text-xs ${i === step ? "border-orange" : "border-hairline"}`}>{i + 1}</span>
               {s.label}
             </li>
           ))}
@@ -152,7 +152,7 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
             {!dismissed && (
               <p className="adm-text rounded-xl border border-hairline bg-surface-2/60 px-3 py-2 text-cream/90">
                 Saldo disponível para resolução: <span className="font-medium text-cream">{formatBRL(balance.cents)}</span>
-                <span className="adm-small block text-cream/55">Valor pago que segue retido pela plataforma neste pagamento (#PG{dispute.requestId}).</span>
+                <span className="adm-small block text-cream/70">Valor pago que segue retido pela plataforma neste pagamento (#PG{dispute.requestId}).</span>
               </p>
             )}
 
@@ -168,7 +168,7 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
                   {errors.refundType && <p role="alert" className="adm-small mt-1 text-red-400">{errors.refundType}</p>}
                 </fieldset>
                 {fields.refundType === "full" && (
-                  <p className="adm-small text-cream/65">100% do saldo elegível ({formatBRL(balance.cents)}) é destinado ao cliente. Nada é destinado ao fornecedor e não há comissão sobre a parcela reembolsada.</p>
+                  <p className="adm-small text-cream/70">100% do saldo elegível ({formatBRL(balance.cents)}) é destinado ao cliente. Nada é destinado ao fornecedor e não há comissão sobre a parcela reembolsada.</p>
                 )}
                 {fields.refundType === "partial" && (
                   <>
@@ -181,7 +181,7 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
                         <Choice name="remainder" value="retained" current={fields.remainderDestination} onChange={(v) => set({ remainderDestination: v, remainderConfirmed: false })}>Manter retido</Choice>
                       </div>
                       {errors.remainderDestination && <p role="alert" className="adm-small mt-1 text-red-400">{errors.remainderDestination}</p>}
-                      <p className="adm-small mt-1 text-cream/55">O saldo restante não é liberado automaticamente: a destinação precisa ser escolhida e confirmada.</p>
+                      <p className="adm-small mt-1 text-cream/70">O saldo restante não é liberado automaticamente: a destinação precisa ser escolhida e confirmada.</p>
                     </fieldset>
                     {fields.remainderDestination && (
                       <Confirm id="confirm-remainder" checked={fields.remainderConfirmed} onChange={(v) => set({ remainderConfirmed: v })} error={errors.remainderConfirmed}>
@@ -194,7 +194,7 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
             )}
 
             {fields.decision === "favor_supplier" && (
-              <p className="adm-small text-cream/65">O saldo elegível ({formatBRL(balance.cents)}) é destinado ao fornecedor. A comissão incide somente sobre esse valor bruto.</p>
+              <p className="adm-small text-cream/70">O saldo elegível ({formatBRL(balance.cents)}) é destinado ao fornecedor. A comissão incide somente sobre esse valor bruto.</p>
             )}
 
             {fields.decision === "agreement" && (
@@ -204,7 +204,7 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
                   <MoneyField id="agreement-supplier" label="Valor bruto ao fornecedor (R$)" value={fields.supplierText} onChange={(v) => set({ supplierText: v, retainedConfirmed: false })} error={errors.supplierAmount} />
                 </div>
                 {errors.sum && <p role="alert" className="adm-small text-red-400">{errors.sum}</p>}
-                {preview && <p className="adm-small text-cream/65">Saldo que continuará retido: <span className="font-medium text-cream">{formatBRL(preview.retainedCents)}</span></p>}
+                {preview && <p className="adm-small text-cream/70">Saldo que continuará retido: <span className="font-medium text-cream">{formatBRL(preview.retainedCents)}</span></p>}
                 {preview && preview.retainedCents > 0 && (
                   <Confirm id="confirm-retained" checked={fields.retainedConfirmed} onChange={(v) => set({ retainedConfirmed: v })} error={errors.retainedConfirmed}>
                     Confirmo que {formatBRL(preview.retainedCents)} não serão destinados a ninguém agora e permanecerão retidos, conforme a justificativa.
@@ -231,7 +231,7 @@ export function ConcludeDialog({ dispute, balance, onConfirm, onClose }) {
             <p className="adm-text font-medium text-cream">Etapa 4 · Revisão e confirmação</p>
             {preview && <DisputeResolutionSummary resolution={preview} disputeId={dispute.id} />}
             <div className="rounded-xl border border-hairline bg-surface-2/60 px-3 py-2">
-              <p className="adm-small text-cream/60">Justificativa</p>
+              <p className="adm-small text-cream/70">Justificativa</p>
               <p className="adm-text mt-0.5 text-cream/90">{fields.justification.trim()}</p>
             </div>
             {errors.justification && <p role="alert" className="adm-small text-red-400">{errors.justification}</p>}

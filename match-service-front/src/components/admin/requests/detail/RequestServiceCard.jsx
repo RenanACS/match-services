@@ -10,25 +10,25 @@ export default function RequestServiceCard({ request }) {
         Serviço
       </AdminSectionTitle>
       <p className="adm-section-title mt-4">{request.service.name}</p>
-      <p className="adm-text text-cream/60">{request.service.category}</p>
+      <p className="adm-text text-cream/70">{request.service.category}</p>
       <p className="adm-text mt-2 flex items-center gap-2 text-cream/80">
-        <Icon name="mapPin" size={16} className="text-cream/60" />
+        <Icon name="mapPin" size={16} className="text-cream/70" />
         {request.location.city} - {request.location.state}
       </p>
       <p className="adm-text mt-3 text-cream/80">{request.service.description}</p>
       <div className="flex-1" />
       <dl className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 border-t border-hairline pt-4">
         <div className="flex items-start gap-2.5">
-          <Icon name="calendar" size={18} className="mt-0.5 text-cream/60" />
+          <Icon name="calendar" size={18} className="mt-0.5 text-cream/70" />
           <div>
-            <dt className="adm-small text-cream/55">Data da solicitação</dt>
+            <dt className="adm-small text-cream/70">Data da solicitação</dt>
             <dd className="adm-text font-medium text-cream">{dateOf(request.createdAt)} às {timeOf(request.createdAt)}</dd>
           </div>
         </div>
         <div className="flex items-start gap-2.5">
-          <Icon name="dollar" size={18} className="mt-0.5 text-cream/60" />
+          <Icon name="dollar" size={18} className="mt-0.5 text-cream/70" />
           <div>
-            <dt className="adm-small text-cream/55">Valor do serviço</dt>
+            <dt className="adm-small text-cream/70">Valor do serviço</dt>
             <dd className="adm-text font-medium text-cream">{money(request.valueCents)}</dd>
           </div>
         </div>

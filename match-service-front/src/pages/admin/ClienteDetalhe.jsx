@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import Button from "../../components/ui/Button";
+import AdminButton from "../../components/admin/AdminButton";
 import Card from "../../components/ui/Card";
 import { ClientStatusBadge, ClientTypeBadge } from "../../components/admin/clients/ClientBadges";
 import BlockClientDialog from "../../components/admin/clients/BlockClientDialog";
@@ -13,7 +13,7 @@ import { formatDate, formatDateTime } from "../../utils/dates";
 function Field({ label, children }) {
   return (
     <div>
-      <dt className="adm-small text-cream/50">{label}</dt>
+      <dt className="adm-small text-cream/70">{label}</dt>
       <dd className="mt-0.5 adm-text text-cream">{children}</dd>
     </div>
   );
@@ -63,7 +63,7 @@ export default function ClienteDetalhe() {
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-5">
-      <Link to={backTo} className="adm-text text-cream/60 transition hover:text-orange">
+      <Link to={backTo} className="adm-text text-cream/70 transition hover:text-orange">
         ← Clientes
       </Link>
 
@@ -73,10 +73,10 @@ export default function ClienteDetalhe() {
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <ClientTypeBadge type={client.type} />
             <ClientStatusBadge status={client.status} />
-            <span className="adm-text text-cream/50">Cadastro em {formatDate(client.registeredAt)}</span>
+            <span className="adm-text text-cream/70">Cadastro em {formatDate(client.registeredAt)}</span>
           </div>
         </div>
-        <Button
+        <AdminButton
           variant="secondary"
           onClick={() => {
             setNotice("");
@@ -84,7 +84,7 @@ export default function ClienteDetalhe() {
           }}
         >
           {blocked ? "Desbloquear conta" : "Bloquear conta"}
-        </Button>
+        </AdminButton>
       </header>
 
       {notice && (
@@ -117,7 +117,7 @@ export default function ClienteDetalhe() {
                 {address.city}/{address.state} · CEP {address.cep}
               </Field>
             </dl>
-            <p className="mt-4 adm-small text-cream/40">
+            <p className="mt-4 adm-small text-cream/70">
               Somente consulta: o administrador não edita os dados pessoais do cliente.
             </p>
           </section>

@@ -22,7 +22,7 @@ export default function SupplierDetailsHeader({ supplier }) {
             {supplier.rating.toFixed(1).replace(".", ",")}
           </span>
         </div>
-        <p className="app-text mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-cream/60">
+        <p className="app-text mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-cream/70">
           <span>{supplier.category}</span>
           <span className="inline-flex items-center gap-1.5">
             <Icon name="mapPin" size={14} />
@@ -34,9 +34,9 @@ export default function SupplierDetailsHeader({ supplier }) {
       <dl className="grid grid-cols-1 gap-3 rounded-[20px] border border-hairline bg-surface-1 p-4 sm:grid-cols-3">
         {facts.map((fact) => (
           <div key={fact.label} className="flex items-start gap-2.5">
-            <Icon name={fact.icon} size={16} className="mt-0.5 text-cream/50" />
+            <Icon name={fact.icon} size={16} className="mt-0.5 text-cream/70" />
             <div>
-              <dt className="app-small text-cream/50">{fact.label}</dt>
+              <dt className="app-small text-cream/70">{fact.label}</dt>
               <dd className="app-text mt-0.5 text-cream/80">{fact.value}</dd>
             </div>
           </div>

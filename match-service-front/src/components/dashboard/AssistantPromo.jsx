@@ -22,7 +22,7 @@ export default function AssistantPromo() {
         <span className="app-text font-semibold text-orange-light">Mia</span>
         <span className="app-text truncate text-cream/70">Não sabe qual serviço precisa? Pergunte à Mia.</span>
       </span>
-      <span aria-hidden="true" className="app-text inline-flex shrink-0 items-center gap-1.5 text-cream/60">
+      <span aria-hidden="true" className="app-text inline-flex shrink-0 items-center gap-1.5 text-cream/70">
         Perguntar à Mia
         <Icon name="arrowRight" size={14} />
       </span>

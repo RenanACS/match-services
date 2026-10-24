@@ -13,6 +13,13 @@ const INITIAL_MESSAGES = [
   },
 ];
 
+// Atalhos para quem não sabe por onde começar: preenchem o campo, não enviam.
+const STARTERS = [
+  "Preciso de limpeza para o meu escritório",
+  "Meu financeiro está desorganizado",
+  "Quero manutenção predial recorrente",
+];
+
 /**
  * Interface visual do Assistente IA. NÃO faz integração real com
  * nenhum modelo — usa respostas mockadas apenas para permitir testar a
@@ -40,12 +47,9 @@ export default function AssistantChat() {
   }
 
   return (
-    <div className="flex h-[32rem] flex-col rounded-[20px] border border-hairline bg-surface-1">
+    <div className="flex h-[min(72vh,44rem)] min-h-[28rem] flex-col rounded-[20px] border border-hairline bg-surface-1">
       <div className="border-b border-hairline px-5 py-4">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-orange">
-          Assistente IA
-        </p>
-        <p className="mt-1 text-xs text-cream/50">
+        <p className="app-small text-cream/70">
           Respostas simuladas nesta etapa — integração real via Django +
           DeepSeek chega depois.
         </p>
@@ -55,7 +59,7 @@ export default function AssistantChat() {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
+            className={`max-w-[80%] rounded-2xl px-4 py-2.5 app-text ${
               message.role === "assistant"
                 ? "bg-surface-2 text-cream/90"
                 : "ml-auto bg-orange-soft text-orange"
@@ -66,16 +70,40 @@ export default function AssistantChat() {
         ))}
       </div>
 
-      <form onSubmit={handleSend} className="flex gap-2 border-t border-hairline p-3">
-        <Textarea
-          id="assistant-draft"
-          value={draft}
-          onChange={(event) => setDraft(event.target.value)}
-          placeholder="Descreva o que você precisa..."
-          rows={1}
-          className="flex-1"
-        />
-        <Button type="submit" disabled={!draft.trim()}>
+      {messages.length === 1 && (
+        <ul className="flex flex-wrap gap-2 px-5 pb-3" aria-label="Sugestões para começar">
+          {STARTERS.map((starter) => (
+            <li key={starter}>
+              <button
+                type="button"
+                onClick={() => setDraft(starter)}
+                className="app-small inline-flex min-h-10 items-center rounded-full border border-hairline px-4 text-cream/80 transition hover:border-orange/60 hover:text-orange"
+              >
+                {starter}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <form onSubmit={handleSend} className="flex items-end gap-2 border-t border-hairline p-3">
+        <div className="min-w-0 flex-1">
+          <Textarea
+            id="assistant-draft"
+            appearance="app"
+            aria-label="Mensagem para a assistente"
+            value={draft}
+            onChange={(event) => setDraft(event.target.value)}
+            onKeyDown={(event) => {
+              // Enter envia; Shift+Enter quebra a linha.
+              if (event.key === "Enter" && !event.shiftKey) handleSend(event);
+            }}
+            placeholder="Descreva o que você precisa..."
+            rows={2}
+            className="resize-none"
+          />
+        </div>
+        <Button type="submit" appearance="app" disabled={!draft.trim()}>
           Enviar
         </Button>
       </form>

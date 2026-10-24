@@ -11,7 +11,7 @@ import { formatCurrency, formatDate, formatTime } from "../../utils/supplierForm
 function Info({ label, children }) {
   return (
     <div>
-      <dt className="font-mono text-[11px] uppercase tracking-widest text-cream/45">{label}</dt>
+      <dt className="app-small font-medium text-cream/70">{label}</dt>
       <dd className="mt-1 text-cream">{children}</dd>
     </div>
   );
@@ -28,7 +28,7 @@ export default function SupplierProposalDetails() {
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
         <PageHeader title="Proposta não encontrada" />
         <Card>
-          <p className="text-sm text-cream/60">Não existe uma proposta com o número #{id}.</p>
+          <p className="app-text text-cream/70">Não existe uma proposta com o número #{id}.</p>
           <Button as={Link} to="/fornecedor/propostas" variant="secondary" className="mt-4">
             Ver todas as propostas
           </Button>
@@ -68,10 +68,10 @@ export default function SupplierProposalDetails() {
           </Info>
           <Info label="Status">{status.label}</Info>
         </dl>
-        <h2 className="mt-6 font-mono text-[11px] uppercase tracking-widest text-cream/45">Descrição</h2>
-        <p className="mt-1 text-sm text-cream/75">{proposal.description}</p>
+        <h2 className="mt-6 app-small font-medium text-cream/70">Descrição</h2>
+        <p className="mt-1 app-text text-cream/75">{proposal.description}</p>
         {proposal.status !== "sent" && (
-          <p className="mt-4 text-sm text-cream/50">
+          <p className="mt-4 app-text text-cream/70">
             Só propostas com status "Enviada" podem ser editadas.
           </p>
         )}

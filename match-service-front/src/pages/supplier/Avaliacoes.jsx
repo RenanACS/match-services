@@ -66,14 +66,14 @@ function ReplyBox({ review, onSave }) {
   if (review.reply) {
     return (
       <div className="mt-4 rounded-xl border border-hairline bg-surface-2 p-4">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-cream/45">
+        <p className="app-small font-medium text-cream/70">
           Sua resposta · {formatDate(review.reply.at)}
         </p>
-        <p className="mt-1 text-sm text-cream/80">{review.reply.text}</p>
+        <p className="mt-1 app-text text-cream/80">{review.reply.text}</p>
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="mt-2 font-mono text-[11px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+          className="mt-2 app-small font-medium text-cream/70 transition hover:text-orange"
         >
           Editar resposta
         </button>
@@ -115,11 +115,11 @@ export default function SupplierReviews() {
             {average.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
           </p>
           <Stars value={average} size={20} />
-          <p className="text-sm text-cream/55">{reviews.length} avaliações</p>
+          <p className="app-text text-cream/70">{reviews.length} avaliações</p>
         </Card>
 
         <Card className="md:col-span-2">
-          <h2 className="font-display text-lg font-semibold">Distribuição das notas</h2>
+          <h2 className="app-section-title">Distribuição das notas</h2>
           <ul className="mt-4 flex flex-col gap-2">
             {[5, 4, 3, 2, 1].map((star) => {
               const total = reviews.filter((review) => review.rating === star).length;
@@ -130,7 +130,7 @@ export default function SupplierReviews() {
                     type="button"
                     onClick={() => changeRating(rating === String(star) ? "all" : String(star))}
                     aria-pressed={rating === String(star)}
-                    className={`flex w-full items-center gap-3 rounded-lg px-2 py-1 text-sm transition hover:bg-surface-2 ${
+                    className={`flex w-full items-center gap-3 rounded-lg px-2 py-1 app-text transition hover:bg-surface-2 ${
                       rating === String(star) ? "bg-orange-soft" : ""
                     }`}
                   >
@@ -138,7 +138,7 @@ export default function SupplierReviews() {
                     <span className="h-2 flex-1 overflow-hidden rounded-full bg-surface-3">
                       <span className="block h-full rounded-full bg-orange" style={{ width: `${percent}%` }} />
                     </span>
-                    <span className="w-8 shrink-0 text-right text-cream/60">{total}</span>
+                    <span className="w-8 shrink-0 text-right text-cream/70">{total}</span>
                   </button>
                 </li>
               );
@@ -160,7 +160,7 @@ export default function SupplierReviews() {
 
       {pageItems.length === 0 ? (
         <Card>
-          <p className="text-center text-sm text-cream/60">Nenhuma avaliação com essa nota.</p>
+          <p className="text-center app-text text-cream/70">Nenhuma avaliação com essa nota.</p>
         </Card>
       ) : (
         <ul className="flex flex-col gap-4">
@@ -172,15 +172,15 @@ export default function SupplierReviews() {
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <p className="text-cream">{review.client}</p>
-                      <span className="text-xs text-cream/50">{formatDate(review.date)}</span>
+                      <span className="app-small text-cream/70">{formatDate(review.date)}</span>
                     </div>
                     <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
                       <Stars value={review.rating} />
-                      <span className="font-mono text-[11px] uppercase tracking-widest text-cream/45">
+                      <span className="app-small font-medium text-cream/70">
                         {review.service}
                       </span>
                     </div>
-                    <p className="mt-3 text-sm text-cream/75">{review.comment}</p>
+                    <p className="mt-3 app-text text-cream/75">{review.comment}</p>
                     <ReplyBox review={review} onSave={replyToReview} />
                   </div>
                 </div>

@@ -3,10 +3,10 @@ export default function Pagination({ page, pages, pageSize, total, noun, onPageC
   const start = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const end = Math.min(total, page * pageSize);
   const buttonClass =
-    "flex h-9 min-w-9 items-center justify-center rounded-lg border px-2 text-sm transition disabled:cursor-not-allowed disabled:opacity-40";
+    "flex h-10 min-w-10 items-center justify-center rounded-lg border px-2 app-text transition disabled:cursor-not-allowed disabled:opacity-40";
 
   return (
-    <div className="flex flex-col items-center justify-between gap-3 border-t border-hairline px-5 py-4 text-sm text-cream/60 sm:flex-row sm:px-6">
+    <div className="flex flex-col items-center justify-between gap-3 border-t border-hairline px-5 py-4 app-text text-cream/70 sm:flex-row sm:px-6">
       <p>
         Mostrando {start} a {end} de {total} {noun}
       </p>

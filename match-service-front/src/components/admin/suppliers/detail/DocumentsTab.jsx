@@ -19,7 +19,7 @@ export default function DocumentsTab({ supplier }) {
             </span>
             <div className="min-w-0 flex-1">
               <p className="adm-text font-medium text-cream">{doc.name}</p>
-              <p className="truncate adm-small text-cream/50">
+              <p className="truncate adm-small text-cream/70">
                 {doc.file} · {doc.size} · enviado em {formatDate(doc.sentAt)}
               </p>
             </div>
@@ -27,7 +27,7 @@ export default function DocumentsTab({ supplier }) {
           </li>
         ))}
       </ul>
-      <p className="mt-4 rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-small leading-relaxed text-cream/60">
+      <p className="mt-4 rounded-xl border border-hairline bg-surface-2 px-4 py-3 adm-small leading-relaxed text-cream/70">
         Documentos fictícios, apenas para demonstração. Não há pré-visualização, conferência automática nem
         verificação externa. Quando houver autenticação real, somente administradores poderão acessar estes arquivos.
       </p>

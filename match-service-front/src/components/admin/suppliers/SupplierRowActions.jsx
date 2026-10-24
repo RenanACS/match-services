@@ -22,7 +22,7 @@ export function SupplierDetailsLink({ supplier, state, className = "" }) {
     <Link
       to={`/admin/fornecedores/${supplier.id}`}
       state={state}
-      className={`inline-flex items-center gap-1 adm-text font-medium text-orange transition hover:text-orange-light ${className}`}
+      className={`inline-flex min-h-10 items-center gap-1 adm-text font-medium text-orange transition hover:text-orange-light ${className}`}
     >
       Detalhes
       <Icon name="chevronRight" size={14} />

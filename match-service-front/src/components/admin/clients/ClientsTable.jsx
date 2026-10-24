@@ -12,7 +12,7 @@ export default function ClientsTable({ clients, onToggleBlock }) {
   // Guarda filtros/página da lista para o "← Clientes" dos detalhes voltar a ela.
   const { search } = useLocation();
   const linkState = { fromSearch: search };
-  const th = "px-3 py-3 adm-text font-medium text-cream/60 xl:py-2.5";
+  const th = "px-3 py-3 adm-text font-medium text-cream/70 xl:py-2.5";
   return (
     <table className="w-full table-fixed text-left adm-text">
       <colgroup>
@@ -41,7 +41,7 @@ export default function ClientsTable({ clients, onToggleBlock }) {
                 <ClientAvatar type={client.type} />
                 <div className="min-w-0">
                   <p title={client.name} className="truncate font-medium text-cream">{client.name}</p>
-                  <p title={client.email} className="truncate adm-small text-cream/60">{client.email}</p>
+                  <p title={client.email} className="truncate adm-small text-cream/70">{client.email}</p>
                 </div>
               </div>
             </td>

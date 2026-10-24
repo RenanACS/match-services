@@ -16,7 +16,7 @@ export default function Badge({ variant = "neutral", appearance = "default", chi
       className={`inline-flex items-center gap-1.5 rounded-full border ${
         appearance === "app"
           ? "app-badge whitespace-nowrap px-2.5 py-0.5"
-          : "px-3 py-1 font-mono text-[11px] uppercase tracking-wider"
+          : "px-3 py-1 font-mono text-xs uppercase tracking-wider"
       } ${VARIANTS[variant]}`}
     >
       {children}

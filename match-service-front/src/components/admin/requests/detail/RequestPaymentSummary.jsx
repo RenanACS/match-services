@@ -7,12 +7,12 @@ import { summarizePayment } from "../../../../services/adminRequests";
 function Tile({ label, icon, children, hint }) {
   return (
     <div className="px-4 py-3">
-      <p className="adm-small text-cream/60">{label}</p>
+      <p className="adm-small text-cream/70">{label}</p>
       <div className="mt-1.5 flex items-center gap-2">
         {icon && <Icon name={icon} size={20} className="text-cream/70" />}
         <div className="min-w-0">{children}</div>
       </div>
-      {hint && <p className="adm-small mt-1 text-cream/50">{hint}</p>}
+      {hint && <p className="adm-small mt-1 text-cream/70">{hint}</p>}
     </div>
   );
 }
@@ -58,7 +58,7 @@ export default function RequestPaymentSummary({ request }) {
           <div className="min-w-0">
             <p className={`adm-text font-medium ${tone.title}`}>{s.banner.title}</p>
             {s.banner.text && <p className="adm-text text-cream/70">{s.banner.text}</p>}
-            {s.banner.at && <p className="adm-small text-cream/60">Registrado em {dateOf(s.banner.at)} às {timeOf(s.banner.at)}.</p>}
+            {s.banner.at && <p className="adm-small text-cream/70">Registrado em {dateOf(s.banner.at)} às {timeOf(s.banner.at)}.</p>}
           </div>
         </div>
         <span className={`adm-badge inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 ${tone.pill}`}>
@@ -66,7 +66,7 @@ export default function RequestPaymentSummary({ request }) {
         </span>
       </div>
 
-      <p className="adm-small mt-3 text-cream/45">
+      <p className="adm-small mt-3 text-cream/70">
         Valores fictícios e demonstrativos: nenhuma cobrança, retenção ou transferência real é feita. A confirmação do
         pagamento, a retenção e o repasse dependerão da integração futura com o provedor financeiro (e de seus
         webhooks). Comissão demonstrativa de {s.commissionRate}% para o Match Service e {100 - s.commissionRate}% para

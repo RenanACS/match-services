@@ -5,7 +5,7 @@ import { money } from "../../requests/RequestParts";
 function Value({ label, children, tag, first = false }) {
   return (
     <div className={`px-0 py-3 sm:px-5 ${first ? "sm:pl-0" : "sm:border-l sm:border-hairline"} xl:py-1.5`}>
-      <p className="adm-text text-cream/60">{label}</p>
+      <p className="adm-text text-cream/70">{label}</p>
       <div className="mt-1 flex items-center gap-2">
         {children}
         {tag}
@@ -15,7 +15,7 @@ function Value({ label, children, tag, first = false }) {
 }
 
 const Money = ({ cents, muted }) => <span className={`adm-stat-number whitespace-nowrap ${muted ? "text-cream/70" : "text-cream"}`}>{money(cents)}</span>;
-const Dash = () => <span className="adm-stat-number text-cream/50">—</span>;
+const Dash = () => <span className="adm-stat-number text-cream/70">—</span>;
 
 /**
  * Valores da transação. O valor total é o contratado; comissão e valor ao

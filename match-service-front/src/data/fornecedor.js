@@ -44,7 +44,7 @@ export const PROPOSAL_STATUS = {
 };
 
 export const PAYMENT_STATUS = {
-  escrow: { label: "Em escrow", tone: "orange" },
+  escrow: { label: "Em custódia", tone: "orange" },
   released: { label: "Liberado", tone: "success" },
   pending: { label: "Pendente", tone: "warning" },
   refunded: { label: "Estornado", tone: "danger" },

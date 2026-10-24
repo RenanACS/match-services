@@ -71,11 +71,11 @@ export default function ServiceRequestForm({ initialSupplierId = "" }) {
         <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <label className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 ${mode === "category" ? "border-orange bg-orange/10" : "border-hairline"}`}>
             <input type="radio" name="request-mode" checked={mode === "category"} onChange={() => changeMode("category")} className="mt-1 accent-orange" />
-            <span><span className="app-text block font-medium text-cream">Por categoria</span><span className="app-small block text-cream/60">Para todos os fornecedores cadastrados nessa categoria.</span></span>
+            <span><span className="app-text block font-medium text-cream">Por categoria</span><span className="app-small block text-cream/70">Para todos os fornecedores cadastrados nessa categoria.</span></span>
           </label>
           <label className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 ${mode === "supplier" ? "border-orange bg-orange/10" : "border-hairline"}`}>
             <input type="radio" name="request-mode" checked={mode === "supplier"} onChange={() => changeMode("supplier")} className="mt-1 accent-orange" />
-            <span><span className="app-text block font-medium text-cream">Fornecedor específico</span><span className="app-small block text-cream/60">Escolher uma empresa e um serviço oferecido por ela.</span></span>
+            <span><span className="app-text block font-medium text-cream">Fornecedor específico</span><span className="app-small block text-cream/70">Escolher uma empresa e um serviço oferecido por ela.</span></span>
           </label>
         </div>
       </fieldset>
@@ -103,7 +103,7 @@ export default function ServiceRequestForm({ initialSupplierId = "" }) {
             {supplierCategories.map((c) => <option key={c} value={c}>{c}</option>)}
           </Select>
           {errors.category && <p className="app-small text-red-400">{errors.category}</p>}
-          {category && <p className="app-small mt-1 text-cream/60">{eligibleSuppliers.length} fornecedor(es) cadastrado(s) nessa categoria. O envio real dependerá do Django.</p>}
+          {category && <p className="app-small mt-1 text-cream/70">{eligibleSuppliers.length} fornecedor(es) cadastrado(s) nessa categoria. O envio real dependerá do Django.</p>}
         </div>
       )}
       <div className="flex flex-col gap-1">

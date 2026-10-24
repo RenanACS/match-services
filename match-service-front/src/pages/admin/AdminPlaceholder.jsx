@@ -14,7 +14,7 @@ export default function AdminPlaceholder({ title, description }) {
       <h1 className="adm-page-title">{title}</h1>
       <Card>
         <p className="adm-text text-cream/70">{description}</p>
-        <p className="mt-2 adm-text text-cream/50">
+        <p className="mt-2 adm-text text-cream/70">
           Esta funcionalidade ainda está em desenvolvimento. A rota já existe para permitir testar a
           navegação do painel.
         </p>

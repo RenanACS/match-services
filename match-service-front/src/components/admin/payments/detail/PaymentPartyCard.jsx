@@ -22,11 +22,11 @@ export default function PaymentPartyCard({ id, title, icon, name, documentLabel,
       </div>
       <dl className="mt-3 grid grid-cols-[3fr_2fr] gap-4">
         <div className="min-w-0">
-          <dt className="adm-small text-cream/60">Nome</dt>
+          <dt className="adm-small text-cream/70">Nome</dt>
           <dd title={name} className="adm-text mt-0.5 truncate font-medium text-cream">{name}</dd>
         </div>
         <div className="min-w-0">
-          <dt className="adm-small text-cream/60">{documentLabel}</dt>
+          <dt className="adm-small text-cream/70">{documentLabel}</dt>
           <dd className="adm-text mt-0.5 truncate text-cream/80">{documentValue}</dd>
         </div>
       </dl>

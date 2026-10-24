@@ -30,7 +30,7 @@ export const PAYMENT_STATUSES = {
   pending: { label: "Pendente", tone: "amber", icon: "clock" },
   failed: { label: "Falhou", tone: "red", icon: "xCircle" },
   confirmed: { label: "Confirmado", tone: "teal", icon: "checkCircle" },
-  held: { label: "Retido", tone: "blue", icon: "lock" },
+  held: { label: "Em custódia", tone: "blue", icon: "lock" },
   released: { label: "Repassado", tone: "green", icon: "check" },
   refunded: { label: "Estornado", tone: "red", icon: "refresh" },
 };

@@ -56,10 +56,10 @@ export default function SupplierDashboard() {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 lg:gap-4">
       <header className="min-w-0">
-        <h1 className="truncate font-display text-3xl font-semibold tracking-tight text-cream lg:text-2xl">
+        <h1 className="app-page-title truncate text-cream">
           Olá, {name}
         </h1>
-        <p className="mt-1 text-sm text-cream/60">Resumo da sua operação</p>
+        <p className="mt-1 app-text text-cream/70">Resumo da sua operação</p>
       </header>
 
       <section aria-label="Resumo" className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:gap-2.5 xl:grid-cols-3">
@@ -70,10 +70,10 @@ export default function SupplierDashboard() {
 
       <Card className="p-0">
         <div className="flex items-center justify-between gap-3 px-5 py-3 sm:px-6 lg:py-2.5">
-          <h2 className="font-display text-lg font-semibold">Últimas solicitações</h2>
+          <h2 className="app-section-title">Últimas solicitações</h2>
           <Link
             to="/fornecedor/solicitacoes"
-            className="font-mono text-[11px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+            className="app-small font-medium text-cream/70 transition hover:text-orange"
           >
             Ver todas →
           </Link>
@@ -81,9 +81,9 @@ export default function SupplierDashboard() {
 
         {/* Tabela a partir de md; em telas menores, lista empilhada. */}
         <div className="hidden overflow-x-auto md:block">
-          <table className="w-full min-w-[720px] text-left text-sm">
+          <table className="w-full min-w-[720px] text-left app-text">
             <thead>
-              <tr className="border-y border-hairline font-mono text-[11px] uppercase tracking-widest text-cream/50">
+              <tr className="border-y border-hairline app-small font-medium text-cream/70">
                 <th className="px-6 py-2 font-medium">ID</th>
                 <th className="px-3 py-2 font-medium">Cliente</th>
                 <th className="px-3 py-2 font-medium">Serviço</th>
@@ -103,17 +103,17 @@ export default function SupplierDashboard() {
                       <Avatar name={request.client.name} />
                       <div>
                         <p className="text-cream">{request.client.name}</p>
-                        <p className="text-xs text-cream/50">{request.client.city}</p>
+                        <p className="app-small text-cream/70">{request.client.city}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-3 py-2">
                     <p className="text-cream">{request.service}</p>
-                    <p className="text-xs text-cream/50">{request.category}</p>
+                    <p className="app-small text-cream/70">{request.category}</p>
                   </td>
                   <td className="px-3 py-2 text-cream/80">
                     <p>{formatDate(request.date)}</p>
-                    <p className="text-xs text-cream/50">{formatTime(request.date)}</p>
+                    <p className="app-small text-cream/70">{formatTime(request.date)}</p>
                   </td>
                   <td className="whitespace-nowrap px-3 py-2 text-cream">{formatCurrency(request.value)}</td>
                   <td className="px-3 py-2">
@@ -134,21 +134,21 @@ export default function SupplierDashboard() {
           {latest.map((request) => (
             <li key={request.id} className="flex flex-col gap-2 px-5 py-4">
               <div className="flex items-center justify-between gap-3">
-                <span className="font-mono text-sm text-cream/80">#{request.id}</span>
+                <span className="font-mono app-text text-cream/80">#{request.id}</span>
                 <StatusBadge status={request.status} />
               </div>
               <div className="flex items-center gap-3">
                 <Avatar name={request.client.name} />
                 <div className="min-w-0">
                   <p className="truncate text-cream">{request.service}</p>
-                  <p className="truncate text-xs text-cream/50">
+                  <p className="truncate app-small text-cream/70">
                     {request.client.name} · {formatDate(request.date)} · {formatCurrency(request.value)}
                   </p>
                 </div>
               </div>
               <Link
                 to={`/fornecedor/solicitacoes/${request.id}`}
-                className="self-start font-mono text-[11px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+                className="self-start app-small font-medium text-cream/70 transition hover:text-orange"
               >
                 Ver detalhes →
               </Link>

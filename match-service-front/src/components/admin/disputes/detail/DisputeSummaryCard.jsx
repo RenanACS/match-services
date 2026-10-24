@@ -6,7 +6,7 @@ import { DISPUTE_REASONS } from "../../../../services/adminDisputes";
 function Fact({ label, children }) {
   return (
     <div className="min-w-0">
-      <dt className="adm-small text-cream/60">{label}</dt>
+      <dt className="adm-small text-cream/70">{label}</dt>
       <dd className="adm-text mt-1 text-cream">{children}</dd>
     </div>
   );
@@ -24,7 +24,7 @@ export default function DisputeSummaryCard({ dispute }) {
         <Fact label="Motivo">{DISPUTE_REASONS[dispute.reason]}</Fact>
       </dl>
       <div className="mt-4 border-t border-hairline pt-3">
-        <p className="adm-small text-cream/60">Descrição do problema</p>
+        <p className="adm-small text-cream/70">Descrição do problema</p>
         <p className="adm-text mt-1 text-cream/90">{dispute.problem}</p>
       </div>
     </section>

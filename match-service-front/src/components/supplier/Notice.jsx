@@ -6,7 +6,7 @@ export default function Notice({ children, tone = "success" }) {
       ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
       : "border-red-500/30 bg-red-500/10 text-red-400";
   return (
-    <p role="status" className={`rounded-xl border px-4 py-3 text-sm ${toneClass}`}>
+    <p role="status" className={`rounded-xl border px-4 py-3 app-text ${toneClass}`}>
       {children}
     </p>
   );

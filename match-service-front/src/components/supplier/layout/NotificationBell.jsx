@@ -32,7 +32,7 @@ export default function NotificationBell() {
       >
         <BellIcon width={20} height={20} />
         {unread > 0 && (
-          <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-orange px-1 font-mono text-[10px] font-semibold text-ink">
+          <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-orange px-1 app-small font-semibold text-ink">
             {unread}
           </span>
         )}
@@ -41,12 +41,12 @@ export default function NotificationBell() {
       {open && (
         <div className="absolute right-0 z-30 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-hairline bg-surface-2 shadow-lg">
           <div className="flex items-center justify-between gap-3 border-b border-hairline px-4 py-3">
-            <h2 className="font-display text-sm font-semibold">Notificações</h2>
+            <h2 className="font-display app-text font-semibold">Notificações</h2>
             {unread > 0 && (
               <button
                 type="button"
                 onClick={() => markAllNotificationsRead("fornecedor")}
-                className="font-mono text-[10px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+                className="app-small font-medium text-cream/70 transition hover:text-orange"
               >
                 Marcar todas como lidas
               </button>
@@ -54,7 +54,7 @@ export default function NotificationBell() {
           </div>
 
           {mine.length === 0 ? (
-            <p className="px-4 py-6 text-center text-sm text-cream/55">Nenhuma notificação por enquanto.</p>
+            <p className="px-4 py-6 text-center app-text text-cream/70">Nenhuma notificação por enquanto.</p>
           ) : (
             <ul className="max-h-80 divide-y divide-hairline overflow-y-auto">
               {mine.map((item) => (
@@ -72,8 +72,8 @@ export default function NotificationBell() {
                       className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${item.read ? "bg-transparent" : "bg-orange"}`}
                     />
                     <span className="min-w-0">
-                      <span className="block text-sm text-cream">{item.text}</span>
-                      <span className="block text-xs text-cream/50">
+                      <span className="block app-text text-cream">{item.text}</span>
+                      <span className="block app-small text-cream/70">
                         {formatDate(item.at)} às {formatTime(item.at)}
                         {item.read ? "" : " · não lida"}
                       </span>

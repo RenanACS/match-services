@@ -1,5 +1,5 @@
 // Paginação das listagens da área do cliente: 3 registros por página.
-export const PAGE_SIZE = 3;
+export const PAGE_SIZE = 10;
 
 /** Fatia `items` na página pedida (corrigida para o intervalo válido). */
 export function paginate(items, page = 1, pageSize = PAGE_SIZE) {

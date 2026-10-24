@@ -80,7 +80,7 @@ export default function SolicitacoesAdmin() {
         {pageData.total === 0 ? (
           <div className="px-6 py-10 text-center">
             <p className="adm-text font-medium text-cream">Nenhuma solicitação encontrada</p>
-            <p className="adm-text mt-1 text-cream/60">Ajuste a busca ou os filtros para ver resultados.</p>
+            <p className="adm-text mt-1 text-cream/70">Ajuste a busca ou os filtros para ver resultados.</p>
           </div>
         ) : (
           <>

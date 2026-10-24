@@ -12,7 +12,7 @@ export default function RecentActivity({ items }) {
         {items.map((item) => (
           <li key={item.id} className="py-2.5 adm-text">
             <p className="text-cream/80">{item.text}</p>
-            <p className="mt-0.5 adm-small text-cream/40">{item.time}</p>
+            <p className="mt-0.5 adm-small text-cream/70">{item.time}</p>
           </li>
         ))}
       </ul>

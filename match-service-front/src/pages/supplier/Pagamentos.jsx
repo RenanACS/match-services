@@ -16,7 +16,7 @@ import { matchesPeriod, normalize, paginate, PERIOD_OPTIONS } from "../../utils/
 
 const PAGE_SIZE = 8;
 
-/** Pagamentos (/fornecedor/pagamentos): saldo em escrow, a receber, recebido e histórico. */
+/** Pagamentos (/fornecedor/pagamentos): saldo em custódia, a receber, recebido e histórico. */
 export default function SupplierPayments() {
   const { payments } = useSupplierData();
   const [query, setQuery] = useState("");
@@ -70,20 +70,20 @@ export default function SupplierPayments() {
             <EyeIcon width={18} height={18} />
           </IconLink>
         ) : (
-          <span className="text-xs text-cream/40">—</span>
+          <span className="app-small text-cream/70">—</span>
         ),
     },
   ];
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-      <PageHeader title="Pagamentos" description="Acompanhe os valores retidos em escrow, a receber e já liberados." />
+      <PageHeader title="Pagamentos" description="Acompanhe os valores em custódia (retidos até o cliente aprovar a entrega), a receber e já liberados." />
 
       <section aria-label="Resumo financeiro" className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <SummaryCard
           icon={WalletIcon}
           tone="orange"
-          label="Saldo em escrow"
+          label="Saldo em custódia"
           value={formatCurrency(sumBy("escrow"))}
           hint="Retido até a aprovação do cliente"
         />

@@ -25,7 +25,7 @@ export default function PaymentDisputeAuthorizationCard({ payment }) {
           <Icon name="arrowRight" size={14} />
         </Link>
       </div>
-      <p className="adm-small mt-1 text-cream/60">Registrada em {dateOf(decision.at)} às {timeOf(decision.at)} · {decision.by}</p>
+      <p className="adm-small mt-1 text-cream/70">Registrada em {dateOf(decision.at)} às {timeOf(decision.at)} · {decision.by}</p>
       <div className="mt-3">
         <DisputeResolutionSummary resolution={financial} showStatus />
       </div>

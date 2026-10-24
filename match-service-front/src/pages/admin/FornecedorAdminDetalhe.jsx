@@ -60,7 +60,7 @@ export default function FornecedorAdminDetalhe() {
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-5">
-      <Link to={backTo} className="adm-text text-cream/60 transition hover:text-orange">
+      <Link to={backTo} className="adm-text text-cream/70 transition hover:text-orange">
         ← Fornecedores
       </Link>
 

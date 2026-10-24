@@ -15,7 +15,7 @@ import { formatCurrency, formatDate, formatTime } from "../../utils/supplierForm
 function Info({ label, children }) {
   return (
     <div>
-      <dt className="font-mono text-[11px] uppercase tracking-widest text-cream/45">{label}</dt>
+      <dt className="app-small font-medium text-cream/70">{label}</dt>
       <dd className="mt-1 text-cream">{children}</dd>
     </div>
   );
@@ -40,7 +40,7 @@ export default function SupplierRequestDetails() {
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
         <PageHeader title="Solicitação não encontrada" />
         <Card>
-          <p className="text-sm text-cream/60">Não existe uma solicitação com o número #{id}.</p>
+          <p className="app-text text-cream/70">Não existe uma solicitação com o número #{id}.</p>
           <Button as={Link} to="/fornecedor/solicitacoes" variant="secondary" className="mt-4">
             Ver todas as solicitações
           </Button>
@@ -68,19 +68,19 @@ export default function SupplierRequestDetails() {
 
       {request.status === "awaiting" && (
         <Card className="border-orange/40">
-          <p className="font-display text-lg font-semibold text-orange">
+          <p className="app-section-title text-orange">
             Concluída pelo fornecedor, aguardando confirmação do cliente
           </p>
-          <p className="mt-1 text-sm text-cream/70">
+          <p className="mt-1 app-text text-cream/70">
             Cliente notificado. Aguardando a confirmação dele para a liberação do pagamento.
           </p>
         </Card>
       )}
       {request.delivery?.clientConfirmedAt && (
         <Card className="border-emerald-500/30">
-          <p className="font-display text-lg font-semibold text-emerald-400">Cliente confirmou. Pagamento liberado.</p>
-          <p className="mt-1 text-sm text-cream/70">
-            O valor saiu do escrow e já aparece como liberado em{" "}
+          <p className="app-section-title text-emerald-400">Cliente confirmou. Pagamento liberado.</p>
+          <p className="mt-1 app-text text-cream/70">
+            O valor saiu da custódia e já aparece como liberado em{" "}
             <Link to="/fornecedor/pagamentos" className="text-orange hover:underline">
               Pagamentos
             </Link>
@@ -92,7 +92,7 @@ export default function SupplierRequestDetails() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="flex flex-col gap-6 lg:col-span-2">
           <Card>
-            <h2 className="font-display text-lg font-semibold">Serviço</h2>
+            <h2 className="app-section-title">Serviço</h2>
             <dl className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Info label="Serviço">{request.service}</Info>
               <Info label="Categoria">{request.category}</Info>
@@ -101,17 +101,17 @@ export default function SupplierRequestDetails() {
                 {formatDate(request.date)} às {formatTime(request.date)}
               </Info>
             </dl>
-            <p className="mt-4 text-sm text-cream/70">{request.description}</p>
+            <p className="mt-4 app-text text-cream/70">{request.description}</p>
           </Card>
 
           <Card>
-            <h2 className="font-display text-lg font-semibold">Histórico</h2>
+            <h2 className="app-section-title">Histórico</h2>
             <ol className="mt-4 flex flex-col gap-4 border-l border-hairline pl-5">
               {[...request.history].reverse().map((event) => (
                 <li key={`${event.at}-${event.text}`} className="relative">
                   <span className="absolute -left-[25px] top-1.5 h-2 w-2 rounded-full bg-orange" aria-hidden="true" />
-                  <p className="text-sm text-cream">{event.text}</p>
-                  <p className="text-xs text-cream/50">
+                  <p className="app-text text-cream">{event.text}</p>
+                  <p className="app-small text-cream/70">
                     {formatDate(event.at)} às {formatTime(event.at)}
                   </p>
                 </li>
@@ -122,12 +122,12 @@ export default function SupplierRequestDetails() {
 
         <div className="flex flex-col gap-6">
           <Card>
-            <h2 className="font-display text-lg font-semibold">Cliente</h2>
+            <h2 className="app-section-title">Cliente</h2>
             <div className="mt-4 flex items-center gap-3">
               <Avatar name={request.client.name} size="lg" />
               <div className="min-w-0">
                 <p className="text-cream">{request.client.name}</p>
-                <p className="text-sm text-cream/50">{request.client.city}</p>
+                <p className="app-text text-cream/70">{request.client.city}</p>
               </div>
             </div>
             <dl className="mt-4 flex flex-col gap-3">
@@ -139,7 +139,7 @@ export default function SupplierRequestDetails() {
           </Card>
 
           <Card>
-            <h2 className="font-display text-lg font-semibold">Ações</h2>
+            <h2 className="app-section-title">Ações</h2>
             <div className="mt-4 flex flex-col gap-3">
               {request.status === "pending" && (
                 <>
@@ -164,7 +164,7 @@ export default function SupplierRequestDetails() {
                 </Button>
               )}
               {(request.status === "done" || request.status === "canceled" || request.status === "awaiting") && (
-                <p className="text-sm text-cream/60">
+                <p className="app-text text-cream/70">
                   Esta solicitação está {SUPPLIER_REQUEST_STATUS[request.status].label.toLowerCase()} e não aceita
                   novas ações.
                 </p>

@@ -25,6 +25,12 @@ export default function DashboardAdmin() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 xl:gap-3.5">
       <h1 className="adm-page-title">Dashboard administrativo</h1>
 
+      {/* O que precisa de ação vem primeiro; os indicadores dão contexto. */}
+      <div className="grid gap-3 lg:grid-cols-2">
+        <PendingSection items={pendingItems} />
+        <RecentActivity items={recentActivity} />
+      </div>
+
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {mainMetrics.map((metric) => (
           <AdminMetricCard key={metric.id} icon={METRIC_ICONS[metric.id]} label={metric.label} value={metric.value} />
@@ -32,11 +38,6 @@ export default function DashboardAdmin() {
       </div>
 
       <FinancialSummary metrics={financialMetrics} />
-
-      <div className="grid gap-3 lg:grid-cols-2">
-        <PendingSection items={pendingItems} />
-        <RecentActivity items={recentActivity} />
-      </div>
     </div>
   );
 }

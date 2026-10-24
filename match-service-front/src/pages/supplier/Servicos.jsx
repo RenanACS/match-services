@@ -56,7 +56,7 @@ export default function SupplierServices() {
       render: (s) => (
         <div className="text-left">
           <p className="text-cream">{s.name}</p>
-          <p className="max-w-xs truncate text-xs text-cream/50">{s.description}</p>
+          <p className="max-w-xs truncate app-small text-cream/70">{s.description}</p>
         </div>
       ),
     },
@@ -88,7 +88,7 @@ export default function SupplierServices() {
               toggleService(s.id);
               setNotice(`Serviço "${s.name}" ${s.active ? "desativado" : "ativado"}.`);
             }}
-            className="h-9 rounded-lg border border-hairline px-3 font-mono text-[11px] uppercase tracking-widest text-cream/70 transition hover:border-orange/60 hover:text-orange"
+            className="h-9 rounded-lg border border-hairline px-3 app-small font-medium text-cream/70 transition hover:border-orange/60 hover:text-orange"
           >
             {s.active ? "Desativar" : "Ativar"}
           </button>

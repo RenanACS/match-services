@@ -75,4 +75,12 @@ export function countByStatus(disputes) {
 /** Lista ordenada da mais recente para a mais antiga. */
 export const sortNewestFirst = (disputes) => [...disputes].sort((a, b) => b.openedAt.localeCompare(a.openedAt));
 
+/** O que pede ação vem primeiro (aberta, depois em análise, depois resolvida); dentro de cada grupo, a mais antiga primeiro. */
+export const sortByUrgency = (disputes) =>
+  [...disputes].sort(
+    (a, b) =>
+      DISPUTE_STATUS_ORDER.indexOf(a.status) - DISPUTE_STATUS_ORDER.indexOf(b.status) ||
+      (a.status === "resolved" ? b.openedAt.localeCompare(a.openedAt) : a.openedAt.localeCompare(b.openedAt)),
+  );
+
 export const MIN_TEXT = 10;

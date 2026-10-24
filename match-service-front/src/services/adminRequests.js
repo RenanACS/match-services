@@ -13,9 +13,9 @@
 import { adminRequests, DEMO_NOW } from "../data/adminRequests";
 import { adminClients } from "../data/adminClients";
 import { adminSuppliers } from "../data/adminSuppliers";
-import { COMMISSION_RATE_PERCENT } from "../data/adminDashboard";
+import { COMMISSION_RATE_PERCENT } from "../data/adminCommission";
 
-export const PAGE_SIZE = 3;
+export const PAGE_SIZE = 10;
 
 // Visão resumida (cartões e coluna Status da lista).
 export const REQUEST_CATEGORIES = {

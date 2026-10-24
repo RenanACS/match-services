@@ -3,7 +3,7 @@ export default function FormField({ error, children }) {
   return (
     <div className="flex flex-col gap-1.5">
       {children}
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="app-small text-red-400">{error}</p>}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import Icon from "./AdminIcons";
 export default function AdminLabeledSelect({ id, label, options, value, onChange, className = "sm:w-44" }) {
   return (
     <div className={`flex w-full flex-col gap-1 ${className}`}>
-      <label htmlFor={id} className="adm-small leading-none text-cream/55">
+      <label htmlFor={id} className="adm-small leading-none text-cream/70">
         {label}
       </label>
       <div className="relative">
@@ -23,7 +23,7 @@ export default function AdminLabeledSelect({ id, label, options, value, onChange
         <Icon
           name="chevronDown"
           size={16}
-          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-cream/60"
+          className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-cream/70"
         />
       </div>
     </div>

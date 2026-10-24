@@ -23,7 +23,7 @@ export default function FornecedorDetalhes() {
         <h1 className="app-page-title text-cream">Fornecedor não encontrado</h1>
         <Link
           to="/app/fornecedores"
-          className="app-text inline-flex items-center gap-1.5 text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex items-center gap-1.5 text-cream/70 transition hover:text-orange"
         >
           Voltar para fornecedores
         </Link>

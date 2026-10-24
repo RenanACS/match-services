@@ -3,18 +3,22 @@
 // transferido. Quando o Django existir, este arquivo é substituído pela
 // resposta da API (src/services/) mantendo o formato abaixo.
 //
-// Valores monetários em centavos (inteiros). Os números derivam de poucas
-// constantes para permanecerem consistentes entre os indicadores.
+// Valores monetários em centavos (inteiros). Cadastros, contestações e
+// pagamentos derivam das MESMAS listas das telas de detalhe, para o dashboard
+// bater com o que o administrador vê ao clicar.
 
-// Comissão percentual fixa — parâmetro DEMONSTRATIVO (10% do valor do
-// serviço, antes de taxas do provedor, tributos e ajustes contratuais).
-export const COMMISSION_RATE_PERCENT = 10;
+import { adminSuppliers } from "./adminSuppliers";
+import { baseDisputes } from "../services/adminDisputes";
+import { allPayments, summarizePayments } from "../services/adminPayments";
+
+import { COMMISSION_RATE_PERCENT } from "./adminCommission";
+export { COMMISSION_RATE_PERCENT };
 
 // Cadastros
 const CLIENTS_PF = 128;
 const CLIENTS_PJ = 34;
-const SUPPLIERS_TOTAL = 47;
-const SUPPLIERS_PENDING = 6; // aguardando análise de cadastro
+const SUPPLIERS_TOTAL = adminSuppliers.length;
+const SUPPLIERS_PENDING = adminSuppliers.filter((s) => s.status === "review").length; // aguardando análise de cadastro
 
 // Solicitações: 214 = 150 concluídas + 38 em andamento + 14 aguardando
 // propostas + 12 canceladas.
@@ -26,18 +30,16 @@ const REQUESTS_TOTAL =
   REQUESTS_COMPLETED + REQUESTS_IN_PROGRESS + REQUESTS_WAITING + REQUESTS_CANCELLED;
 
 // Contestações abertas (a análise é humana: conflito entre cliente e fornecedor).
-const DISPUTES_OPEN = 5;
+const DISPUTES_OPEN = baseDisputes.filter((d) => d.status === "open").length;
 
-// Divergências financeiras que exigem acompanhamento (exceções; pagamentos e
-// repasses normais são automáticos).
-const PAYMENT_DIVERGENCES = 2;
+// Pagamentos com falha (exceções; pagamentos e repasses normais são automáticos).
+const PAYMENTS_FAILED = allPayments.filter((p) => p.status === "failed").length;
 
-// Financeiro: valor bruto dos serviços concluídos; comissão e repasses
-// derivam dele (10% / 90%).
-const COMPLETED_GROSS_CENTS = 34_700_000; // R$ 347.000,00
-const COMMISSION_CENTS = (COMPLETED_GROSS_CENTS * COMMISSION_RATE_PERCENT) / 100; // R$ 34.700,00
-const PAYOUTS_CENTS = COMPLETED_GROSS_CENTS - COMMISSION_CENTS; // R$ 312.300,00
-const ESCROW_CENTS = 4_860_000; // R$ 48.600,00 — serviços em andamento
+// Financeiro: mesmos totais da tela de Pagamentos (retido = em custódia).
+const finance = summarizePayments(allPayments);
+const ESCROW_CENTS = finance.held.cents;
+const PAYOUTS_CENTS = finance.released.cents;
+const COMMISSION_CENTS = finance.commission.cents;
 
 // Indicadores principais — uma única linha.
 export const mainMetrics = [
@@ -49,16 +51,16 @@ export const mainMetrics = [
 
 // Resumo financeiro (valores demonstrativos, em centavos).
 export const financialMetrics = [
-  { id: "escrow", label: "Valores em garantia", value: ESCROW_CENTS },
+  { id: "escrow", label: "Em custódia", value: ESCROW_CENTS },
   { id: "payouts", label: "Repasses concluídos", value: PAYOUTS_CENTS },
   { id: "commission", label: `Comissão acumulada (${COMMISSION_RATE_PERCENT}%)`, value: COMMISSION_CENTS },
 ];
 
 // Pendências: só exceções que pedem acompanhamento humano.
 export const pendingItems = [
-  { id: "suppliers", label: "Fornecedores aguardando análise", total: SUPPLIERS_PENDING, to: "/admin/fornecedores" },
-  { id: "disputes", label: "Contestações abertas", total: DISPUTES_OPEN, to: "/admin/contestacoes" },
-  { id: "payments", label: "Divergências financeiras", total: PAYMENT_DIVERGENCES, to: "/admin/pagamentos" },
+  { id: "suppliers", label: "Fornecedores aguardando análise", total: SUPPLIERS_PENDING, to: "/admin/fornecedores?situacao=review" },
+  { id: "disputes", label: "Contestações abertas", total: DISPUTES_OPEN, to: "/admin/contestacoes?situacao=open" },
+  { id: "payments", label: "Pagamentos com falha", total: PAYMENTS_FAILED, to: "/admin/pagamentos?situacao=failed" },
 ];
 
 // Três registros mais relevantes.

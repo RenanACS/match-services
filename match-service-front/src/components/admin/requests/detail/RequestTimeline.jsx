@@ -8,17 +8,17 @@ function Circle({ state, number }) {
   if (state === "done") return <span className={`${base} border-orange bg-orange text-ink`}><Icon name="check" size={18} /></span>;
   if (state === "stopped") return <span className={`${base} border-red-500 bg-red-500 text-white`}><Icon name="close" size={18} /></span>;
   if (state === "current") return <span className={`${base} adm-text border-orange/70 font-medium text-orange`}>{number}</span>;
-  return <span className={`${base} adm-text border-hairline font-medium text-cream/50`}>{number}</span>;
+  return <span className={`${base} adm-text border-hairline font-medium text-cream/70`}>{number}</span>;
 }
 
-const labelColor = { done: "text-cream", stopped: "text-red-400", current: "text-cream/80", inactive: "text-cream/50" };
+const labelColor = { done: "text-cream", stopped: "text-red-400", current: "text-cream/80", inactive: "text-cream/70" };
 
 function StepText({ step, align }) {
   return (
     <div className={align}>
       <p className={`adm-small font-medium ${labelColor[step.state]}`}>{step.label}</p>
       {step.at && (
-        <p className="adm-small text-cream/55">
+        <p className="adm-small text-cream/70">
           {dateOf(step.at)} {timeOf(step.at)}
         </p>
       )}
@@ -37,7 +37,7 @@ export default function RequestTimeline({ request }) {
   return (
     <section aria-labelledby="request-timeline" className="rounded-[20px] border border-hairline bg-surface-1 p-5">
       <AdminSectionTitle id="request-timeline" icon="history">Linha do tempo</AdminSectionTitle>
-      <p className="adm-text mt-1 text-cream/60">Acompanhe as principais etapas da solicitação.</p>
+      <p className="adm-text mt-1 text-cream/70">Acompanhe as principais etapas da solicitação.</p>
 
       {/* desktop: círculos conectados por uma linha horizontal */}
       <ol className="mt-5 hidden md:flex" aria-label="Etapas da solicitação">

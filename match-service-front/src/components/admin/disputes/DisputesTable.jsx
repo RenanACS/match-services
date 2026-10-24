@@ -12,7 +12,7 @@ import { DISPUTE_REASONS } from "../../../services/adminDisputes";
 export default function DisputesTable({ disputes }) {
   const { search } = useLocation();
   const state = { fromSearch: search };
-  const th = "adm-table px-2.5 py-3 font-medium text-cream/60 xl:py-2.5";
+  const th = "adm-table px-2.5 py-3 font-medium text-cream/70 xl:py-2.5";
   const td = "px-2.5 py-3 xl:py-[9px]";
   const clamp = "adm-table line-clamp-2 break-words text-cream";
   return (

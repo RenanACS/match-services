@@ -83,7 +83,7 @@ export default function SupplierRequests() {
           <Avatar name={r.client.name} />
           <div className="text-left">
             <p className="text-cream">{r.client.name}</p>
-            <p className="text-xs text-cream/50">{r.client.city}</p>
+            <p className="app-small text-cream/70">{r.client.city}</p>
           </div>
         </div>
       ),
@@ -94,7 +94,7 @@ export default function SupplierRequests() {
       render: (r) => (
         <div className="md:text-left">
           <p className="text-cream">{r.service}</p>
-          <p className="text-xs text-cream/50">{r.category}</p>
+          <p className="app-small text-cream/70">{r.category}</p>
         </div>
       ),
     },
@@ -104,7 +104,7 @@ export default function SupplierRequests() {
       render: (r) => (
         <div className="md:text-left">
           <p>{formatDate(r.date)}</p>
-          <p className="text-xs text-cream/50">{formatTime(r.date)}</p>
+          <p className="app-small text-cream/70">{formatTime(r.date)}</p>
         </div>
       ),
     },

@@ -66,7 +66,7 @@ export default function ClientHeaderMenus() {
           <div role="region" aria-label="Notificações" className={`${PANEL} w-64 sm:w-72`}>
             <p className="app-text border-b border-hairline px-4 py-2.5 font-medium text-cream">Notificações</p>
             {notifications.length === 0 ? (
-              <p className="app-text px-4 py-6 text-center text-cream/60">Nenhuma notificação por enquanto.</p>
+              <p className="app-text px-4 py-6 text-center text-cream/70">Nenhuma notificação por enquanto.</p>
             ) : (
               <ul className="max-h-72 divide-y divide-hairline overflow-y-auto">
                 {notifications.map((item) => (
@@ -94,7 +94,7 @@ export default function ClientHeaderMenus() {
             {initials}
           </span>
           <span className="app-header hidden max-w-[10rem] truncate text-cream/80 sm:inline">{displayName}</span>
-          <Icon name="chevronDown" size={16} className={`text-cream/40 transition ${open === "profile" ? "rotate-180" : ""}`} />
+          <Icon name="chevronDown" size={16} className={`text-cream/70 transition ${open === "profile" ? "rotate-180" : ""}`} />
         </button>
         {open === "profile" && (
           <div role="menu" aria-label="Perfil" className={`${PANEL} w-44 p-1.5`}>

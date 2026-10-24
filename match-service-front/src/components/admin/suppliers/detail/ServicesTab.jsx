@@ -14,7 +14,7 @@ export default function ServicesTab({ supplier }) {
             <li key={service.id} className="grid gap-3 py-4 first:pt-0 last:pb-0 md:grid-cols-[1fr_auto] md:items-center md:gap-6">
               <div className="min-w-0">
                 <p className="font-medium text-cream">{service.name}</p>
-                <p className="mt-0.5 adm-small text-cream/50">{service.category}</p>
+                <p className="mt-0.5 adm-small text-cream/70">{service.category}</p>
                 <p className="mt-1.5 adm-text text-cream/70">{service.description}</p>
               </div>
               <div className="flex items-center gap-4 md:flex-col md:items-end md:gap-2">

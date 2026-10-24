@@ -41,7 +41,7 @@ export default function RequestsToolbar({ query, onQueryChange, statusFilter, on
               className={`app-button min-h-[40px] shrink-0 rounded-xl border px-3.5 transition ${
                 active
                   ? "border-orange bg-orange-soft text-orange"
-                  : "border-hairline text-cream/60 hover:text-cream"
+                  : "border-hairline text-cream/70 hover:text-cream"
               }`}
             >
               {filter.label}

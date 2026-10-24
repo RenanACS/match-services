@@ -22,7 +22,7 @@ function navLinkClass({ isActive }) {
   return `block rounded-xl px-4 py-2.5 font-mono text-xs uppercase tracking-widest transition ${
     isActive
       ? "bg-orange-soft text-orange"
-      : "text-cream/60 hover:bg-surface-2 hover:text-cream"
+      : "text-cream/70 hover:bg-surface-2 hover:text-cream"
   }`;
 }
 
@@ -60,7 +60,7 @@ function SidebarNav({ nav, perfilHref, onNavigate }) {
         {/* Logout ainda sem função real — não há autenticação nesta etapa */}
         <button
           type="button"
-          className="mt-1 w-full rounded-xl px-4 py-2.5 text-left font-mono text-xs uppercase tracking-widest text-cream/40 transition hover:bg-surface-2 hover:text-cream/70"
+          className="mt-1 w-full rounded-xl px-4 py-2.5 text-left font-mono text-xs uppercase tracking-widest text-cream/70 transition hover:bg-surface-2 hover:text-cream/70"
         >
           Sair
         </button>
@@ -154,7 +154,7 @@ export default function SupplierLayout({ area = "fornecedor" }) {
             <div className="md:hidden">
               <Brand onClick={closeMenu} />
             </div>
-            <span className="hidden font-mono text-[11px] uppercase tracking-widest text-cream/50 md:inline">
+            <span className="hidden font-mono text-xs uppercase tracking-widest text-cream/70 md:inline">
               {area === "fornecedor" ? "Área do fornecedor" : "Área do cliente"}
             </span>
             {showBackButton && (
@@ -169,7 +169,7 @@ export default function SupplierLayout({ area = "fornecedor" }) {
             <button
               type="button"
               aria-label="Notificações"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-cream/60 hover:border-orange/60 hover:text-orange"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-cream/70 hover:border-orange/60 hover:text-orange"
             >
               <span aria-hidden="true">●</span>
             </button>

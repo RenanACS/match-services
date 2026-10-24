@@ -9,7 +9,7 @@ function pageItems(page, totalPages) {
 }
 
 const BTN =
-  "flex h-9 min-w-9 items-center justify-center rounded-lg px-2 adm-text transition disabled:cursor-not-allowed disabled:opacity-40";
+  "flex h-10 min-w-10 items-center justify-center rounded-lg px-2 adm-text transition disabled:cursor-not-allowed disabled:opacity-40";
 
 /** Rodapé de paginação: "Mostrando X a Y de N <item>" + páginas numeradas. */
 export default function Pagination({ page, totalPages, total, start, pageSize, itemLabel = "itens", onPageChange }) {
@@ -21,7 +21,7 @@ export default function Pagination({ page, totalPages, total, start, pageSize, i
       aria-label="Paginação"
       className="flex flex-col gap-3 px-4 py-3 adm-text sm:flex-row sm:items-center sm:justify-between sm:px-6 xl:py-2.5"
     >
-      <p className="text-cream/60">
+      <p className="text-cream/70">
         Mostrando {first} a {last} de {total} {itemLabel}
       </p>
       <div className="flex flex-wrap items-center gap-1">
@@ -36,7 +36,7 @@ export default function Pagination({ page, totalPages, total, start, pageSize, i
         </button>
         {pageItems(page, totalPages).map((item) =>
           typeof item === "string" ? (
-            <span key={item} className="px-2 text-cream/40" aria-hidden="true">
+            <span key={item} className="px-2 text-cream/70" aria-hidden="true">
               …
             </span>
           ) : (

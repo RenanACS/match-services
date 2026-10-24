@@ -27,7 +27,7 @@ export default function SupplierReasonDialog({ supplier, onClose }) {
           type="button"
           aria-label="Fechar"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-lg p-1 text-cream/60 transition hover:text-cream"
+          className="absolute right-4 top-4 rounded-lg p-1 text-cream/70 transition hover:text-cream"
         >
           <Icon name="close" size={18} />
         </button>
@@ -44,7 +44,7 @@ export default function SupplierReasonDialog({ supplier, onClose }) {
           {entry?.reason || "Nenhum motivo foi registrado."}
         </p>
         {entry && (
-          <p className="mt-2 adm-small text-cream/50">
+          <p className="mt-2 adm-small text-cream/70">
             Registrado em {formatDateTime(entry.date)} por {entry.by}.
           </p>
         )}

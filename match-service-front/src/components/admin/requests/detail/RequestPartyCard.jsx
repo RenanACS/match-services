@@ -19,8 +19,8 @@ export default function RequestPartyCard({ id, title, icon, name, documentLine, 
         </div>
       </div>
       <ul className="adm-text mt-4 flex flex-col gap-2.5 text-cream/80">
-        <li className="flex items-center gap-3"><Icon name="phone" size={16} className="text-cream/60" />{phone}</li>
-        <li className="flex min-w-0 items-center gap-3"><Icon name="mail" size={16} className="text-cream/60" /><span className="truncate">{email}</span></li>
+        <li className="flex items-center gap-3"><Icon name="phone" size={16} className="text-cream/70" />{phone}</li>
+        <li className="flex min-w-0 items-center gap-3"><Icon name="mail" size={16} className="text-cream/70" /><span className="truncate">{email}</span></li>
       </ul>
       <div className="flex-1" />
       <Link

@@ -1,5 +1,6 @@
 import Badge from "../ui/Badge";
 import Icon from "../ui/Icon";
+import CustodyNote from "../ui/CustodyNote";
 import Pagination from "../ui/Pagination";
 import { PAYMENT_STATUS } from "../../data/payments";
 import { formatCurrency } from "./PaymentSummary";
@@ -14,18 +15,21 @@ export function formatPaymentDate(iso) {
 
 function PaymentRow({ payment, onViewDetails, onPayNow }) {
   const status = PAYMENT_STATUS[payment.status];
+  const custody = payment.status === "pending" ? "pending" : payment.status === "paid" ? (payment.custody ?? "held") : null;
 
   return (
     <li className="flex flex-col gap-2 px-4 py-3 sm:px-5 xl:flex-row xl:items-center xl:justify-between">
       <div className="min-w-0 xl:w-56 xl:shrink-0">
-        <h3 className="app-text truncate font-medium text-cream">{payment.service}</h3>
-        <p className="app-small mt-0.5 truncate text-cream/50">{payment.company}</p>
+        <h2 className="app-text truncate font-medium text-cream">{payment.service}</h2>
+        <p className="app-small mt-0.5 truncate text-cream/70">{payment.company}</p>
       </div>
 
       <div className="flex items-baseline gap-2 whitespace-nowrap xl:w-60 xl:shrink-0">
         <span className="app-text font-semibold text-cream">{formatCurrency(payment.amountCents)}</span>
-        <span className="app-small text-cream/50">{formatPaymentDate(payment.date)}</span>
+        <span className="app-small text-cream/70">{formatPaymentDate(payment.date)}</span>
       </div>
+
+      <div className="xl:w-80 xl:shrink-0">{custody && <CustodyNote state={custody} />}</div>
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 xl:shrink-0">
         <Badge variant={status.variant} appearance="app">{status.label}</Badge>
@@ -41,7 +45,7 @@ function PaymentRow({ payment, onViewDetails, onPayNow }) {
         <button
           type="button"
           onClick={() => onViewDetails(payment)}
-          className="app-text inline-flex items-center gap-1.5 text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex items-center gap-1.5 text-cream/70 transition hover:text-orange"
         >
           Ver detalhes
           <Icon name="arrowRight" size={14} />
@@ -59,7 +63,7 @@ export default function PaymentList({ payments, pageData, onPageChange, onViewDe
   if (pageData.total === 0) {
     return (
       <div className="rounded-[20px] border border-hairline bg-surface-1 px-6 py-8 text-center">
-        <p className="app-text text-cream/60">Nenhum pagamento encontrado para essa busca ou filtro.</p>
+        <p className="app-text text-cream/70">Nenhum pagamento encontrado para essa busca ou filtro.</p>
       </div>
     );
   }

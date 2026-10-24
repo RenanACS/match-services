@@ -14,7 +14,7 @@ export default function ClientCardList({ clients, onToggleBlock }) {
             <ClientAvatar type={client.type} size="sm" />
             <div className="min-w-0 flex-1">
               <p className="truncate font-medium text-cream">{client.name}</p>
-              <p className="truncate adm-small text-cream/60">{client.email}</p>
+              <p className="truncate adm-small text-cream/70">{client.email}</p>
             </div>
             <ClientStatusBadge status={client.status} />
           </div>

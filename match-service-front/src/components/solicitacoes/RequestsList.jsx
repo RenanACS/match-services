@@ -1,4 +1,5 @@
 import Badge from "../ui/Badge";
+import CustodyNote from "../ui/CustodyNote";
 import { Link } from "react-router-dom";
 import Icon from "../ui/Icon";
 import Pagination from "../ui/Pagination";
@@ -46,19 +47,22 @@ function RequestRow({ request, acceptances }) {
       <td className="px-5 py-4 align-middle">
         <div className="app-text break-words font-medium text-cream">{supplierLabel}</div>
         {proposals.length > 1 && accepted && (
-          <div className="app-small mt-1 text-cream/50">{proposals.length} propostas recebidas</div>
+          <div className="app-small mt-1 text-cream/70">{proposals.length} propostas recebidas</div>
         )}
       </td>
       <td className="px-5 py-4 align-middle">
         <div className="app-text break-words font-medium text-cream">{request.title}</div>
-        <div className="app-small mt-1 break-words text-cream/50">
+        <div className="app-small mt-1 break-words text-cream/70">
           {request.category} · {formatRequestDate(request.date)}
         </div>
       </td>
       <td className="px-5 py-4 align-middle">
-        <span className={`app-text font-semibold ${hasAmount ? "text-orange" : "text-cream/50"}`}>
+        <span className={`app-text font-semibold ${hasAmount ? "text-orange" : "text-cream/70"}`}>
           {amountLabel}
         </span>
+        {contracted && (
+          <CustodyNote compact state={request.status === "completed" ? "released" : "held"} className="mt-1" />
+        )}
       </td>
       <td className="px-5 py-4 align-middle">
         <Badge variant={status.variant} appearance="app">{status.label}</Badge>
@@ -81,7 +85,7 @@ export default function RequestsList({ requests, pageData, onPageChange }) {
   if (pageData.total === 0) {
     return (
       <div className="rounded-[20px] border border-hairline bg-surface-1 px-6 py-8 text-center">
-        <p className="app-text text-cream/60">Nenhuma solicitação encontrada para essa busca ou filtro.</p>
+        <p className="app-text text-cream/70">Nenhuma solicitação encontrada para essa busca ou filtro.</p>
       </div>
     );
   }
@@ -100,7 +104,7 @@ export default function RequestsList({ requests, pageData, onPageChange }) {
             <col className="w-[14%]" />
           </colgroup>
           <thead className="bg-white/[0.025]">
-            <tr className="app-small text-cream/55">
+            <tr className="app-small text-cream/70">
               <th scope="col" className="px-5 py-4 font-medium">Fornecedor</th>
               <th scope="col" className="px-5 py-4 font-medium">Serviço</th>
               <th scope="col" className="px-5 py-4 font-medium">Valor</th>

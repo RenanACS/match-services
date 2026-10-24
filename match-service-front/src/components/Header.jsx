@@ -11,6 +11,15 @@ const NAV_LINKS = [
 
 export default function Header() {
   const [activeId, setActiveId] = useState("top");
+  const [scrolled, setScrolled] = useState(false);
+
+  // Depois de rolar, o cabeçalho ganha fundo para não sobrepor os títulos.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const sections = NAV_LINKS.map((link) =>
@@ -34,8 +43,12 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5 max-[360px]:gap-2 max-[360px]:px-3">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled ? "hairline bg-ink/85 backdrop-blur-md" : "border-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3 max-[360px]:gap-2 max-[360px]:px-3">
         <a href="#top" className="flex shrink-0 items-center gap-2">
           <img src={logo} alt="MATCH SERVICES" className="h-9 w-auto" />
           <span className="hidden font-display text-sm font-semibold tracking-wide text-cream sm:inline lg:hidden xl:inline">
@@ -51,8 +64,8 @@ export default function Header() {
               onClick={() => setActiveId(link.id)}
               className={
                 activeId === link.id
-                  ? "whitespace-nowrap rounded-full bg-cream px-4 py-2 font-mono text-xs uppercase tracking-widest text-ink transition-colors"
-                  : "whitespace-nowrap rounded-full px-4 py-2 font-mono text-xs uppercase tracking-widest text-cream/70 transition-colors hover:text-orange"
+                  ? "inline-flex min-h-10 items-center whitespace-nowrap rounded-full bg-cream px-4 font-mono text-xs uppercase tracking-widest text-ink transition-colors"
+                  : "inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 font-mono text-xs uppercase tracking-widest text-cream/70 transition-colors hover:text-orange"
               }
             >
               {link.label}
@@ -65,20 +78,20 @@ export default function Header() {
         <div className="flex items-center gap-2 max-[380px]:gap-1 xl:gap-2 2xl:gap-3">
           <Link
             to="/login"
-            className="rounded-full border border-cream/30 px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-widest max-[380px]:px-2 max-[380px]:tracking-wider max-[360px]:px-1.5 text-cream transition hover:border-orange hover:text-orange sm:px-4 sm:text-xs xl:px-4 xl:py-2.5 2xl:px-5"
+            className="inline-flex min-h-10 items-center rounded-full border border-cream/30 px-3 font-mono text-xs font-medium uppercase tracking-widest max-[380px]:px-2 max-[380px]:tracking-wider max-[360px]:px-1.5 text-cream transition hover:border-orange hover:text-orange sm:px-4 sm:text-xs xl:px-4 2xl:px-5"
           >
             Login
           </Link>
           <Link
             to="/cadastro"
-            className="whitespace-nowrap rounded-full border border-cream bg-cream px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-widest max-[380px]:px-2 max-[380px]:tracking-wider max-[360px]:px-1.5 text-ink transition hover:bg-cream/90 sm:px-4 sm:text-xs xl:px-4 xl:py-2.5 2xl:px-5"
+            className="inline-flex min-h-10 items-center whitespace-nowrap rounded-full border border-cream bg-cream px-3 font-mono text-xs font-medium uppercase tracking-widest max-[380px]:px-2 max-[380px]:tracking-wider max-[360px]:px-1.5 text-ink transition hover:bg-cream/90 sm:px-4 sm:text-xs xl:px-4 2xl:px-5"
           >
             Criar conta
           </Link>
           <a
             href="#diagnostico-demo"
             aria-label="Testar diagnóstico"
-            className="whitespace-nowrap rounded-full border border-orange bg-orange px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-widest max-[380px]:px-2 max-[380px]:tracking-wider max-[360px]:px-1.5 text-ink transition hover:bg-orange/90 sm:px-4 sm:text-xs xl:px-4 xl:py-2.5 2xl:px-5"
+            className="inline-flex min-h-10 items-center whitespace-nowrap rounded-full border border-orange bg-orange px-3 font-mono text-xs font-medium uppercase tracking-widest max-[380px]:px-2 max-[380px]:tracking-wider max-[360px]:px-1.5 text-ink transition hover:bg-orange/90 sm:px-4 sm:text-xs xl:px-4 2xl:px-5"
           >
             <span className="sm:hidden">Diagnóstico</span>
             <span className="hidden sm:inline">Testar diagnóstico</span>

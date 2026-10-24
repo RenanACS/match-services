@@ -58,7 +58,7 @@ export default function PaymentDetailsModal({ payment, onClose, onPayNow }) {
             type="button"
             onClick={onClose}
             aria-label="Fechar"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/60 transition hover:border-orange/60 hover:text-orange"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/70 transition hover:border-orange/60 hover:text-orange"
           >
             ✕
           </button>
@@ -66,30 +66,30 @@ export default function PaymentDetailsModal({ payment, onClose, onPayNow }) {
 
         <dl className="mt-5 flex flex-col gap-4">
           <div>
-            <dt className="app-small text-cream/45">Identificação</dt>
+            <dt className="app-small text-cream/70">Identificação</dt>
             <dd className="mt-1 app-text text-cream/80">{payment.id}</dd>
           </div>
           <div>
-            <dt className="app-small text-cream/45">Empresa prestadora</dt>
+            <dt className="app-small text-cream/70">Empresa prestadora</dt>
             <dd className="mt-1 app-text text-cream/80">{payment.company}</dd>
           </div>
           <div>
-            <dt className="app-small text-cream/45">Valor</dt>
+            <dt className="app-small text-cream/70">Valor</dt>
             <dd className="mt-1 app-text text-cream/80">{formatCurrency(payment.amountCents)}</dd>
           </div>
           <div>
-            <dt className="app-small text-cream/45">Data</dt>
+            <dt className="app-small text-cream/70">Data</dt>
             <dd className="mt-1 app-text text-cream/80">{formatPaymentDate(payment.date)}</dd>
           </div>
           <div>
-            <dt className="app-small text-cream/45">Status</dt>
+            <dt className="app-small text-cream/70">Status</dt>
             <dd className="mt-1.5">
               <Badge variant={status.variant} appearance="app">{status.label}</Badge>
             </dd>
           </div>
           {methodLabel && (
             <div>
-              <dt className="app-small text-cream/45">Método de pagamento</dt>
+              <dt className="app-small text-cream/70">Método de pagamento</dt>
               <dd className="mt-1 app-text text-cream/80">{methodLabel}</dd>
             </div>
           )}
@@ -107,7 +107,7 @@ export default function PaymentDetailsModal({ payment, onClose, onPayNow }) {
           </Button>
         )}
 
-        <p className="mt-4 app-small text-cream/40">
+        <p className="mt-4 app-small text-cream/70">
           Dados de demonstração. O acompanhamento completo do pagamento chega com a integração futura.
         </p>
       </div>

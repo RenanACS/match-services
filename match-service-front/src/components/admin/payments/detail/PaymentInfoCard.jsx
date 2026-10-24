@@ -19,11 +19,11 @@ export default function PaymentInfoCard({ payment }) {
           <Icon name="payments" size={30} />
         </span>
         <div className="min-w-0">
-          <p className="adm-small text-cream/60">Pagamento</p>
+          <p className="adm-small text-cream/70">Pagamento</p>
           <p className="adm-stat-number text-cream">#{payment.id}</p>
-          <p className="adm-small mt-1 text-cream/60">Criado em {dateOf(payment.createdAt)} às {timeOf(payment.createdAt)}</p>
+          <p className="adm-small mt-1 text-cream/70">Criado em {dateOf(payment.createdAt)} às {timeOf(payment.createdAt)}</p>
           {payment.confirmedAt && (
-            <p className="adm-small text-cream/60">Confirmado em {dateOf(payment.confirmedAt)} às {timeOf(payment.confirmedAt)}</p>
+            <p className="adm-small text-cream/70">Confirmado em {dateOf(payment.confirmedAt)} às {timeOf(payment.confirmedAt)}</p>
           )}
         </div>
       </div>
@@ -31,24 +31,24 @@ export default function PaymentInfoCard({ payment }) {
       <Divider />
 
       <div>
-        <p className="adm-small text-cream/60">Situação</p>
+        <p className="adm-small text-cream/70">Situação</p>
         <div className="mt-1.5"><PaymentStatusBadge status={payment.status} /></div>
-        <p className="adm-small mt-1.5 max-w-[260px] text-cream/60">{payment.statusNote}</p>
+        <p className="adm-small mt-1.5 max-w-[260px] text-cream/70">{payment.statusNote}</p>
       </div>
 
       <Divider />
 
       <div className="min-w-0">
-        <p className="adm-small text-cream/60">Método de pagamento</p>
+        <p className="adm-small text-cream/70">Método de pagamento</p>
         {payment.method ? (
           <p className="adm-text mt-1.5 flex items-center gap-2 font-medium text-cream">
             <Icon name={methodIcon} size={20} className="text-cream/70" />
-            <span>{payment.method}{payment.methodDetail ? <span className="font-normal text-cream/60"> · {payment.methodDetail}</span> : null}</span>
+            <span>{payment.method}{payment.methodDetail ? <span className="font-normal text-cream/70"> · {payment.methodDetail}</span> : null}</span>
           </p>
         ) : (
           <p className="adm-text mt-1.5 text-cream/70">Ainda não selecionado</p>
         )}
-        <p className="adm-small mt-2 text-cream/60">ID da transação</p>
+        <p className="adm-small mt-2 text-cream/70">ID da transação</p>
         {payment.txnId ? (
           <p className="adm-small mt-0.5 break-all font-mono text-cream">{payment.txnId}</p>
         ) : (

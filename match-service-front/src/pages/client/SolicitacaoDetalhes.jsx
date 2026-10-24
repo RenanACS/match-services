@@ -11,7 +11,7 @@ import { hasRequestApi, confirmRequestCompletion, readDemoCompletions, saveDemoC
 import { readDemoProposalAcceptances, saveDemoProposalAcceptance } from "../../services/proposalAcceptance";
 
 const card = "rounded-[20px] border border-hairline bg-surface-1 p-5 sm:p-6";
-const label = "app-small text-cream/50";
+const label = "app-small text-cream/70";
 const value = "app-text mt-1 text-cream";
 
 function Detail({ title, children }) {
@@ -31,10 +31,10 @@ function Timeline({ status, completed }) {
       const reached = index < progress;
       return <li key={step.key} className="relative flex gap-3 pb-5 last:pb-0">
         {index !== steps.length - 1 && <span aria-hidden="true" className="absolute left-[13px] top-7 h-[calc(100%-22px)] w-px bg-hairline" />}
-        <span className={`relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border ${reached ? "border-orange bg-orange-soft text-orange" : "border-hairline text-cream/40"}`}>
+        <span className={`relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border ${reached ? "border-orange bg-orange-soft text-orange" : "border-hairline text-cream/70"}`}>
           {reached ? <Icon name="check" size={14} /> : <span className="text-xs">{index + 1}</span>}
         </span>
-        <div><p className={`app-text font-medium ${reached ? "text-cream" : "text-cream/45"}`}>{step.title}</p><p className="app-small mt-0.5 text-cream/50">{step.text}</p></div>
+        <div><p className={`app-text font-medium ${reached ? "text-cream" : "text-cream/70"}`}>{step.title}</p><p className="app-small mt-0.5 text-cream/70">{step.text}</p></div>
       </li>;
     })}
   </ol>;
@@ -130,11 +130,11 @@ export default function SolicitacaoDetalhes() {
     finally { setPending(false); }
   }
 
-  if (!request) return <div className="mx-auto max-w-5xl"><div className={card}><h1 className="app-page-title">Solicitação não encontrada</h1><p className="app-text mt-3 text-cream/60">Não encontramos uma solicitação com este identificador.</p><Link className="app-text mt-5 inline-block text-orange" to="/app/solicitacoes">Voltar para solicitações</Link></div></div>;
+  if (!request) return <div className="mx-auto max-w-5xl"><div className={card}><h1 className="app-page-title">Solicitação não encontrada</h1><p className="app-text mt-3 text-cream/70">Não encontramos uma solicitação com este identificador.</p><Link className="app-text mt-5 inline-block text-orange" to="/app/solicitacoes">Voltar para solicitações</Link></div></div>;
 
   const status = completed ? { label: "Concluído", variant: "success" } : acceptedProposal && request.status === "proposals" ? { label: "Aguardando pagamento", variant: "warning" } : REQUEST_STATUS[request.status];
   return <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
-    <header className="flex flex-wrap items-center justify-between gap-3"><div><p className="app-small text-cream/50">Solicitação {request.id}</p><h1 className="app-page-title mt-1 text-cream">{request.title}</h1></div><Badge appearance="app" variant={status.variant}>{status.label}</Badge></header>
+    <header className="flex flex-wrap items-center justify-between gap-3"><div><p className="app-small text-cream/70">Solicitação {request.id}</p><h1 className="app-page-title mt-1 text-cream">{request.title}</h1></div><Badge appearance="app" variant={status.variant}>{status.label}</Badge></header>
     {!hasRequestApi && <div className="app-small rounded-xl border border-orange/30 bg-orange-soft px-4 py-3 text-orange">Ambiente demonstrativo: dados e acompanhamento ilustrativos. Não há contratação ou movimentação financeira real nesta tela.</div>}
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.3fr_1fr]">
       <div className="flex flex-col gap-4">
@@ -142,18 +142,18 @@ export default function SolicitacaoDetalhes() {
         <section className={card}><h2 className="app-section-title text-cream">{request.status === "hired" ? "Acompanhamento do serviço" : "Andamento da solicitação"}</h2><Timeline status={request.status} completed={completed} /></section>
       </div>
       <div className="flex flex-col gap-4">
-        {request.status === "analysis" && <section className={card}><h2 className="app-section-title text-cream">Pedido em análise</h2><p className="app-text mt-3 leading-relaxed text-cream/65">Sua solicitação está em análise. Quando houver propostas, você poderá consultá-las nesta área.</p><p className="app-small mt-3 text-cream/45">Ainda não há propostas vinculadas a este registro demonstrativo.</p></section>}
+        {request.status === "analysis" && <section className={card}><h2 className="app-section-title text-cream">Pedido em análise</h2><p className="app-text mt-3 leading-relaxed text-cream/70">Sua solicitação está em análise. Quando houver propostas, você poderá consultá-las nesta área.</p><p className="app-small mt-3 text-cream/70">Ainda não há propostas vinculadas a este registro demonstrativo.</p></section>}
         {request.status === "proposals" && <section className={card}>
           <h2 className="app-section-title text-cream">Propostas recebidas</h2>
           {proposals.length === 0 ? (
-            <p className="app-text mt-3 text-cream/60">Nenhuma proposta individual cadastrada para esta solicitação.</p>
+            <p className="app-text mt-3 text-cream/70">Nenhuma proposta individual cadastrada para esta solicitação.</p>
           ) : proposals.map((proposal) => (
             <article key={proposal.id} className="mt-4 min-w-0">
               <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <Detail title="Empresa proponente">{proposal.supplierName}</Detail>
                 <Detail title="Valor da proposta"><span className="font-semibold text-orange">{formatProposalAmount(proposal.amountCents)}</span></Detail>
               </dl>
-              <p className="app-small mt-4 text-cream/50">Documento demonstrativo do fornecedor, em formato PDF.</p>
+              <p className="app-small mt-4 text-cream/70">Documento demonstrativo do fornecedor, em formato PDF.</p>
               {proposal.pdfUrl ? (
                 <div className="mt-3 min-w-0 overflow-hidden rounded-xl border border-hairline bg-white">
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b border-hairline bg-surface-2 px-3 py-2">
@@ -166,26 +166,26 @@ export default function SolicitacaoDetalhes() {
                     className="h-[360px] w-full sm:h-[460px]"
                     loading="lazy"
                   />
-                  <p className="app-small bg-surface-2 px-3 py-2 text-cream/55">Caso a prévia não carregue, use “Abrir PDF em nova aba”.</p>
+                  <p className="app-small bg-surface-2 px-3 py-2 text-cream/70">Caso a prévia não carregue, use “Abrir PDF em nova aba”.</p>
                 </div>
-              ) : <p className="app-small mt-3 text-cream/50">Nenhum PDF anexado a esta proposta.</p>}
+              ) : <p className="app-small mt-3 text-cream/70">Nenhum PDF anexado a esta proposta.</p>}
               {acceptedProposal?.proposalId === proposal.id ? (
                 <div role="status" className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3">
                   <p className="app-text font-medium text-emerald-400"><Icon name="checkCircle" size={16} className="inline" /> Proposta aceita (demonstração)</p>
-                  <p className="app-small mt-2 text-cream/65">Aguardando pagamento. Nenhuma cobrança ou contratação real foi realizada.</p>
+                  <p className="app-small mt-2 text-cream/70">Aguardando pagamento. Nenhuma cobrança ou contratação real foi realizada.</p>
                   <Link to="/app/pagamento" className="app-text mt-3 inline-flex items-center gap-2 text-orange hover:underline">Ir para Pagamento <Icon name="arrowRight" size={15} /></Link>
                 </div>
               ) : acceptedProposal ? (
-                <p className="app-small mt-4 text-cream/55">Outra proposta desta solicitação já foi selecionada no modo demonstração.</p>
+                <p className="app-small mt-4 text-cream/70">Outra proposta desta solicitação já foi selecionada no modo demonstração.</p>
               ) : (
                 <Button type="button" appearance="app" className="mt-4 w-full" onClick={() => { setAcceptError(""); setProposalToAccept(proposal); }}>Aceitar proposta</Button>
               )}
-              {proposal.illustrative && <p className="app-small mt-3 text-cream/45">Dados e documento fictícios, apenas para demonstração. Não representam uma oferta real.</p>}
+              {proposal.illustrative && <p className="app-small mt-3 text-cream/70">Dados e documento fictícios, apenas para demonstração. Não representam uma oferta real.</p>}
             </article>
           ))}
         </section>}
-        {request.status === "hired" && <section className={card}><h2 className="app-section-title text-cream">Confirmação da execução</h2>{completed ? <><p className="app-text mt-3 text-emerald-400"><Icon name="checkCircle" size={16} className="inline" /> Conclusão confirmada</p><p className="app-small mt-2 text-cream/60">Registrada em {new Date(confirmedAt).toLocaleString("pt-BR")}.</p><p className="app-small mt-3 text-cream/55">{hasRequestApi ? "Confirmação enviada ao servidor. Consulte o status financeiro na plataforma; a transferência não é garantida por esta mensagem." : "Confirmação de demonstração salva neste navegador. Nenhuma transferência foi realizada."}</p></> : <><p className="app-text mt-3 leading-relaxed text-cream/70">Quando o fornecedor terminar o serviço, confirme a entrega somente após verificar o resultado.</p><Button type="button" appearance="app" className="mt-5 w-full" onClick={() => { setError(""); setConfirmOpen(true); }}><Icon name="checkCircle" size={17} /> Confirmar conclusão do serviço</Button><p className="app-small mt-3 text-cream/45">Após a confirmação, o backend deverá validar a operação e iniciar a liberação do pagamento retido, conforme as regras da plataforma.</p></>}</section>}
-        {request.status === "hired" && <section className={card}><h2 className="app-section-title text-cream">Pagamento e fornecedor</h2>{linkedPayment ? <dl className="mt-4 space-y-4"><Detail title="Fornecedor (dados demonstrativos)">{linkedPayment.company}</Detail><Detail title="Valor associado ao serviço">{(linkedPayment.amountCents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</Detail><Detail title="Situação do registro de pagamento">{linkedPayment.status === "paid" ? "Pago pelo cliente (demonstração)" : "Pendente"}</Detail></dl> : <p className="app-text mt-3 text-cream/60">Os dados do fornecedor e do pagamento estarão disponíveis quando vinculados à solicitação no backend.</p>}<p className="app-small mt-4 text-cream/45">“Pago” não significa que o fornecedor já recebeu. O status de retenção e repasse depende do provedor financeiro.</p><Link to="/app/pagamento" className="app-text mt-4 inline-flex items-center gap-2 text-orange hover:underline">Ver meus pagamentos <Icon name="arrowRight" size={15} /></Link></section>}
+        {request.status === "hired" && <section className={card}><h2 className="app-section-title text-cream">Confirmação da execução</h2>{completed ? <><p className="app-text mt-3 text-emerald-400"><Icon name="checkCircle" size={16} className="inline" /> Conclusão confirmada</p><p className="app-small mt-2 text-cream/70">Registrada em {new Date(confirmedAt).toLocaleString("pt-BR")}.</p><p className="app-small mt-3 text-cream/70">{hasRequestApi ? "Confirmação enviada ao servidor. Consulte o status financeiro na plataforma; a transferência não é garantida por esta mensagem." : "Confirmação de demonstração salva neste navegador. Nenhuma transferência foi realizada."}</p></> : <><p className="app-text mt-3 leading-relaxed text-cream/70">Quando o fornecedor terminar o serviço, confirme a entrega somente após verificar o resultado.</p><Button type="button" appearance="app" className="mt-5 w-full" onClick={() => { setError(""); setConfirmOpen(true); }}><Icon name="checkCircle" size={17} /> Confirmar conclusão do serviço</Button><p className="app-small mt-3 text-cream/70">Após a confirmação, o backend deverá validar a operação e iniciar a liberação do pagamento retido, conforme as regras da plataforma.</p></>}</section>}
+        {request.status === "hired" && <section className={card}><h2 className="app-section-title text-cream">Pagamento e fornecedor</h2>{linkedPayment ? <dl className="mt-4 space-y-4"><Detail title="Fornecedor (dados demonstrativos)">{linkedPayment.company}</Detail><Detail title="Valor associado ao serviço">{(linkedPayment.amountCents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</Detail><Detail title="Situação do registro de pagamento">{linkedPayment.status === "paid" ? "Pago pelo cliente (demonstração)" : "Pendente"}</Detail></dl> : <p className="app-text mt-3 text-cream/70">Os dados do fornecedor e do pagamento estarão disponíveis quando vinculados à solicitação no backend.</p>}<p className="app-small mt-4 text-cream/70">“Pago” não significa que o fornecedor já recebeu. O status de retenção e repasse depende do provedor financeiro.</p><Link to="/app/pagamento" className="app-text mt-4 inline-flex items-center gap-2 text-orange hover:underline">Ver meus pagamentos <Icon name="arrowRight" size={15} /></Link></section>}
         <Link to="/app/solicitacoes" className="app-text inline-flex items-center gap-2 self-start text-cream/70 transition hover:text-orange"><Icon name="chevronLeft" size={16} /> Voltar às solicitações</Link>
       </div>
     </div>

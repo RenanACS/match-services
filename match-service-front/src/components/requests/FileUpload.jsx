@@ -9,7 +9,7 @@ export default function FileUpload({ file, onChange }) {
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="app-small text-cream/60">
+      <span className="app-small text-cream/70">
         Anexo (opcional)
       </span>
       <div className="flex flex-wrap items-center gap-3">
@@ -21,7 +21,7 @@ export default function FileUpload({ file, onChange }) {
           Adicionar arquivo
         </button>
         {file && (
-          <span className="truncate app-text text-cream/60">{file.name}</span>
+          <span className="truncate app-text text-cream/70">{file.name}</span>
         )}
       </div>
       <input

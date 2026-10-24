@@ -11,7 +11,7 @@ export default function ReviewCardList({ reviews, onView, onModerate }) {
       {reviews.map((r) => (
         <li key={r.id} className="flex flex-col gap-2.5 p-4 sm:px-6">
           <div className="flex items-center justify-between gap-3">
-            <p className="adm-text font-medium text-cream">{r.author} <span className="font-normal text-cream/50">· {formatDate(r.date)}</span></p>
+            <p className="adm-text font-medium text-cream">{r.author} <span className="font-normal text-cream/70">· {formatDate(r.date)}</span></p>
             <ReviewStatusBadge status={r.status} />
           </div>
           <Link to={`/admin/fornecedores/${r.supplierId}`} className="adm-text truncate text-cream/80 hover:text-orange hover:underline">{r.supplier.name}</Link>

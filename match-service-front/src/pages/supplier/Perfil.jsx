@@ -33,8 +33,8 @@ function validate(values) {
 function Info({ label, children }) {
   return (
     <div>
-      <dt className="font-mono text-[11px] uppercase tracking-widest text-cream/45">{label}</dt>
-      <dd className="mt-1 text-cream">{children || <span className="text-cream/40">Não informado</span>}</dd>
+      <dt className="app-small font-medium text-cream/70">{label}</dt>
+      <dd className="mt-1 text-cream">{children || <span className="text-cream/70">Não informado</span>}</dd>
     </div>
   );
 }
@@ -142,7 +142,7 @@ export default function SupplierProfile() {
                 onChange={change("about")}
               />
             </FormField>
-            <p className="text-xs text-cream/50">O CNPJ e a senha não são exibidos nem guardados nesta tela.</p>
+            <p className="app-small text-cream/70">O CNPJ e a senha não são exibidos nem guardados nesta tela.</p>
             <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
               <Button type="button" variant="secondary" onClick={() => setEditing(false)}>
                 Cancelar
@@ -156,8 +156,8 @@ export default function SupplierProfile() {
           <div className="flex items-center gap-4">
             <Avatar name={profile.name} size="lg" />
             <div className="min-w-0">
-              <p className="truncate font-display text-xl font-semibold text-cream">{profile.name || "Sua empresa"}</p>
-              <p className="text-sm text-cream/55">{profile.category || "Categoria não informada"}</p>
+              <p className="truncate app-section-title text-cream">{profile.name || "Sua empresa"}</p>
+              <p className="app-text text-cream/70">{profile.category || "Categoria não informada"}</p>
             </div>
           </div>
           <dl className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -168,15 +168,15 @@ export default function SupplierProfile() {
             <Info label="Endereço">{profile.address}</Info>
             <Info label="Categoria de serviço">{profile.category}</Info>
           </dl>
-          <h2 className="mt-6 font-mono text-[11px] uppercase tracking-widest text-cream/45">Sobre a empresa</h2>
-          <p className="mt-1 text-sm text-cream/75">
+          <h2 className="mt-6 app-small font-medium text-cream/70">Sobre a empresa</h2>
+          <p className="mt-1 app-text text-cream/75">
             {profile.about || "Nenhuma descrição cadastrada. Use “Editar dados” para adicionar."}
           </p>
         </Card>
       )}
 
       <Card>
-        <h2 className="font-display text-lg font-semibold">Atalhos</h2>
+        <h2 className="app-section-title">Atalhos</h2>
         <div className="mt-4 flex flex-wrap gap-3">
           <Button as={Link} to="/fornecedor/servicos" variant="secondary">
             Meus serviços
@@ -191,8 +191,8 @@ export default function SupplierProfile() {
       </Card>
 
       <Card>
-        <h2 className="font-display text-lg font-semibold">Demonstração</h2>
-        <p className="mt-1 text-sm text-cream/60">
+        <h2 className="app-section-title">Demonstração</h2>
+        <p className="mt-1 app-text text-cream/70">
           O fluxo "serviço concluído → pagamento liberado" é compartilhado com o cliente e não é apagado ao sair.
           Use o botão abaixo para zerá-lo e repetir o teste.
         </p>

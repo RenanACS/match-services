@@ -13,7 +13,7 @@ export default function SupplierCard({ supplier }) {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="app-text truncate font-semibold text-cream">{supplier.name}</h3>
-          <p className="app-small mt-0.5 text-cream/50">{supplier.category}</p>
+          <p className="app-small mt-0.5 text-cream/70">{supplier.category}</p>
         </div>
         <span className="app-text flex shrink-0 items-center gap-1 font-medium text-cream/80">
           <Icon name="star" size={14} className="fill-current text-orange-light" />
@@ -21,16 +21,16 @@ export default function SupplierCard({ supplier }) {
         </span>
       </div>
 
-      <p className="app-text text-cream/60">{supplier.description}</p>
+      <p className="app-text text-cream/70">{supplier.description}</p>
 
       <div className="mt-auto flex items-center justify-between gap-3 border-t border-hairline pt-2.5">
-        <span className="app-small inline-flex items-center gap-1.5 text-cream/50">
+        <span className="app-small inline-flex items-center gap-1.5 text-cream/70">
           <Icon name="mapPin" size={14} />
           {supplier.location}
         </span>
         <Link
           to={`/app/fornecedores/${supplier.id}`}
-          className="app-text inline-flex shrink-0 items-center gap-1.5 text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex shrink-0 items-center gap-1.5 text-cream/70 transition hover:text-orange"
         >
           Ver fornecedor
           <Icon name="arrowRight" size={14} />

@@ -8,7 +8,7 @@ export default function ClientBlockHistory({ history }) {
         Histórico da conta
       </h2>
       {history.length === 0 ? (
-        <p className="mt-3 adm-text text-cream/60">Nenhum bloqueio ou desbloqueio registrado.</p>
+        <p className="mt-3 adm-text text-cream/70">Nenhum bloqueio ou desbloqueio registrado.</p>
       ) : (
         <ul className="mt-3 flex flex-col divide-y divide-hairline">
           {[...history].reverse().map((entry) => (
@@ -17,7 +17,7 @@ export default function ClientBlockHistory({ history }) {
                 {entry.action === "blocked" ? "Conta bloqueada" : "Conta desbloqueada"}
               </p>
               {entry.reason && <p className="mt-0.5 text-cream/70">Justificativa: {entry.reason}</p>}
-              <p className="mt-0.5 adm-small text-cream/40">
+              <p className="mt-0.5 adm-small text-cream/70">
                 {formatDateTime(entry.date)} · {entry.by}
               </p>
             </li>

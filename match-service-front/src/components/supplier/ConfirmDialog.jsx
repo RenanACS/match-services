@@ -43,10 +43,10 @@ export default function ConfirmDialog({
         className="w-full max-w-sm rounded-[20px] border border-hairline bg-surface-1 p-6"
         onClick={(event) => event.stopPropagation()}
       >
-        <h2 id="confirm-dialog-title" className="font-display text-xl font-semibold text-cream">
+        <h2 id="confirm-dialog-title" className="app-section-title text-cream">
           {title}
         </h2>
-        <p className="mt-2 text-sm text-cream/60">{message}</p>
+        <p className="mt-2 app-text text-cream/70">{message}</p>
         <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <Button type="button" variant="secondary" onClick={onCancel}>
             {cancelLabel}

@@ -10,9 +10,9 @@
 // Busca, filtros e paginação passam a ser do servidor. Bloqueio NÃO cancela
 // serviços já contratados, pagamentos ou obrigações existentes.
 
-import { COMMISSION_RATE_PERCENT } from "../data/adminDashboard";
+import { COMMISSION_RATE_PERCENT } from "../data/adminCommission";
 
-export const PAGE_SIZE = 3;
+export const PAGE_SIZE = 10;
 
 const normalize = (text) =>
   text

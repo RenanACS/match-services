@@ -14,7 +14,7 @@ import {
   countByStatus,
   filterDisputes,
   paginate,
-  sortNewestFirst,
+  sortByUrgency,
 } from "../../services/adminDisputes";
 
 /**
@@ -45,7 +45,7 @@ export default function ContestacoesAdmin() {
 
   const counts = useMemo(() => countByStatus(disputes), [disputes]);
   const filtered = useMemo(
-    () => sortNewestFirst(filterDisputes(disputes, { query, status, reason, period })),
+    () => sortByUrgency(filterDisputes(disputes, { query, status, reason, period })),
     [disputes, query, status, reason, period],
   );
   const pageData = paginate(filtered, requestedPage, PAGE_SIZE);
@@ -79,7 +79,7 @@ export default function ContestacoesAdmin() {
         {pageData.total === 0 ? (
           <div className="px-6 py-10 text-center">
             <p className="adm-text font-medium text-cream">Nenhuma contestação encontrada</p>
-            <p className="adm-text mt-1 text-cream/60">Ajuste a busca ou os filtros para ver resultados.</p>
+            <p className="adm-text mt-1 text-cream/70">Ajuste a busca ou os filtros para ver resultados.</p>
           </div>
         ) : (
           <>

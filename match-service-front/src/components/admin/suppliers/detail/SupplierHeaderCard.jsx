@@ -59,7 +59,7 @@ export default function SupplierHeaderCard({ supplier, onAction }) {
               <Icon name="suppliers" size={14} /> {supplier.category}
             </span>
           </p>
-          <p className="mt-1 adm-small text-cream/50">Cadastrado em {formatDateTime(supplier.registeredAt)}</p>
+          <p className="mt-1 adm-small text-cream/70">Cadastrado em {formatDateTime(supplier.registeredAt)}</p>
         </div>
       </div>
       <div className="border-t border-hairline p-5 lg:border-l lg:border-t-0">

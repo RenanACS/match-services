@@ -19,7 +19,7 @@ export default function RoleToggle({ options, value, onChange }) {
             className={`min-h-[44px] rounded-xl border px-3 font-mono text-xs font-medium uppercase tracking-widest transition xl:min-h-[38px] ${
               active
                 ? "border-orange bg-orange-soft text-orange"
-                : "border-hairline text-cream/60 hover:text-cream"
+                : "border-hairline text-cream/70 hover:text-cream"
             }`}
           >
             {option.label}

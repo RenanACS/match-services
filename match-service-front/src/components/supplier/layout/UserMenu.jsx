@@ -15,7 +15,7 @@ export default function UserMenu({ name, onLogout }) {
   useDismiss(rootRef, open, () => setOpen(false));
 
   const itemClass =
-    "flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-cream/75 transition hover:bg-surface-3 hover:text-cream";
+    "flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left app-text text-cream/75 transition hover:bg-surface-3 hover:text-cream";
 
   return (
     <div ref={rootRef} className="relative shrink-0">
@@ -26,11 +26,11 @@ export default function UserMenu({ name, onLogout }) {
         onClick={() => setOpen((value) => !value)}
         className="flex items-center gap-2.5 rounded-xl border border-hairline bg-surface-1 py-1.5 pl-1.5 pr-3 transition hover:border-orange/60"
       >
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface-3 font-mono text-xs text-cream">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface-3 app-small text-cream">
           {getInitials(name)}
         </span>
-        <span className="hidden max-w-[10rem] truncate font-display text-sm sm:inline">{name}</span>
-        <ChevronDownIcon width={16} height={16} className="text-cream/50" />
+        <span className="hidden max-w-[10rem] truncate font-display app-text sm:inline">{name}</span>
+        <ChevronDownIcon width={16} height={16} className="text-cream/70" />
       </button>
 
       {open && (

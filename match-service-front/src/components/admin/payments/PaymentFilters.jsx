@@ -11,14 +11,14 @@ export default function PaymentFilters({ query, status, method, period, onQueryC
   return (
     <div className="flex flex-wrap items-end gap-3 rounded-2xl border border-hairline bg-surface-1/60 px-3 py-3">
       <div className="relative w-full lg:min-w-[240px] lg:flex-1">
-        <Icon name="search" size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-cream/50" />
+        <Icon name="search" size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-cream/70" />
         <input
           type="search"
           aria-label="Buscar pagamento"
           placeholder="Buscar por ID, cliente ou fornecedor..."
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          className="adm-filter min-h-[40px] w-full rounded-xl border border-hairline bg-surface-1 pl-11 pr-4 text-cream placeholder:text-cream/40 focus:border-orange focus:outline-none"
+          className="adm-filter min-h-[40px] w-full rounded-xl border border-hairline bg-surface-1 pl-11 pr-4 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none"
         />
       </div>
       <LabeledSelect id="filter-payment-status" label="Situação" options={STATUS_OPTIONS} value={status} onChange={onStatusChange} className="sm:w-36" />

@@ -9,7 +9,7 @@ import { formatDate } from "../../../utils/dates";
  * (truncado; completo no modal) | Situação | Ações. table-fixed em porcentagem.
  */
 export default function ReviewsTable({ reviews, onView, onModerate }) {
-  const th = "adm-table px-2.5 py-3 font-medium text-cream/60 xl:py-2.5";
+  const th = "adm-table px-2.5 py-3 font-medium text-cream/70 xl:py-2.5";
   const td = "px-2.5 py-3 xl:py-[9px]";
   return (
     <table className="w-full table-fixed text-left">

@@ -67,7 +67,7 @@ export default function DemandForm() {
             onChange={(event) => update("description", event.target.value)}
             placeholder="Ex.: limpeza de 4 splits de ar-condicionado, prédio comercial"
             rows={2}
-            className="min-h-[44px] w-full rounded-xl border hairline bg-charcoal px-4 py-3 text-sm text-cream placeholder:text-cream/35 focus:border-orange"
+            className="min-h-[44px] w-full rounded-xl border hairline bg-charcoal px-4 py-3 text-sm text-cream placeholder:text-cream/70 focus:border-orange"
           />
         </div>
 
@@ -83,7 +83,7 @@ export default function DemandForm() {
               value={form.budget}
               onChange={(event) => update("budget", event.target.value)}
               placeholder="Orçamento (R$)"
-              className="min-h-[44px] w-full rounded-xl border hairline bg-charcoal px-4 py-3 text-sm text-cream placeholder:text-cream/35 focus:border-orange"
+              className="min-h-[44px] w-full rounded-xl border hairline bg-charcoal px-4 py-3 text-sm text-cream placeholder:text-cream/70 focus:border-orange"
             />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function DemandForm() {
       <div aria-live="polite" className="mt-4">
         {confirmed && (
           <div className="rounded-xl border border-orange/40 bg-orange-soft p-4">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-orange">
+            <p className="font-mono text-xs uppercase tracking-widest text-orange">
               Protótipo: demanda preparada
             </p>
             <p className="mt-2 text-sm text-cream/90">
@@ -135,7 +135,7 @@ export default function DemandForm() {
         )}
       </div>
 
-      <p className="mt-4 text-[11px] text-cream/40">
+      <p className="mt-4 text-xs text-cream/70">
         Protótipo: nenhum dado sai do navegador, nada é publicado de verdade.
       </p>
     </div>

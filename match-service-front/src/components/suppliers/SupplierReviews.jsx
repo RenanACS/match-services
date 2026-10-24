@@ -9,7 +9,7 @@ function ReviewStars({ rating }) {
           key={index}
           name="star"
           size={14}
-          className={`fill-current ${index < rating ? "text-orange-light" : "text-cream/20"}`}
+          className={`fill-current ${index < rating ? "text-orange-light" : "text-cream/70"}`}
         />
       ))}
     </span>
@@ -31,7 +31,7 @@ export default function SupplierReviews({ rating, reviewsCount, reviews }) {
           <Icon name="star" size={16} className="fill-current text-orange-light" />
           {rating.toFixed(1).replace(".", ",")}
         </span>
-        <span className="app-small text-cream/50">{reviewsCount} avaliações</span>
+        <span className="app-small text-cream/70">{reviewsCount} avaliações</span>
       </div>
 
       <ul className="mt-2 divide-y divide-hairline rounded-[20px] border border-hairline bg-surface-1">
@@ -41,7 +41,7 @@ export default function SupplierReviews({ rating, reviewsCount, reviews }) {
               <span className="app-text font-medium text-cream/80">{review.author}</span>
               <ReviewStars rating={review.rating} />
             </div>
-            <p className="app-text mt-1 text-cream/60">&ldquo;{review.text}&rdquo;</p>
+            <p className="app-text mt-1 text-cream/70">&ldquo;{review.text}&rdquo;</p>
           </li>
         ))}
       </ul>

@@ -21,7 +21,7 @@ export default function HistoryTab({ supplier }) {
             <span aria-hidden="true" className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${DOT[event.action]}`} />
             <div className="min-w-0">
               <p className="adm-text font-medium text-cream">{HISTORY_LABELS[event.action]}</p>
-              <p className="adm-small text-cream/50">
+              <p className="adm-small text-cream/70">
                 {formatDateTime(event.date)} · {event.by}
               </p>
               {event.reason && (

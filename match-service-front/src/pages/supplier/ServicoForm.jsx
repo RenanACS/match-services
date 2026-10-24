@@ -54,7 +54,7 @@ export default function SupplierServiceForm() {
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
         <PageHeader title="Serviço não encontrado" />
         <Card>
-          <p className="text-sm text-cream/60">Esse serviço não existe mais na sua lista.</p>
+          <p className="app-text text-cream/70">Esse serviço não existe mais na sua lista.</p>
           <Button as={Link} to="/fornecedor/servicos" variant="secondary" className="mt-4">
             Ver meus serviços
           </Button>
@@ -147,7 +147,7 @@ export default function SupplierServiceForm() {
             />
           </FormField>
 
-          <label className="flex items-center gap-2 text-sm text-cream/70">
+          <label className="flex items-center gap-2 app-text text-cream/70">
             <input
               type="checkbox"
               checked={values.active}

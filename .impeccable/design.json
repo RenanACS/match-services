@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T13:16:30.599119Z",
+  "title": "Design System: MATCH SERVICES",
+  "extensions": {
+    "colorMeta": {
+      "orange": {
+        "role": "primary",
+        "displayName": "Laranja Protocolo",
+        "canonical": "#fe5200",
+        "tonalRamp": [
+          "#3a1300",
+          "#6b2300",
+          "#a33700",
+          "#d64500",
+          "#fe5200",
+          "#ff8a47",
+          "#ffc09b",
+          "#fff1e8"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "oklch(15% 0.02 0)",
+          "oklch(25% 0.02 0)",
+          "oklch(35% 0.02 0)",
+          "oklch(45% 0.02 0)",
+          "oklch(60% 0.02 0)",
+          "oklch(75% 0.02 0)",
+          "oklch(85% 0.02 0)",
+          "oklch(95% 0.02 0)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Superfície 2",
+        "canonical": "#121215",
+        "tonalRamp": [
+          "oklch(15% 0.02 285)",
+          "oklch(25% 0.02 285)",
+          "oklch(35% 0.02 285)",
+          "oklch(45% 0.02 285)",
+          "oklch(60% 0.02 285)",
+          "oklch(75% 0.02 285)",
+          "oklch(85% 0.02 285)",
+          "oklch(95% 0.02 285)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Creme",
+        "canonical": "#f5f3ef",
+        "tonalRamp": [
+          "oklch(15% 0.02 80)",
+          "oklch(25% 0.02 80)",
+          "oklch(35% 0.02 80)",
+          "oklch(45% 0.02 80)",
+          "oklch(60% 0.02 80)",
+          "oklch(75% 0.02 80)",
+          "oklch(85% 0.02 80)",
+          "oklch(95% 0.02 80)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Page title",
+        "purpose": "Título de cada tela interna (Space Grotesk 600)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Conteúdo, tabelas, filtros e botões (Inter 13px)."
+      }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal da tela.",
+      "html": "<button class=\"ds-btn-primary\">Salvar</button>",
+      "css": ".ds-btn-primary{background:#fe5200;color:#0a0a0a;border:1px solid #fe5200;border-radius:12px;min-height:40px;padding:0 16px;font:500 13px/18px Inter,sans-serif;cursor:pointer;transition:background .2s}.ds-btn-primary:hover{background:#ff8a47}.ds-btn-primary:focus-visible{outline:2px solid #fe5200;outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação alternativa.",
+      "html": "<button class=\"ds-btn-secondary\">Limpar filtros</button>",
+      "css": ".ds-btn-secondary{background:transparent;color:#f5f3ef;border:1px solid rgba(255,255,255,.1);border-radius:12px;min-height:40px;padding:0 16px;font:500 13px/18px Inter,sans-serif;cursor:pointer;transition:border-color .2s}.ds-btn-secondary:hover{border-color:rgba(254,82,0,.6)}"
+    },
+    {
+      "name": "Nav Item (active)",
+      "kind": "nav",
+      "refersTo": "nav-item-active",
+      "description": "Item ativo da sidebar.",
+      "html": "<a class=\"ds-nav\">Dashboard</a>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:12px;padding:10px 16px;border-left:2px solid #fe5200;border-radius:12px;background:rgba(254,82,0,.16);color:#fe5200;font:500 14px/20px Inter,sans-serif}"
+    },
+    {
+      "name": "Metric Card",
+      "kind": "card",
+      "description": "Indicador com rótulo, ícone e valor.",
+      "html": "<div class=\"ds-card\"><span>Clientes PF</span><strong>128</strong></div>",
+      "css": ".ds-card{background:#0d0d0f;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;color:#f5f3ef;display:flex;flex-direction:column;gap:4px;font:400 12px/16px Inter,sans-serif}.ds-card strong{font:600 20px/24px 'Space Grotesk',sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Cofre Auditado",
+    "overview": "A interface se comporta como o produto promete: um registro verificável onde o dinheiro fica retido até a entrega ser aprovada. Superfícies quase pretas, bordas de um fio, tipografia técnica e um único laranja.",
+    "keyCharacteristics": [
+      "Fundo quase preto em camadas tonais, sem sombras estruturais.",
+      "Um único acento, o laranja, usado com parcimônia.",
+      "Space Grotesk em títulos, Inter no resto, JetBrains Mono só em identificadores.",
+      "Bordas de um fio em vez de preenchimento."
+    ],
+    "rules": [
+      {
+        "name": "A Regra do Acento Raro",
+        "body": "O laranja ocupa no máximo cerca de 10% de qualquer tela.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra da Fonte Única de Tamanhos",
+        "body": "Telas usam as classes adm-* e app-*, não tamanhos soltos do Tailwind.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Plano por Padrão",
+        "body": "Superfícies são planas em repouso; estado muda cor ou borda, não sombra.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar o laranja somente para a ação principal, o item ativo e o número crítico.",
+      "Do separar blocos com borda hairline e tom de superfície."
+    ],
+    "donts": [
+      "Don't criar tamanhos de fonte soltos nas telas internas.",
+      "Don't fabricar clientes, números de uso ou depoimentos."
+    ]
+  }
+}

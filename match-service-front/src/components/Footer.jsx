@@ -21,7 +21,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="font-mono text-xs uppercase tracking-widest text-cream/60 hover:text-orange"
+                className="font-mono text-xs uppercase tracking-widest text-cream/70 hover:text-orange"
               >
                 {link.label}
               </a>
@@ -29,14 +29,14 @@ export default function Footer() {
           </nav>
         </div>
 
-        <p className="mt-8 max-w-2xl text-xs leading-relaxed text-cream/40">
+        <p className="mt-8 max-w-[68ch] text-xs leading-relaxed text-cream/70">
           Protótipo acadêmico desenvolvido para a disciplina de Gestão de
           Projetos de Software. Não há clientes reais, transações
           processadas ou infraestrutura de produção — os fluxos acima são
           simulações client-side para ilustrar o mecanismo do produto.
         </p>
 
-        <p className="mt-4 font-mono text-[11px] text-cream/30">
+        <p className="mt-4 font-mono text-xs text-cream/70">
           © {new Date().getFullYear()} MATCH SERVICES
         </p>
       </div>

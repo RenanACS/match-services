@@ -16,22 +16,22 @@ export default function SupplierCardList({ suppliers, onAction }) {
               <SupplierAvatar name={supplier.name} />
               <div className="min-w-0">
                 <p className="truncate font-medium text-cream">{supplier.name}</p>
-                <p className="truncate adm-small text-cream/60">{supplier.email}</p>
+                <p className="truncate adm-small text-cream/70">{supplier.email}</p>
               </div>
             </div>
             <SupplierStatusBadge status={supplier.status} />
           </div>
           <dl className="grid grid-cols-2 gap-x-4 gap-y-1 adm-text">
             <div>
-              <dt className="adm-small text-cream/50">CNPJ</dt>
+              <dt className="adm-small text-cream/70">CNPJ</dt>
               <dd className="text-cream/80">{supplier.cnpj}</dd>
             </div>
             <div>
-              <dt className="adm-small text-cream/50">Categoria</dt>
+              <dt className="adm-small text-cream/70">Categoria</dt>
               <dd className="text-cream/80">{supplier.category}</dd>
             </div>
             <div>
-              <dt className="adm-small text-cream/50">Cadastro em</dt>
+              <dt className="adm-small text-cream/70">Cadastro em</dt>
               <dd className="text-cream/80">{formatDate(supplier.registeredAt)}</dd>
             </div>
           </dl>
