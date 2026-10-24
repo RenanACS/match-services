@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../ui/Input";
-import { SearchIcon } from "./icons";
+import Icon from "../ui/Icon";
 import { searchPlaceholder } from "../../data/dashboard";
 
 /**
@@ -30,12 +30,11 @@ export default function DashboardSearch() {
         type="search"
         aria-label="Buscar fornecedor ou serviço"
         enterKeyHint="search"
-        fieldSize="md"
-        leftIcon={<SearchIcon />}
+        appearance="app"
+        leftIcon={<Icon name="search" size={16} />}
         placeholder={searchPlaceholder}
         value={query}
         onChange={(event) => setQuery(event.target.value)}
-        className="xl:min-h-[38px] xl:py-2"
       />
     </form>
   );

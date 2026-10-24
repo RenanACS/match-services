@@ -30,7 +30,7 @@ export default function BackButton({ onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-1.5 rounded-lg px-1.5 py-1 font-mono text-[11px] uppercase tracking-widest text-cream/50 transition hover:text-orange"
+      className="app-breadcrumb flex items-center gap-1.5 rounded-lg px-1.5 py-1 text-cream/60 transition hover:text-orange"
     >
       <ArrowLeftIcon />
       <span className="hidden sm:inline">Voltar</span>

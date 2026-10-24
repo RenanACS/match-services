@@ -8,12 +8,15 @@ import DisputeAnalysisCard from "../../components/admin/disputes/detail/DisputeA
 import { AssumeDialog, ConcludeDialog } from "../../components/admin/disputes/detail/DisputeDialogs";
 import useAdminDisputes from "../../context/useAdminDisputes";
 import { DISPUTE_DECISIONS } from "../../services/adminDisputes";
+import { getPayment } from "../../services/adminPayments";
+import { getAvailableBalance } from "../../services/disputeFinancials";
 
 /**
  * Detalhes da contestação (/admin/contestacoes/:id). As ações (assumir
  * análise, observação, concluir com justificativa) são DEMONSTRATIVAS e ficam
- * só neste navegador. Registrar uma decisão não executa nenhuma operação
- * financeira (sem reembolso, estorno ou repasse).
+ * só neste navegador. Registrar uma decisão e a destinação dos valores é uma
+ * AUTORIZAÇÃO demonstrativa: não executa nenhuma operação financeira (sem
+ * reembolso, estorno ou repasse).
  */
 export default function ContestacaoDetalhe() {
   const { id } = useParams();
@@ -77,11 +80,19 @@ export default function ContestacaoDetalhe() {
       {dialog === "conclude" && (
         <ConcludeDialog
           dispute={dispute}
+          balance={getAvailableBalance(getPayment(`PG${dispute.requestId}`))}
           onClose={() => setDialog(null)}
-          onConfirm={(decision, justification) => {
-            conclude(dispute.id, decision, justification);
-            setDialog(null);
-            setFeedback(`Decisão registrada: ${DISPUTE_DECISIONS[decision]}. Nenhuma operação financeira foi executada.`);
+          onConfirm={(fields) => {
+            const result = conclude(dispute.id, fields);
+            if (result.ok) {
+              setDialog(null);
+              setFeedback(
+                result.financial.authorizationStatus === "demo_authorized"
+                  ? `Decisão registrada: ${DISPUTE_DECISIONS[fields.decision]}. Destinação financeira autorizada (demonstrativa); nenhuma movimentação financeira foi executada.`
+                  : `Decisão registrada: ${DISPUTE_DECISIONS[fields.decision]}. Nenhuma destinação financeira foi autorizada e nenhuma movimentação foi executada.`,
+              );
+            }
+            return result;
           }}
         />
       )}

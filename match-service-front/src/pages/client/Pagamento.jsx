@@ -5,6 +5,7 @@ import PaymentList from "../../components/pagamento/PaymentList";
 import PaymentDetailsModal from "../../components/pagamento/PaymentDetailsModal";
 import PaymentMethodModal from "../../components/pagamento/PaymentMethodModal";
 import { payments } from "../../data/payments";
+import { paginate, PAGE_SIZE } from "../../utils/paginate";
 
 function normalize(value) {
   return value
@@ -21,18 +22,16 @@ function normalize(value) {
  * com os campos já disponíveis, e "Pagar agora" (só em pagamentos
  * pendentes) abre um fluxo demonstrativo de escolha de método — sem
  * cobrança real e sem alterar o status para "Pago".
- *
- * Segue a mesma filosofia single-screen de Minhas Solicitações: os
- * espaçamentos só ficam mais compactos a partir de `xl` (1280px+), para
- * caber em uma única viewport em 1366x768/1280x720/1440x900/1920x1080 sem
- * rolagem; no mobile/tablet o empilhamento e o scroll natural são
- * preservados.
+
+ * Visual no padrão do Admin; 3 pagamentos por página, com paginação funcional
+ * que respeita a busca e o filtro de status.
  */
 export default function Pagamento() {
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [payingPayment, setPayingPayment] = useState(null);
+  const [page, setPage] = useState(1);
 
   const filteredPayments = useMemo(() => {
     const term = normalize(query.trim());
@@ -51,29 +50,34 @@ export default function Pagamento() {
     setPayingPayment(payment);
   }
 
+  const pageData = { ...paginate(filteredPayments, page), pageSize: PAGE_SIZE };
+
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 xl:gap-3">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between xl:gap-3">
-        <div>
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-cream sm:text-4xl xl:text-2xl">
-            Pagamentos
-          </h1>
-          <p className="mt-2 max-w-xl text-base text-cream/60 xl:mt-1 xl:text-sm">
-            Gerencie os pagamentos dos seus serviços contratados.
-          </p>
-        </div>
-      </header>
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 xl:gap-3.5">
+      <h1 className="app-page-title text-cream">Pagamentos</h1>
 
       <PaymentSummary />
 
       <PaymentToolbar
         query={query}
-        onQueryChange={setQuery}
+        onQueryChange={(value) => {
+          setQuery(value);
+          setPage(1);
+        }}
         statusFilter={statusFilter}
-        onStatusFilterChange={setStatusFilter}
+        onStatusFilterChange={(value) => {
+          setStatusFilter(value);
+          setPage(1);
+        }}
       />
 
-      <PaymentList payments={filteredPayments} onViewDetails={setSelectedPayment} onPayNow={handlePayNow} />
+      <PaymentList
+        payments={pageData.items}
+        pageData={pageData}
+        onPageChange={setPage}
+        onViewDetails={setSelectedPayment}
+        onPayNow={handlePayNow}
+      />
 
       <PaymentDetailsModal
         payment={selectedPayment}

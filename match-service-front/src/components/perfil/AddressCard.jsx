@@ -6,9 +6,9 @@ export default function AddressCard({ values, errors, editing, onChange }) {
   return (
     <section
       aria-labelledby="address-title"
-      className="rounded-[20px] border border-hairline bg-surface-1 p-5 xl:p-4"
+      className="rounded-[20px] border border-hairline bg-surface-1 p-4"
     >
-      <h2 id="address-title" className="font-display text-lg font-semibold text-cream xl:text-base">
+      <h2 id="address-title" className="app-section-title text-cream">
         Endereço
       </h2>
       <div className="mt-4 grid grid-cols-2 gap-3 xl:mt-3">

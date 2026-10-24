@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import SupplierSearch from "../../components/suppliers/SupplierSearch";
 import SupplierFilters from "../../components/suppliers/SupplierFilters";
 import SupplierList from "../../components/suppliers/SupplierList";
+import { paginate, PAGE_SIZE } from "../../utils/paginate";
 import {
   suppliers,
   supplierCategories,
@@ -33,6 +34,13 @@ export default function Fornecedores() {
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [minRating, setMinRating] = useState("");
+  const [page, setPage] = useState(1);
+
+  // Qualquer mudança de busca/filtro volta para a primeira página.
+  const withReset = (setter) => (value) => {
+    setter(value);
+    setPage(1);
+  };
 
   const filtersActive = Boolean(query || category || location || minRating);
 
@@ -56,36 +64,42 @@ export default function Fornecedores() {
     [],
   );
 
-  const listToShow = filtersActive ? filteredSuppliers : topRated;
+  const pageData = paginate(filteredSuppliers, page);
+  const listToShow = filtersActive ? pageData.items : topRated;
   const heading = filtersActive ? "Resultados da busca" : "Fornecedores mais bem avaliados";
   const count = filtersActive ? filteredSuppliers.length : null;
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
-      <header>
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-cream sm:text-4xl xl:text-2xl">
-          Fornecedores
-        </h1>
-        <p className="mt-2 max-w-xl text-base text-cream/60 xl:mt-1 xl:text-sm">
-          Pesquise empresas por serviço, categoria ou nome.
-        </p>
-      </header>
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 xl:gap-3.5">
+      <h1 className="app-page-title text-cream">Fornecedores</h1>
 
-      <SupplierSearch initialValue={query} onSearch={setQuery} />
+      <div className="flex flex-col gap-2 rounded-2xl border border-hairline bg-surface-1/60 p-3 xl:flex-row xl:items-center xl:gap-3">
+        <div className="xl:flex-1">
+          <SupplierSearch initialValue={query} onSearch={withReset(setQuery)} />
+        </div>
+        <SupplierFilters
+          category={category}
+          location={location}
+          minRating={minRating}
+          categories={supplierCategories}
+          locations={supplierLocations}
+          ratingOptions={supplierRatingOptions}
+          onCategoryChange={withReset(setCategory)}
+          onLocationChange={withReset(setLocation)}
+          onRatingChange={withReset(setMinRating)}
+        />
+      </div>
 
-      <SupplierFilters
-        category={category}
-        location={location}
-        minRating={minRating}
-        categories={supplierCategories}
-        locations={supplierLocations}
-        ratingOptions={supplierRatingOptions}
-        onCategoryChange={setCategory}
-        onLocationChange={setLocation}
-        onRatingChange={setMinRating}
+      <SupplierList
+        heading={heading}
+        count={count}
+        suppliers={listToShow}
+        pagination={
+          filtersActive
+            ? { page: pageData.page, totalPages: pageData.totalPages, total: pageData.total, start: pageData.start, pageSize: PAGE_SIZE, onPageChange: setPage }
+            : null
+        }
       />
-
-      <SupplierList heading={heading} count={count} suppliers={listToShow} />
     </div>
   );
 }

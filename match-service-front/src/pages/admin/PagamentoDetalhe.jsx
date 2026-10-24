@@ -4,6 +4,7 @@ import PaymentInfoCard from "../../components/admin/payments/detail/PaymentInfoC
 import PaymentPartyCard from "../../components/admin/payments/detail/PaymentPartyCard";
 import PaymentValuesCard from "../../components/admin/payments/detail/PaymentValuesCard";
 import PaymentPayoutCard from "../../components/admin/payments/detail/PaymentPayoutCard";
+import PaymentDisputeAuthorizationCard from "../../components/admin/payments/detail/PaymentDisputeAuthorizationCard";
 import { getPayment } from "../../services/adminPayments";
 
 /**
@@ -62,6 +63,7 @@ export default function PagamentoDetalhe() {
 
       <PaymentValuesCard payment={payment} />
       <PaymentPayoutCard payment={payment} />
+      <PaymentDisputeAuthorizationCard payment={payment} />
     </div>
   );
 }

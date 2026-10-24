@@ -10,8 +10,9 @@ import { dateOf, timeOf } from "../../requests/RequestParts";
 import { DISPUTE_DECISIONS } from "../../../../services/adminDisputes";
 import { getPayment } from "../../../../services/adminPayments";
 import { DEMO_NOTE } from "./DisputeDialogs";
+import DisputeResolutionSummary from "./DisputeResolutionSummary";
 
-const HISTORY_ICONS = { opened: "flag", taken: "search", note: "pencil", decision: "gavel" };
+const HISTORY_ICONS = { opened: "flag", taken: "search", note: "pencil", decision: "gavel", financial: "dollar" };
 const stamp = (iso) => `${dateOf(iso)} às ${timeOf(iso)}`;
 
 /**
@@ -52,6 +53,13 @@ export default function DisputeAnalysisCard({ dispute, onAssume, onConclude, onA
           <p className="adm-text font-medium text-emerald-400">Decisão registrada: {DISPUTE_DECISIONS[dispute.decision.type]}</p>
           <p className="adm-text mt-1 text-cream/80">{dispute.decision.justification}</p>
           <p className="adm-small mt-1 text-cream/55">{stamp(dispute.decision.at)} · {dispute.decision.by}</p>
+          {dispute.decision.financial ? (
+            <div className="mt-3">
+              <DisputeResolutionSummary resolution={dispute.decision.financial} disputeId={dispute.id} showStatus />
+            </div>
+          ) : (
+            <p className="adm-small mt-2 text-cream/60">Decisão registrada antes da resolução financeira: sem destinação de valores associada (dados demonstrativos iniciais).</p>
+          )}
         </div>
       )}
 
@@ -71,7 +79,7 @@ export default function DisputeAnalysisCard({ dispute, onAssume, onConclude, onA
           </p>
           <p className="adm-small mt-1.5 text-cream/60">
             {resolved
-              ? "A decisão é um registro administrativo e não muda o pagamento nem o repasse. Qualquer devolução ou transferência dependerá do backend e do provedor financeiro."
+              ? "A decisão e a destinação autorizada são registros demonstrativos: não mudam o pagamento nem o repasse. Qualquer devolução ou transferência só será executada pelo backend e pelo provedor financeiro."
               : "Enquanto não houver decisão, o repasse permanece retido. Uma decisão futura também não executará operações financeiras por esta tela."}
           </p>
         </div>
@@ -129,6 +137,8 @@ export default function DisputeAnalysisCard({ dispute, onAssume, onConclude, onA
               </span>
               <div className="min-w-0">
                 <p className="adm-text text-cream/90">{h.text}</p>
+                {h.justification && <p className="adm-small text-cream/65">Justificativa: {h.justification}</p>}
+                {h.detail && <p className="adm-small text-cream/65">{h.detail}</p>}
                 <p className="adm-small text-cream/50">{stamp(h.at)} · {h.by}</p>
               </div>
             </li>

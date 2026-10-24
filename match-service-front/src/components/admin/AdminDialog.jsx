@@ -11,7 +11,7 @@ const TONES = {
 /**
  * Casca de modal do Admin (Esc fecha, foco preso, rolagem do fundo travada;
  * reutiliza useDialogBehavior). O conteúdo (formulário ou texto) vem em
- * `children`; `wide` aumenta a largura para leituras longas.
+ * `children`; `wide` aumenta a largura para leituras longas (`wide="lg"` ainda mais, para fluxos em etapas).
  */
 export default function AdminDialog({ title, icon = "info", tone = "orange", description, onClose, wide = false, children }) {
   const titleId = useId();
@@ -27,7 +27,7 @@ export default function AdminDialog({ title, icon = "info", tone = "orange", des
     >
       <div
         ref={containerRef}
-        className={`relative my-auto w-full ${wide ? "max-w-xl" : "max-w-md"} rounded-[20px] border border-hairline bg-surface-1 p-6`}
+        className={`relative my-auto w-full ${wide === "lg" ? "max-w-2xl" : wide ? "max-w-xl" : "max-w-md"} rounded-[20px] border border-hairline bg-surface-1 p-6`}
         onClick={(event) => event.stopPropagation()}
       >
         <button

@@ -30,6 +30,7 @@ export const REQUEST_STATUS = {
   analysis: { label: "Em análise", variant: "warning" },
   proposals: { label: "Propostas recebidas", variant: "orange" },
   hired: { label: "Contratado", variant: "success" },
+  completed: { label: "Concluído", variant: "success" },
 };
 
 export const recentRequests = [
@@ -53,6 +54,9 @@ export const recentRequests = [
     category: "Tecnologia",
     date: "2026-09-12",
     status: "hired",
+    // Contratação fictícia para demonstração na lista de solicitações.
+    contractedSupplierName: "NordTech Soluções",
+    contractedAmountCents: 180000,
   },
 ];
 

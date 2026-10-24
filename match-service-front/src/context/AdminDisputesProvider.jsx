@@ -1,11 +1,19 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { AdminDisputesContext } from "./AdminDisputesContext";
 import { ADMIN_ACTOR, DISPUTE_DECISIONS } from "../data/adminDisputes";
-import { MIN_TEXT, applyOverrides, baseDisputes } from "../services/adminDisputes";
+import { applyOverrides, baseDisputes } from "../services/adminDisputes";
+import { getPayment } from "../services/adminPayments";
+import {
+  DISPUTES_STORAGE_KEY as STORAGE_KEY,
+  buildFinancialRecord,
+  getAvailableBalance,
+  sanitizeFinancial,
+  summarizeFinancial,
+  validateResolution,
+} from "../services/disputeFinancials";
+import { formatBRL } from "../utils/currency";
 import { loadDemoState, saveDemoState } from "../utils/demoStorage";
-
-const STORAGE_KEY = "matchservice.admin.disputes.v1";
 const VALID_STATUS = ["analysis", "resolved"];
 
 function loadOverrides() {
@@ -13,9 +21,14 @@ function loadOverrides() {
   const clean = {};
   for (const [id, value] of Object.entries(parsed)) {
     if (!baseDisputes.some((d) => d.id === id) || !value || typeof value !== "object") continue;
+    const decision = value.decision && value.decision.type in DISPUTE_DECISIONS ? value.decision : undefined;
+    // Registro financeiro adulterado ou incoerente: descarta TODO o estado
+    // guardado desta contestação (decisão, status e histórico), sem aproveitar nada.
+    if (decision?.financial !== undefined && !sanitizeFinancial(decision.financial)) continue;
+    const status = decision || value.status === "analysis" ? value.status : undefined;
     clean[id] = {
-      status: VALID_STATUS.includes(value.status) ? value.status : undefined,
-      decision: value.decision && value.decision.type in DISPUTE_DECISIONS ? value.decision : undefined,
+      status: VALID_STATUS.includes(status) ? status : undefined,
+      decision,
       notes: Array.isArray(value.notes) ? value.notes : [],
       history: Array.isArray(value.history) ? value.history : [],
     };
@@ -42,6 +55,11 @@ export default function AdminDisputesProvider() {
   }, [overrides]);
 
   const disputes = useMemo(() => applyOverrides(overrides), [overrides]);
+  const disputesRef = useRef(disputes);
+
+useEffect(() => {
+  disputesRef.current = disputes;
+}, [disputes]);
 
   // Transição com validação do estado atual (ignora ações incompatíveis).
   const update = useCallback((id, allowed, build) => {
@@ -71,14 +89,34 @@ export default function AdminDisputesProvider() {
           history: [...prev.history, { type: "note", at, by: ADMIN_ACTOR, text: "Observação interna registrada." }],
         }));
       },
-      conclude: (id, decisionType, justification) => {
-        const value = justification.trim();
-        if (!(decisionType in DISPUTE_DECISIONS) || value.length < MIN_TEXT) return;
+      /**
+       * Conclui a contestação: decisão administrativa + destinação financeira
+       * DEMONSTRATIVA, em um único registro. Revalida tudo (a tela não é a
+       * fonte de verdade) e só aceita contestações "Em análise" ainda sem
+       * decisão, então a mesma decisão não é registrada duas vezes.
+       * Retorna { ok, errors }. Nada é reembolsado, estornado ou repassado.
+       */
+      conclude: (id, fields) => {
+        const dispute = disputesRef.current.find((d) => d.id === id);
+        if (!dispute) return { ok: false, errors: { form: "Contestação não encontrada." } };
+        if (dispute.status !== "analysis" || dispute.decision) {
+          return { ok: false, errors: { form: "Esta contestação não está disponível para conclusão (já foi decidida ou não está em análise)." } };
+        }
+        const payment = getPayment(`PG${dispute.requestId}`);
+        const check = validateResolution(fields, getAvailableBalance(payment), "all");
+        if (!check.ok) return { ok: false, errors: check.errors };
+        const justification = String(fields.justification).trim();
+        const financial = buildFinancialRecord(check.resolution, { disputeId: id, requestId: dispute.requestId, paymentId: payment?.id ?? null });
         update(id, ["analysis"], (prev, at) => ({
           status: "resolved",
-          decision: { type: decisionType, justification: value, at, by: ADMIN_ACTOR },
-          history: [...prev.history, { type: "decision", at, by: ADMIN_ACTOR, text: `Decisão registrada: ${DISPUTE_DECISIONS[decisionType]}.` }],
+          decision: { type: fields.decision, justification, at, by: ADMIN_ACTOR, financial },
+          history: [
+            ...prev.history,
+            { type: "decision", at, by: ADMIN_ACTOR, text: `Decisão registrada: ${DISPUTE_DECISIONS[fields.decision]}.${financial.refundType ? ` Reembolso ${financial.refundType === "full" ? "integral" : "parcial"}.` : ""}`, justification },
+            { type: "financial", at, by: ADMIN_ACTOR, text: financial.authorizationStatus === "demo_authorized" ? "Destinação financeira autorizada (demonstrativa), não executada." : "Sem destinação financeira autorizada.", detail: summarizeFinancial(financial, formatBRL), financial },
+          ],
         }));
+        return { ok: true, errors: {}, financial };
       },
     }),
     [update],

@@ -1,6 +1,7 @@
 import AdminSectionTitle from "../../AdminSectionTitle";
 import { ValueTag } from "../PaymentBadges";
 import { dateOf, money, timeOf } from "../../requests/RequestParts";
+import { readAuthorizationForRequest } from "../../../../services/disputeFinancials";
 
 const PILL = {
   done: "border-emerald-500/30 bg-emerald-500/15 text-emerald-400",
@@ -27,6 +28,7 @@ export default function PaymentPayoutCard({ payment }) {
   const { payout } = payment;
   const refunded = payment.status === "refunded";
   const pill = PILL[payout.key] ?? PILL.default;
+  const authorization = payout.effective ? null : readAuthorizationForRequest(payment.requestId);
   return (
     <section aria-labelledby="payment-payout" className="rounded-[20px] border border-hairline bg-surface-1 p-5 xl:py-4">
       <AdminSectionTitle id="payment-payout" icon="transfer">Repasse ao fornecedor</AdminSectionTitle>
@@ -52,6 +54,11 @@ export default function PaymentPayoutCard({ payment }) {
           )}
         </Cell>
       </div>
+      {authorization && (
+        <p className="adm-small mt-2 text-cream/60">
+          O valor acima é a previsão original, anterior à contestação. A destinação autorizada de forma demonstrativa está em "Resolução da contestação", abaixo, e ainda não foi executada.
+        </p>
+      )}
     </section>
   );
 }

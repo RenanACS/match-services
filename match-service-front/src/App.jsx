@@ -10,6 +10,18 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 
 import AppLayout from "./components/layout/AppLayout";
 import AdminLayout from "./components/admin/AdminLayout";
+import SupplierLayout from "./components/supplier/layout/SupplierLayout";
+import SupplierDashboard from "./pages/supplier/Dashboard";
+import SupplierRequests from "./pages/supplier/Solicitacoes";
+import SupplierRequestDetails from "./pages/supplier/SolicitacaoDetalhes";
+import SupplierProposals from "./pages/supplier/Propostas";
+import SupplierProposalDetails from "./pages/supplier/PropostaDetalhes";
+import SupplierProposalForm from "./pages/supplier/PropostaForm";
+import SupplierServices from "./pages/supplier/Servicos";
+import SupplierServiceForm from "./pages/supplier/ServicoForm";
+import SupplierReviews from "./pages/supplier/Avaliacoes";
+import SupplierPayments from "./pages/supplier/Pagamentos";
+import SupplierProfile from "./pages/supplier/Perfil";
 import DashboardAdmin from "./pages/admin/DashboardAdmin";
 import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
 import AdminClientsProvider from "./context/AdminClientsProvider";
@@ -37,6 +49,7 @@ import Fornecedores from "./pages/client/Fornecedores";
 import FornecedorDetalhes from "./pages/client/FornecedorDetalhes";
 import NovaSolicitacao from "./pages/client/NovaSolicitacao";
 import Solicitacoes from "./pages/client/Solicitacoes";
+import SolicitacaoDetalhes from "./pages/client/SolicitacaoDetalhes";
 import Pagamento from "./pages/client/Pagamento";
 import Perfil from "./pages/client/Perfil";
 import Assistente from "./pages/client/Assistente";
@@ -75,6 +88,11 @@ export default function App() {
             element={<Solicitacoes />}
           />
 
+          <Route
+            path="solicitacoes/:id"
+            element={<SolicitacaoDetalhes />}
+          />
+
           {/* Nova tela de Pagamentos */}
           <Route
             path="pagamento"
@@ -92,45 +110,21 @@ export default function App() {
           />
         </Route>
 
-        {/* Área do fornecedor — preservada */}
-        <Route
-          path="/fornecedor"
-          element={<AppLayout area="fornecedor" />}
-        >
-          <Route
-            index
-            element={
-              <PlaceholderPage title="Dashboard do fornecedor" />
-            }
-          />
-
-          <Route
-            path="solicitacoes"
-            element={
-              <PlaceholderPage title="Solicitações recebidas" />
-            }
-          />
-
-          <Route
-            path="propostas"
-            element={
-              <PlaceholderPage title="Propostas enviadas" />
-            }
-          />
-
-          <Route
-            path="servicos"
-            element={
-              <PlaceholderPage title="Serviços cadastrados" />
-            }
-          />
-
-          <Route
-            path="perfil"
-            element={
-              <PlaceholderPage title="Perfil da empresa" />
-            }
-          />
+        {/* Área do fornecedor — telas do colega, sem alterar cliente/admin */}
+        <Route path="/fornecedor" element={<SupplierLayout />}>
+          <Route index element={<SupplierDashboard />} />
+          <Route path="solicitacoes" element={<SupplierRequests />} />
+          <Route path="solicitacoes/:id" element={<SupplierRequestDetails />} />
+          <Route path="propostas" element={<SupplierProposals />} />
+          <Route path="propostas/nova" element={<SupplierProposalForm />} />
+          <Route path="propostas/:id" element={<SupplierProposalDetails />} />
+          <Route path="propostas/:id/editar" element={<SupplierProposalForm />} />
+          <Route path="servicos" element={<SupplierServices />} />
+          <Route path="servicos/novo" element={<SupplierServiceForm />} />
+          <Route path="servicos/:id/editar" element={<SupplierServiceForm />} />
+          <Route path="avaliacoes" element={<SupplierReviews />} />
+          <Route path="pagamentos" element={<SupplierPayments />} />
+          <Route path="perfil" element={<SupplierProfile />} />
         </Route>
 
         {/* Área administrativa — acesso demonstrativo direto por /admin.

@@ -1,12 +1,13 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/ui/Button";
-import { PlusIcon } from "../../components/dashboard/icons";
+import Icon from "../../components/ui/Icon";
+import { paginate, PAGE_SIZE } from "../../utils/paginate";
 import RequestsSummary from "../../components/solicitacoes/RequestsSummary";
 import RequestsToolbar from "../../components/solicitacoes/RequestsToolbar";
 import RequestsList from "../../components/solicitacoes/RequestsList";
-import RequestDetailsModal from "../../components/solicitacoes/RequestDetailsModal";
 import { recentRequests } from "../../data/dashboard";
+import { hasRequestApi, readDemoCompletions } from "../../services/requestCompletion";
 
 function normalize(value) {
   return value
@@ -22,19 +23,21 @@ function normalize(value) {
  * no front-end sobre esses três registros mockados; "Ver detalhes" abre
  * um modal com os campos já disponíveis, sem persistência real.
  *
- * Segue a mesma filosofia single-screen do Dashboard: os espaçamentos só
- * ficam mais compactos a partir de `xl` (1280px+), para caber em uma
- * única viewport em 1366x768/1280x720/1440x900/1920x1080 sem rolagem; no
- * mobile/tablet o empilhamento e o scroll natural são preservados.
+ * Visual no padrão do Admin; a listagem mostra 3 solicitações por página
+ * (paginação funcional que respeita a busca e o filtro de status).
  */
 export default function Solicitacoes() {
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [page, setPage] = useState(1);
 
+  const demoCompletions = useMemo(() => hasRequestApi ? {} : readDemoCompletions(), []);
   const filteredRequests = useMemo(() => {
     const term = normalize(query.trim());
-    return recentRequests.filter((request) => {
+    return recentRequests.map((request) => ({
+      ...request,
+      status: request.status === "hired" && demoCompletions[request.id] ? "completed" : request.status,
+    })).filter((request) => {
       const matchesQuery =
         !term ||
         normalize(request.title).includes(term) ||
@@ -42,21 +45,16 @@ export default function Solicitacoes() {
       const matchesStatus = statusFilter === "all" || request.status === statusFilter;
       return matchesQuery && matchesStatus;
     });
-  }, [query, statusFilter]);
+  }, [query, statusFilter, demoCompletions]);
+
+  const pageData = { ...paginate(filteredRequests, page), pageSize: PAGE_SIZE };
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 xl:gap-3">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between xl:gap-3">
-        <div>
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-cream sm:text-4xl xl:text-2xl">
-            Minhas solicitações
-          </h1>
-          <p className="mt-2 max-w-xl text-base text-cream/60 xl:mt-1 xl:text-sm">
-            Acompanhe os serviços que você solicitou.
-          </p>
-        </div>
-        <Button as={Link} to="/app/solicitacao" variant="primary" size="md" className="shrink-0 xl:min-h-[38px]">
-          <PlusIcon width={16} height={16} />
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 xl:gap-3.5">
+      <header className="flex items-center justify-between gap-3">
+        <h1 className="app-page-title text-cream">Minhas solicitações</h1>
+        <Button as={Link} to="/app/solicitacao" variant="primary" size="md" appearance="app" className="shrink-0">
+          <Icon name="plus" size={16} />
           Nova solicitação
         </Button>
       </header>
@@ -65,14 +63,23 @@ export default function Solicitacoes() {
 
       <RequestsToolbar
         query={query}
-        onQueryChange={setQuery}
+        onQueryChange={(value) => {
+          setQuery(value);
+          setPage(1);
+        }}
         statusFilter={statusFilter}
-        onStatusFilterChange={setStatusFilter}
+        onStatusFilterChange={(value) => {
+          setStatusFilter(value);
+          setPage(1);
+        }}
       />
 
-      <RequestsList requests={filteredRequests} onViewDetails={setSelectedRequest} />
+      <RequestsList
+        requests={pageData.items}
+        pageData={pageData}
+        onPageChange={setPage}
+      />
 
-      <RequestDetailsModal request={selectedRequest} onClose={() => setSelectedRequest(null)} />
     </div>
   );
 }
