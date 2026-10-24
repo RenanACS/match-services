@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Badge from "../ui/Badge";
-import { ArrowRightIcon } from "./icons";
+import Icon from "../ui/Icon";
+import SectionTitle from "../ui/SectionTitle";
 import { recentRequests, REQUEST_STATUS } from "../../data/dashboard";
 
 function formatDate(iso) {
@@ -15,23 +16,21 @@ function RequestRow({ request }) {
   const status = REQUEST_STATUS[request.status];
 
   return (
-    <li className="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 xl:gap-2 xl:py-2">
-      <div className="min-w-0 xl:w-72 xl:shrink-0">
-        <h3 className="truncate font-display text-base font-medium text-cream xl:text-sm">
-          {request.title}
-        </h3>
-        <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-cream/45 xl:mt-0.5">
+    <li className="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+      <div className="min-w-0 sm:w-72 sm:shrink-0">
+        <h3 className="app-text truncate font-medium text-cream">{request.title}</h3>
+        <p className="app-small mt-0.5 text-cream/70">
           {request.category} · {formatDate(request.date)}
         </p>
       </div>
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-1 sm:shrink-0 xl:gap-x-10">
-        <Badge variant={status.variant}>{status.label}</Badge>
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-1 sm:shrink-0 sm:gap-x-8">
+        <Badge variant={status.variant} appearance="app">{status.label}</Badge>
         <Link
           to="/app/solicitacoes"
-          className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex items-center gap-1.5 text-cream/70 transition hover:text-orange"
         >
           Ver solicitação
-          <ArrowRightIcon width={14} height={14} />
+          <Icon name="arrowRight" size={14} />
         </Link>
       </div>
     </li>
@@ -41,22 +40,14 @@ function RequestRow({ request }) {
 export default function RecentRequests() {
   return (
     <section aria-labelledby="recent-requests-title">
-      <div className="mb-3 flex items-baseline justify-between xl:mb-1.5">
-        <h2
-          id="recent-requests-title"
-          className="font-display text-xl font-semibold text-cream xl:text-base"
-        >
-          Solicitações recentes
-        </h2>
-        <Link
-          to="/app/solicitacoes"
-          className="font-mono text-[11px] uppercase tracking-widest text-cream/50 transition hover:text-orange"
-        >
+      <div className="mb-2 flex items-baseline justify-between">
+        <SectionTitle id="recent-requests-title">Solicitações recentes</SectionTitle>
+        <Link to="/app/solicitacoes" className="app-text text-cream/70 transition hover:text-orange">
           Ver todas
         </Link>
       </div>
 
-      <ul className="divide-y divide-hairline overflow-hidden rounded-[20px] border border-hairline bg-surface-1">
+      <ul className="divide-y divide-hairline rounded-[20px] border border-hairline bg-surface-1">
         {recentRequests.map((request) => (
           <RequestRow key={request.id} request={request} />
         ))}

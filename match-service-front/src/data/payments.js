@@ -28,6 +28,7 @@ export const payments = [
     amountCents: 420000,
     date: "2026-09-15",
     status: "paid",
+    custody: "released",
     method: "pix",
   },
   {

@@ -15,31 +15,35 @@ export default function Input({
   label,
   id,
   fieldSize = "md",
+  appearance = "default",
   leftIcon,
   className = "",
   ...props
 }) {
+  const app = appearance === "app";
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={`flex flex-col ${app ? "gap-1" : "gap-1.5"}`}>
       {label && (
         <label
           htmlFor={id}
-          className="font-mono text-[11px] uppercase tracking-widest text-cream/60"
+          className={app ? "app-small font-medium text-cream/70" : "font-mono text-xs uppercase tracking-widest text-cream/70"}
         >
           {label}
         </label>
       )}
       <div className="relative">
         {leftIcon && (
-          <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-cream/40">
+          <span className={`pointer-events-none absolute inset-y-0 flex items-center text-cream/70 ${app ? "left-3.5" : "left-4"}`}>
             {leftIcon}
           </span>
         )}
         <input
           id={id}
-          className={`w-full rounded-xl border border-hairline bg-surface-1 pr-4 text-cream placeholder:text-cream/35 focus:border-orange focus:outline-none ${
-            leftIcon ? "pl-12" : "pl-4"
-          } ${SIZES[fieldSize]} ${className}`}
+          className={`w-full rounded-xl border border-hairline bg-surface-1 pr-4 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none ${
+            app
+              ? `app-filter min-h-[40px] py-1.5 ${leftIcon ? "pl-10" : "pl-3.5"}`
+              : `${leftIcon ? "pl-12" : "pl-4"} ${SIZES[fieldSize]}`
+          } ${className}`}
           {...props}
         />
       </div>

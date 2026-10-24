@@ -15,9 +15,6 @@ import {
  * vêm do cadastro da sessão (ClientProfileContext) ou, sem cadastro, são
  * fictícios (src/data/profile.js); as alterações salvas ficam só em
  * sessionStorage, durante a sessão da aba. Nada vai para o backend.
- *
- * Mesma filosofia single-screen das demais telas: compactação só a partir
- * de `xl` (1280px+); no mobile os cards empilham e a página rola.
  */
 export default function Perfil() {
   // Fonte única compartilhada com Cadastro e Dashboard. Sem cliente
@@ -75,7 +72,7 @@ export default function Perfil() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 xl:gap-3">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 xl:gap-3.5">
       <ProfileHeader
         name={saved.name}
         editing={editing}
@@ -87,13 +84,13 @@ export default function Perfil() {
       {success && (
         <p
           role="status"
-          className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"
+          className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 app-text text-emerald-400"
         >
           Alterações salvas com sucesso (demonstração — mantidas apenas durante esta sessão).
         </p>
       )}
 
-      <div className="grid gap-6 xl:grid-cols-2 xl:items-stretch xl:gap-3">
+      <div className="grid gap-3 xl:grid-cols-2 xl:items-stretch">
         <PersonalDataCard values={values} errors={errors} editing={editing} onChange={handleChange} />
         <AddressCard values={values} errors={errors} editing={editing} onChange={handleChange} />
       </div>

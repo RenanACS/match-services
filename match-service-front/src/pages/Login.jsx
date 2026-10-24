@@ -7,6 +7,9 @@ import Button from "../components/ui/Button";
 import RoleToggle from "../components/auth/RoleToggle";
 import PasswordField from "../components/auth/PasswordField";
 
+// Identificacao demonstrativa: NAO autentica nem protege a rota /admin.
+const DEMO_ADMIN_EMAIL = "admin@matchservice.com.br";
+
 const ROLE_OPTIONS = [
   { value: "cliente", label: "Sou cliente" },
   { value: "fornecedor", label: "Sou fornecedor" },
@@ -14,10 +17,10 @@ const ROLE_OPTIONS = [
 
 /**
  * Tela de login — só a interface, com navegação mock. Ainda não existe
- * autenticação real: não há API, backend, localStorage ou credenciais
- * fixas. Ao enviar, só validamos que e-mail e senha não estão vazios e
- * navegamos conforme o tipo de acesso escolhido (cliente → /app,
- * fornecedor → /fornecedor).
+ * autenticação real: não há API nem validação de senha.
+ * Um e-mail administrativo reservado redireciona para /admin SOMENTE
+ * como demonstração. As rotas ainda não são protegidas.
+ * Os demais usuários seguem o tipo de acesso selecionado.
  */
 export default function Login() {
   const navigate = useNavigate();
@@ -34,6 +37,12 @@ export default function Login() {
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
+    // Redirecionamento demonstrativo, sem autenticação nem autorização real.
+    if (email.trim().toLowerCase() === DEMO_ADMIN_EMAIL) {
+      navigate("/admin");
+      return;
+    }
+
     navigate(role === "fornecedor" ? "/fornecedor" : "/app");
   }
 
@@ -48,7 +57,7 @@ export default function Login() {
         </Link>
 
         <h1 className="font-display text-2xl font-semibold">Entrar</h1>
-        <p className="mt-1 text-sm text-cream/60">
+        <p className="mt-1 text-sm text-cream/70">
           Acesse sua conta para continuar.
         </p>
 
@@ -78,7 +87,7 @@ export default function Login() {
             {errors.password && <p className="text-xs text-red-400">{errors.password}</p>}
             <Link
               to="/recuperar-senha"
-              className="self-end text-xs text-cream/50 transition hover:text-orange"
+              className="self-end text-xs text-cream/70 transition hover:text-orange"
             >
               Esqueci minha senha
             </Link>
@@ -89,7 +98,7 @@ export default function Login() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-cream/60">
+        <p className="mt-6 text-center text-sm text-cream/70">
           Ainda não tem uma conta?{" "}
           <Link to="/cadastro" className="text-orange hover:underline">
             Cadastre-se

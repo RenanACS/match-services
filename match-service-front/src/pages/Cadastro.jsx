@@ -217,7 +217,7 @@ export default function Cadastro() {
 
   const termsField = (
     <div className="flex flex-col gap-1.5">
-      <label className="flex items-start gap-2 text-xs text-cream/60">
+      <label className="flex items-start gap-2 text-xs text-cream/70">
         <input
           type="checkbox"
           checked={acceptedTerms}
@@ -338,7 +338,7 @@ export default function Cadastro() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-cream/60 xl:mt-2">
+        <p className="mt-6 text-center text-sm text-cream/70 xl:mt-2">
           Já possui uma conta?{" "}
           <Link to="/login" className="text-orange hover:underline">
             Entrar

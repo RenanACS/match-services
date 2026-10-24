@@ -1,17 +1,20 @@
-export default function Textarea({ label, id, className = "", ...props }) {
+export default function Textarea({ label, id, appearance = "default", className = "", ...props }) {
+  const app = appearance === "app";
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={`flex flex-col ${app ? "gap-1" : "gap-1.5"}`}>
       {label && (
         <label
           htmlFor={id}
-          className="font-mono text-[11px] uppercase tracking-widest text-cream/60"
+          className={app ? "app-small font-medium text-cream/70" : "font-mono text-xs uppercase tracking-widest text-cream/70"}
         >
           {label}
         </label>
       )}
       <textarea
         id={id}
-        className={`w-full rounded-xl border border-hairline bg-surface-1 px-4 py-3 text-sm text-cream placeholder:text-cream/35 focus:border-orange focus:outline-none ${className}`}
+        className={`w-full rounded-xl border border-hairline bg-surface-1 text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none ${
+          app ? "app-filter px-3.5 py-2" : "px-4 py-3 text-sm"
+        } ${className}`}
         {...props}
       />
     </div>

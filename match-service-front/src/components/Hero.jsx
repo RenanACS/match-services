@@ -27,7 +27,7 @@ export default function Hero() {
         <h1 className="mt-4 font-display text-4xl font-semibold text-cream md:text-6xl">
           MATCH SERVICES
         </h1>
-        <p className="mt-2 font-mono text-xs uppercase tracking-widest text-orange/80 md:text-sm">
+        <p className="mt-2 font-mono text-xs uppercase tracking-widest text-orange md:text-sm">
           Do sintoma ao contrato assinado
         </p>
 
@@ -48,7 +48,7 @@ export default function Hero() {
             className="flex items-center gap-2 rounded-full bg-cream px-6 py-3 font-mono text-xs font-medium uppercase tracking-widest text-ink transition hover:bg-cream/90"
           >
             Testar diagnóstico
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange text-[10px] leading-none text-ink">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange text-xs leading-none text-ink">
               ▶
             </span>
           </a>
@@ -64,7 +64,7 @@ export default function Hero() {
           {CHIPS.map((chip) => (
             <span
               key={chip}
-              className="rounded-full border hairline px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-cream/60"
+              className="rounded-full border hairline px-3 py-1 font-mono text-xs uppercase tracking-wider text-cream/70"
             >
               {chip}
             </span>

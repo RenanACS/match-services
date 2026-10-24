@@ -56,10 +56,10 @@ export default function PaymentMethodModal({ payment, onClose }) {
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h2 id="payment-method-title" className="font-display text-xl font-semibold text-cream">
+            <h2 id="payment-method-title" className="app-section-title text-cream">
               Pagar agora
             </h2>
-            <p className="mt-1 text-sm text-cream/60">
+            <p className="mt-1 app-text text-cream/70">
               {payment.service} · {formatCurrency(payment.amountCents)}
             </p>
           </div>
@@ -67,13 +67,13 @@ export default function PaymentMethodModal({ payment, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Fechar"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/60 transition hover:border-orange/60 hover:text-orange"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/70 transition hover:border-orange/60 hover:text-orange"
           >
             ✕
           </button>
         </div>
 
-        <p className="mt-4 font-mono text-[10px] uppercase tracking-widest text-cream/45">
+        <p className="mt-4 app-small text-cream/70">
           Forma de pagamento
         </p>
         <div className="mt-2 flex flex-col gap-2">
@@ -91,10 +91,10 @@ export default function PaymentMethodModal({ payment, onClose }) {
                     : "border-hairline hover:border-orange/40"
                 }`}
               >
-                <span className={`font-display text-sm font-medium ${active ? "text-orange" : "text-cream"}`}>
+                <span className={`app-text font-medium ${active ? "text-orange" : "text-cream"}`}>
                   {method.label}
                 </span>
-                <span className="text-xs text-cream/50">{method.hint}</span>
+                <span className="app-small text-cream/70">{method.hint}</span>
               </button>
             );
           })}
@@ -102,10 +102,10 @@ export default function PaymentMethodModal({ payment, onClose }) {
 
         {selectedMethod && (
           <div className="mt-4 rounded-xl border border-hairline bg-surface-2 px-4 py-3" role="status">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-orange">
+            <p className="app-small text-orange">
               Modo de demonstração
             </p>
-            <p className="mt-1.5 text-sm text-cream/70">
+            <p className="mt-1.5 app-text text-cream/70">
               Nenhuma cobrança foi realizada. O processamento real via{" "}
               {selectedMethod === "pix" ? "Pix" : "cartão de crédito"} estará disponível após a
               integração com o gateway de pagamento — o status deste pagamento continua{" "}
@@ -117,7 +117,7 @@ export default function PaymentMethodModal({ payment, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-5 w-full rounded-xl border border-hairline px-5 py-3 text-center font-mono text-xs font-medium uppercase tracking-widest text-cream/70 transition hover:border-orange/60 hover:text-orange"
+          className="mt-5 w-full rounded-xl border border-hairline px-5 py-3 text-center app-button text-cream/70 transition hover:border-orange/60 hover:text-orange"
         >
           Fechar
         </button>

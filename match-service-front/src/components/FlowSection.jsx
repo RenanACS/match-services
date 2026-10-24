@@ -33,13 +33,13 @@ export default function FlowSection() {
               key={step.label}
               className="rounded-xl border hairline bg-charcoal p-4"
             >
-              <span className="font-mono text-[11px] text-orange">
+              <span className="font-mono text-xs text-orange">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <p className="mt-2 font-display text-sm font-semibold text-cream">
                 {step.label}
               </p>
-              <p className="mt-1 text-xs leading-relaxed text-cream/60">
+              <p className="mt-1 text-xs leading-relaxed text-cream/70">
                 {step.detail}
               </p>
             </li>

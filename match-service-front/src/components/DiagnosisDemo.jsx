@@ -57,7 +57,7 @@ export default function DiagnosisDemo() {
           onChange={(event) => setSymptom(event.target.value)}
           placeholder="Ex.: meu financeiro é uma bagunça, não sei nem quanto tenho a pagar esse mês"
           rows={3}
-          className="min-h-[44px] w-full rounded-xl border hairline bg-charcoal px-4 py-3 text-sm text-cream placeholder:text-cream/35 focus:border-orange"
+          className="min-h-[44px] w-full rounded-xl border hairline bg-charcoal px-4 py-3 text-sm text-cream placeholder:text-cream/70 focus:border-orange"
         />
         <button
           type="submit"
@@ -71,7 +71,7 @@ export default function DiagnosisDemo() {
       <div aria-live="polite" className="mt-4">
         {submitted && result && (
           <div className="rounded-xl border border-orange/40 bg-orange-soft p-4">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-orange">
+            <p className="font-mono text-xs uppercase tracking-widest text-orange">
               Briefing estruturado
             </p>
             <p className="mt-2 text-sm text-cream/90">
@@ -95,7 +95,7 @@ export default function DiagnosisDemo() {
         )}
       </div>
 
-      <p className="mt-4 text-[11px] text-cream/40">
+      <p className="mt-4 text-xs text-cream/70">
         Protótipo: classificação roda no navegador, nenhum dado sai daqui.
       </p>
     </div>

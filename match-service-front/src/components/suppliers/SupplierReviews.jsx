@@ -1,12 +1,15 @@
-import { StarIcon } from "./icons";
+import Icon from "../ui/Icon";
+import SectionTitle from "../ui/SectionTitle";
 
 function ReviewStars({ rating }) {
   return (
     <span className="flex items-center gap-0.5" aria-label={`${rating} de 5 estrelas`}>
       {Array.from({ length: 5 }).map((_, index) => (
-        <StarIcon
+        <Icon
           key={index}
-          className={index < rating ? "text-orange-light" : "text-cream/20"}
+          name="star"
+          size={14}
+          className={`fill-current ${index < rating ? "text-orange-light" : "text-cream/70"}`}
         />
       ))}
     </span>
@@ -15,39 +18,30 @@ function ReviewStars({ rating }) {
 
 /**
  * Seção "Avaliações" — nota geral, quantidade total e só duas avaliações
- * recentes (não é uma lista extensa, e não há formulário para avaliar
- * nesta etapa: avaliações só existirão após um serviço concluído).
+ * recentes (não há formulário para avaliar: avaliações só existirão após um
+ * serviço concluído).
  */
 export default function SupplierReviews({ rating, reviewsCount, reviews }) {
   return (
     <section aria-labelledby="supplier-reviews-title">
-      <h2
-        id="supplier-reviews-title"
-        className="font-display text-lg font-semibold text-cream xl:text-base"
-      >
-        Avaliações
-      </h2>
+      <SectionTitle id="supplier-reviews-title">Avaliações</SectionTitle>
 
-      <div className="mt-2 flex items-center gap-2 xl:mt-1.5">
-        <span className="flex items-center gap-1 font-display text-2xl font-semibold text-cream xl:text-lg">
-          <StarIcon className="text-orange-light" />
+      <div className="mt-1.5 flex items-center gap-2">
+        <span className="app-stat-number flex items-center gap-1.5 text-cream">
+          <Icon name="star" size={16} className="fill-current text-orange-light" />
           {rating.toFixed(1).replace(".", ",")}
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-widest text-cream/50">
-          {reviewsCount} avaliações
-        </span>
+        <span className="app-small text-cream/70">{reviewsCount} avaliações</span>
       </div>
 
-      <ul className="mt-4 divide-y divide-hairline rounded-[20px] border border-hairline bg-surface-1 xl:mt-1.5">
+      <ul className="mt-2 divide-y divide-hairline rounded-[20px] border border-hairline bg-surface-1">
         {reviews.map((review, index) => (
-          <li key={index} className="px-4 py-3 xl:py-1.5">
+          <li key={index} className="px-4 py-2.5">
             <div className="flex items-center justify-between gap-3">
-              <span className="text-sm font-medium text-cream/80">{review.author}</span>
+              <span className="app-text font-medium text-cream/80">{review.author}</span>
               <ReviewStars rating={review.rating} />
             </div>
-            <p className="mt-1 text-sm text-cream/60 xl:mt-0.5 xl:leading-snug">
-              &ldquo;{review.text}&rdquo;
-            </p>
+            <p className="app-text mt-1 text-cream/70">&ldquo;{review.text}&rdquo;</p>
           </li>
         ))}
       </ul>

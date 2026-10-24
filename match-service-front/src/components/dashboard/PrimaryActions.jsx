@@ -4,7 +4,7 @@ import { primaryActions } from "../../data/dashboard";
 
 export default function PrimaryActions() {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row">
+    <div className="flex flex-col gap-2 sm:flex-row">
       {primaryActions.map((action) => (
         <Button
           key={action.id}
@@ -12,7 +12,8 @@ export default function PrimaryActions() {
           to={action.to}
           variant={action.variant}
           size="md"
-          className="sm:min-w-[180px] xl:min-h-[38px] xl:py-2"
+          appearance="app"
+          className="sm:min-w-[160px]"
         >
           {action.label}
         </Button>

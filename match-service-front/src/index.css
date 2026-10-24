@@ -67,3 +67,149 @@ body {
   outline: 2px solid var(--color-orange);
   outline-offset: 2px;
 }
+
+/* ==========================================================================
+   Painel administrativo — tipografia padronizada (/admin/*)
+   Única fonte da verdade dos tamanhos do Admin. Telas e componentes usam
+   estas classes em vez de tamanhos soltos (text-sm, text-xl...).
+   Space Grotesk: títulos e números de destaque · Inter: todo o resto.
+   JetBrains Mono: apenas identificadores técnicos (classe font-mono).
+   ========================================================================== */
+.adm-page-title,
+.adm-section-title,
+.adm-stat-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.adm-page-title {
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+.adm-section-title {
+  font-size: 16px;
+  line-height: 22px;
+}
+.adm-stat-number {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.adm-menu,
+.adm-breadcrumb,
+.adm-header,
+.adm-table,
+.adm-filter,
+.adm-button,
+.adm-text,
+.adm-small,
+.adm-badge {
+  font-family: var(--font-body);
+}
+.adm-menu {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.adm-breadcrumb,
+.adm-header,
+.adm-table,
+.adm-filter,
+.adm-button,
+.adm-text {
+  font-size: 13px;
+  line-height: 18px;
+}
+.adm-button {
+  font-weight: 500;
+}
+.adm-small,
+.adm-badge {
+  font-size: 12px;
+  line-height: 16px;
+}
+.adm-badge {
+  font-weight: 500;
+}
+/* Pequeno rótulo em caixa alta (ex.: "ADMINISTRAÇÃO" no menu). */
+.adm-eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Área do cliente — tipografia padronizada (/app/*)
+   Mesmos tamanhos do painel administrativo, com classes próprias (app-*). Telas e componentes usam
+   estas classes em vez de tamanhos soltos (text-sm, text-xl...).
+   Space Grotesk: títulos e números de destaque · Inter: todo o resto.
+   JetBrains Mono: apenas identificadores técnicos (classe font-mono).
+   ========================================================================== */
+.app-page-title,
+.app-section-title,
+.app-stat-number {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+.app-page-title {
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+.app-section-title {
+  font-size: 16px;
+  line-height: 22px;
+}
+.app-stat-number {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.app-menu,
+.app-breadcrumb,
+.app-header,
+.app-table,
+.app-filter,
+.app-button,
+.app-text,
+.app-small,
+.app-badge {
+  font-family: var(--font-body);
+}
+.app-menu {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.app-breadcrumb,
+.app-header,
+.app-table,
+.app-filter,
+.app-button,
+.app-text {
+  font-size: 13px;
+  line-height: 18px;
+}
+.app-button {
+  font-weight: 500;
+}
+.app-small,
+.app-badge {
+  font-size: 12px;
+  line-height: 16px;
+}
+.app-badge {
+  font-weight: 500;
+}
+/* Pequeno rótulo em caixa alta (ex.: "ADMINISTRAÇÃO" no menu). */
+.app-eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

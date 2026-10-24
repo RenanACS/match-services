@@ -9,19 +9,19 @@ export default function FileUpload({ file, onChange }) {
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-[11px] uppercase tracking-widest text-cream/60">
+      <span className="app-small text-cream/70">
         Anexo (opcional)
       </span>
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-hairline px-5 font-mono text-xs font-medium uppercase tracking-widest text-cream transition hover:border-orange/60"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-hairline px-5 app-button text-cream transition hover:border-orange/60"
         >
           Adicionar arquivo
         </button>
         {file && (
-          <span className="truncate text-sm text-cream/60">{file.name}</span>
+          <span className="truncate app-text text-cream/70">{file.name}</span>
         )}
       </div>
       <input

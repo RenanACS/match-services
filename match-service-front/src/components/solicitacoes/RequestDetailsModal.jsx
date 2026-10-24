@@ -47,14 +47,14 @@ export default function RequestDetailsModal({ request, onClose }) {
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
-          <h2 id="request-details-title" className="font-display text-xl font-semibold text-cream">
+          <h2 id="request-details-title" className="app-section-title text-cream">
             {request.title}
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Fechar"
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/60 transition hover:border-orange/60 hover:text-orange"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-hairline text-cream/70 transition hover:border-orange/60 hover:text-orange"
           >
             ✕
           </button>
@@ -62,22 +62,22 @@ export default function RequestDetailsModal({ request, onClose }) {
 
         <dl className="mt-5 flex flex-col gap-4">
           <div>
-            <dt className="font-mono text-[10px] uppercase tracking-widest text-cream/45">Categoria</dt>
-            <dd className="mt-1 text-sm text-cream/80">{request.category}</dd>
+            <dt className="app-small text-cream/70">Categoria</dt>
+            <dd className="mt-1 app-text text-cream/80">{request.category}</dd>
           </div>
           <div>
-            <dt className="font-mono text-[10px] uppercase tracking-widest text-cream/45">Data da solicitação</dt>
-            <dd className="mt-1 text-sm text-cream/80">{formatRequestDate(request.date)}</dd>
+            <dt className="app-small text-cream/70">Data da solicitação</dt>
+            <dd className="mt-1 app-text text-cream/80">{formatRequestDate(request.date)}</dd>
           </div>
           <div>
-            <dt className="font-mono text-[10px] uppercase tracking-widest text-cream/45">Status</dt>
+            <dt className="app-small text-cream/70">Status</dt>
             <dd className="mt-1.5">
-              <Badge variant={status.variant}>{status.label}</Badge>
+              <Badge variant={status.variant} appearance="app">{status.label}</Badge>
             </dd>
           </div>
         </dl>
 
-        <p className="mt-6 text-xs text-cream/40">
+        <p className="mt-6 app-small text-cream/70">
           Dados de demonstração. O acompanhamento completo da solicitação chega com a integração futura.
         </p>
       </div>

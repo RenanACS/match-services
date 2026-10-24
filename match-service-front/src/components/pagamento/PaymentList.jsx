@@ -1,4 +1,7 @@
 import Badge from "../ui/Badge";
+import Icon from "../ui/Icon";
+import CustodyNote from "../ui/CustodyNote";
+import Pagination from "../ui/Pagination";
 import { PAYMENT_STATUS } from "../../data/payments";
 import { formatCurrency } from "./PaymentSummary";
 
@@ -12,34 +15,29 @@ export function formatPaymentDate(iso) {
 
 function PaymentRow({ payment, onViewDetails, onPayNow }) {
   const status = PAYMENT_STATUS[payment.status];
+  const custody = payment.status === "pending" ? "pending" : payment.status === "paid" ? (payment.custody ?? "held") : null;
 
   return (
-    <li className="flex flex-col gap-2 px-5 py-3 sm:px-6 xl:flex-row xl:items-center xl:justify-between xl:py-2">
+    <li className="flex flex-col gap-2 px-4 py-3 sm:px-5 xl:flex-row xl:items-center xl:justify-between">
       <div className="min-w-0 xl:w-56 xl:shrink-0">
-        <h3 className="truncate font-display text-base font-medium text-cream xl:text-sm">
-          {payment.service}
-        </h3>
-        <p className="mt-0.5 truncate font-mono text-[11px] uppercase tracking-widest text-cream/45">
-          {payment.company}
-        </p>
+        <h2 className="app-text truncate font-medium text-cream">{payment.service}</h2>
+        <p className="app-small mt-0.5 truncate text-cream/70">{payment.company}</p>
       </div>
 
       <div className="flex items-baseline gap-2 whitespace-nowrap xl:w-60 xl:shrink-0">
-        <span className="font-display text-sm font-semibold text-cream">
-          {formatCurrency(payment.amountCents)}
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-cream/40">
-          {formatPaymentDate(payment.date)}
-        </span>
+        <span className="app-text font-semibold text-cream">{formatCurrency(payment.amountCents)}</span>
+        <span className="app-small text-cream/70">{formatPaymentDate(payment.date)}</span>
       </div>
 
+      <div className="xl:w-80 xl:shrink-0">{custody && <CustodyNote state={custody} />}</div>
+
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 xl:shrink-0">
-        <Badge variant={status.variant}>{status.label}</Badge>
+        <Badge variant={status.variant} appearance="app">{status.label}</Badge>
         {payment.status === "pending" && (
           <button
             type="button"
             onClick={() => onPayNow(payment)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-orange/40 bg-orange-soft px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-orange transition hover:bg-orange/20"
+            className="app-button inline-flex items-center gap-1.5 rounded-lg border border-orange/40 bg-orange-soft px-3 py-1 text-orange transition hover:bg-orange/20"
           >
             Pagar agora
           </button>
@@ -47,9 +45,10 @@ function PaymentRow({ payment, onViewDetails, onPayNow }) {
         <button
           type="button"
           onClick={() => onViewDetails(payment)}
-          className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-cream/60 transition hover:text-orange"
+          className="app-text inline-flex items-center gap-1.5 text-cream/70 transition hover:text-orange"
         >
-          Ver detalhes →
+          Ver detalhes
+          <Icon name="arrowRight" size={14} />
         </button>
       </div>
     </li>
@@ -57,26 +56,36 @@ function PaymentRow({ payment, onViewDetails, onPayNow }) {
 }
 
 /**
- * Listagem compacta dos pagamentos (linhas, não cards altos). Mostra o
- * estado vazio quando a busca/filtro não encontra nenhum resultado entre
- * os dados mockados de `payments`.
+ * Listagem compacta dos pagamentos (linhas), 3 por página. `pageData` vem de
+ * utils/paginate. Estado vazio quando a busca/filtro não encontra nada.
  */
-export default function PaymentList({ payments, onViewDetails, onPayNow }) {
-  if (payments.length === 0) {
+export default function PaymentList({ payments, pageData, onPageChange, onViewDetails, onPayNow }) {
+  if (pageData.total === 0) {
     return (
-      <div className="rounded-[20px] border border-hairline bg-surface-1 px-6 py-10 text-center">
-        <p className="text-sm text-cream/60">
-          Nenhum pagamento encontrado para essa busca ou filtro.
-        </p>
+      <div className="rounded-[20px] border border-hairline bg-surface-1 px-6 py-8 text-center">
+        <p className="app-text text-cream/70">Nenhum pagamento encontrado para essa busca ou filtro.</p>
       </div>
     );
   }
 
   return (
-    <ul className="divide-y divide-hairline overflow-hidden rounded-[20px] border border-hairline bg-surface-1">
-      {payments.map((payment) => (
-        <PaymentRow key={payment.id} payment={payment} onViewDetails={onViewDetails} onPayNow={onPayNow} />
-      ))}
-    </ul>
+    <section aria-label="Lista de pagamentos" className="rounded-[20px] border border-hairline bg-surface-1">
+      <ul className="divide-y divide-hairline">
+        {payments.map((payment) => (
+          <PaymentRow key={payment.id} payment={payment} onViewDetails={onViewDetails} onPayNow={onPayNow} />
+        ))}
+      </ul>
+      <div className="border-t border-hairline">
+        <Pagination
+          page={pageData.page}
+          totalPages={pageData.totalPages}
+          total={pageData.total}
+          start={pageData.start}
+          pageSize={pageData.pageSize}
+          itemLabel="pagamentos"
+          onPageChange={onPageChange}
+        />
+      </div>
+    </section>
   );
 }

@@ -31,7 +31,7 @@ export default function PasswordField({ id, label, error, className = "", ...pro
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-widest text-cream/60">
+        <label htmlFor={id} className="font-mono text-xs uppercase tracking-widest text-cream/70">
           {label}
         </label>
       )}
@@ -39,14 +39,14 @@ export default function PasswordField({ id, label, error, className = "", ...pro
         <input
           id={id}
           type={visible ? "text" : "password"}
-          className={`min-h-[44px] w-full rounded-xl border border-hairline bg-surface-1 py-3 pl-4 pr-11 text-sm text-cream placeholder:text-cream/35 focus:border-orange focus:outline-none ${className}`}
+          className={`min-h-[44px] w-full rounded-xl border border-hairline bg-surface-1 py-3 pl-4 pr-11 text-sm text-cream placeholder:text-cream/70 focus:border-orange focus:outline-none ${className}`}
           {...props}
         />
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? "Ocultar senha" : "Mostrar senha"}
-          className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-cream/40 transition hover:text-cream"
+          className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-cream/70 transition hover:text-cream"
         >
           {visible ? <EyeOffIcon /> : <EyeIcon />}
         </button>

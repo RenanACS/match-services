@@ -14,7 +14,7 @@ export default function PlaceholderPage({ title }) {
         {title}
       </h1>
       <Card>
-        <p className="text-sm text-cream/60">
+        <p className="text-sm text-cream/70">
           Esta tela ainda não foi implementada — a rota já existe para que
           a navegação possa ser testada desde já.
         </p>

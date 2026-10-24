@@ -60,7 +60,7 @@ export default function RecuperarSenha() {
         </Link>
 
         <h1 className="font-display text-2xl font-semibold">Recuperar senha</h1>
-        <p className="mt-1 text-sm text-cream/60">
+        <p className="mt-1 text-sm text-cream/70">
           Informe seu e-mail cadastrado para receber as instruções de recuperação de senha.
         </p>
 
@@ -97,7 +97,7 @@ export default function RecuperarSenha() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-cream/60">
+        <p className="mt-6 text-center text-sm text-cream/70">
           <Link to="/login" className="text-orange hover:underline">
             Voltar para o login
           </Link>

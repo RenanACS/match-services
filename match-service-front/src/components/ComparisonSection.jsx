@@ -46,10 +46,10 @@ export default function ComparisonSection() {
         <table className="w-full min-w-[560px] border-collapse overflow-hidden rounded-2xl border hairline text-left text-sm">
           <thead>
             <tr className="border-b hairline bg-charcoal/60">
-              <th className="p-4 font-mono text-xs uppercase tracking-widest text-cream/60">
+              <th className="p-4 font-mono text-xs uppercase tracking-widest text-cream/70">
                 Dimensão
               </th>
-              <th className="p-4 font-mono text-xs uppercase tracking-widest text-cream/60">
+              <th className="p-4 font-mono text-xs uppercase tracking-widest text-cream/70">
                 Marketplace tradicional
               </th>
               <th className="p-4 font-mono text-xs uppercase tracking-widest text-orange">
@@ -61,7 +61,7 @@ export default function ComparisonSection() {
             {ROWS.map((row) => (
               <tr key={row.label} className="border-b hairline last:border-b-0">
                 <td className="p-4 font-medium text-cream">{row.label}</td>
-                <td className="p-4 text-cream/60">{row.traditional}</td>
+                <td className="p-4 text-cream/70">{row.traditional}</td>
                 <td className="p-4 text-cream/90">{row.match}</td>
               </tr>
             ))}
