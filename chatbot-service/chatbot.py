@@ -1,6 +1,6 @@
 """
-Mia, a assistente de diagnóstico da MATCH SERVICES, usando modelos gratuitos
-do OpenRouter.
+Mia, a assistente de diagnóstico da MATCH SERVICES, usando o OmniRoute
+(gateway local compatível com a API da OpenAI) com a chave do .env.
 
 Este módulo é o núcleo (`ask`) e também um chat de terminal para testar o
 prompt sem subir o servidor:   python chatbot.py
@@ -18,13 +18,11 @@ from openai import OpenAI
 # Configuração: este bloco é o que muda conforme o projeto cresce
 # ---------------------------------------------------------------------------
 
-# Tentados em ordem. Se o primeiro estiver com limite de uso ou indisponível,
-# o OpenRouter passa para o próximo. Veja https://openrouter.ai/models?q=free
-# para a lista atual — modelos gratuitos entram e saem.
-MODELS = [
-    "nvidia/nemotron-3.5-super-vl:free",
-    "xingchen-agi/xing4.0-29b-a4b:free",
-]
+# O OmniRoute precisa estar rodando (`omniroute`). Endereço, chave e modelo vêm
+# do .env; os padrões abaixo servem para o OmniRoute local. Modelos "auto/..."
+# deixam o OmniRoute escolher e fazer o fallback (veja GET /v1/models).
+DEFAULT_BASE_URL = "http://127.0.0.1:20128/v1"
+DEFAULT_MODEL = "auto/best-chat"
 
 # As instruções vivem num arquivo para o time editar sem mexer no código.
 PROMPT_FILE = Path(__file__).parent / "system_prompt.txt"
@@ -38,11 +36,14 @@ GREETING = (
 TEMPERATURE = 0.4   # baixo = consistente/factual, alto = criativo/variado
 MAX_TOKENS = 2000   # limite da resposta; diagnósticos são longos e os modelos "pensam" antes
 MAX_HISTORY = 30    # conversas de diagnóstico são longas, então guarda mais turnos
-MODEL_ATTEMPTS = 2  # modelos gratuitos falham de vez em quando; tenta de novo uma vez
+MODEL_ATTEMPTS = 2  # o provedor falha de vez em quando; tenta de novo uma vez
 
 # ---------------------------------------------------------------------------
 
 load_dotenv(Path(__file__).parent / ".env")
+
+BASE_URL = os.getenv("OMNIROUTE_BASE_URL") or DEFAULT_BASE_URL
+MODEL = os.getenv("OMNIROUTE_MODEL") or DEFAULT_MODEL
 
 
 class ChatbotConfigError(RuntimeError):
@@ -50,7 +51,7 @@ class ChatbotConfigError(RuntimeError):
 
 
 class ModelUnavailableError(RuntimeError):
-    """O OpenRouter respondeu, mas nenhum modelo gerou resposta."""
+    """O OmniRoute respondeu, mas o modelo não gerou resposta."""
 
 
 def _load_system_prompt():
@@ -66,12 +67,12 @@ def _get_client():
     """Cria o cliente na primeira chamada, para o servidor subir mesmo sem chave."""
     global _client
     if _client is None:
-        api_key = os.getenv("OPENROUTER_API_KEY")
+        api_key = os.getenv("OMNIROUTE_API_KEY")
         if not api_key:
-            raise ChatbotConfigError("OPENROUTER_API_KEY não encontrada. Confira o arquivo .env.")
-        # O OpenRouter fala o mesmo formato da OpenAI: usamos a biblioteca
+            raise ChatbotConfigError("OMNIROUTE_API_KEY não encontrada. Confira o arquivo .env.")
+        # O OmniRoute fala o mesmo formato da OpenAI: usamos a biblioteca
         # da OpenAI apontando para o endereço dele.
-        _client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key)
+        _client = OpenAI(base_url=BASE_URL, api_key=api_key)
     return _client
 
 
@@ -88,13 +89,12 @@ def ask(history):
     messages = [{"role": "system", "content": _load_system_prompt()}] + trim_history(history)
     for attempt in range(MODEL_ATTEMPTS):
         response = _get_client().chat.completions.create(
-            model=MODELS[0],
+            model=MODEL,
             messages=messages,
             temperature=TEMPERATURE,
             max_tokens=MAX_TOKENS,
-            extra_body={"models": MODELS},  # só do OpenRouter: lista de fallback
         )
-        # Os modelos gratuitos às vezes falham no provedor e o OpenRouter
+        # Às vezes o provedor falha e o gateway
         # devolve HTTP 200 com um corpo de erro e `choices` vazio.
         if response.choices:
             return response.choices[0].message.content, response.model
@@ -121,7 +121,7 @@ def main():
         except ChatbotConfigError as error:
             raise SystemExit(str(error))
         except Exception as error:
-            # 429 = limite de uso, 402 = problema de crédito, 401 = chave inválida
+            # 429 = limite de uso, 402 = sem crédito, 401 = chave inválida
             print(f"[erro] {error}\n")
             history.pop()  # descarta a pergunta que falhou para não sujar o histórico
             continue
