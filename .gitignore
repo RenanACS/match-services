@@ -8,3 +8,6 @@
 # Env files
 .env
 .env.local
+
+# Impeccable (cache, críticas e metadados locais da ferramenta de design)
+.impeccable/
